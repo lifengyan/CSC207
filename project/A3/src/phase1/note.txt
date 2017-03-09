@@ -1,0 +1,6 @@
+**********
+Step 1
+Code Effect: Fascia.java
+Crate a fascia class, to help warehouse build its
+data base.
+**********
