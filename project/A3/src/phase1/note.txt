@@ -4,3 +4,7 @@ Code Effect: Fascia.java
 Crate a fascia class, to help warehouse build its
 data base.
 **********
+step 2 
+build the 4D Arraylist for warehouse
+code effect: Warehouse.java
+**************
