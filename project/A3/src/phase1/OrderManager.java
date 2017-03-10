@@ -5,14 +5,15 @@ import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class OrderManagement {
-	private Map<int, Order> orders;
+public class OrderManager {
+	private Map<Integer, Order> orders;
+	private static int trail = 4;
 	
 	/**
      * Creates a new empty OrderManager.
      */
 	public OrderManagement() {
-		 orders = new HashMap<int, Order>();
+		 orders = new HashMap<Integer, Order>();
 		
 	}
 	
@@ -36,6 +37,13 @@ public class OrderManagement {
     	orders.put(order.getOrderCount(), order);
     }
     
-	
+	public HashMap<Integer, Order> generatePick() {
+		 pick = new HashMap<Integer, Order>();
+		 if (this.orders.containsKey(trail)) {
+			 i = 0;
+			 if 
+		 }
+		
+	}
 
 }

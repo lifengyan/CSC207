@@ -6,7 +6,7 @@ public class Order {
 	/** The first item is the front SKU and the second is the back SKU*/
 	private int frontSKU;
 	private int backSKU;
-	public static int orderCount = 0;
+	private static int orderCount = 0;
 	public String status = "ordered";
 	
 	public Order(String colour, String model, int front, int back) {
@@ -23,7 +23,7 @@ public class Order {
 		
 	}
 	
-	public static int getOrderCount() {
+	public int getOrderCount() {
 		return orderCount;
 	}
 	
