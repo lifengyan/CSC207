@@ -13,6 +13,10 @@ add some methods idea to the warehouse, but have not implement yet
 code effect: warehouse.java
 **************
 Step 4
-crate a WarehouseLevel class, this is the level of a warehouse, it will store
+crate  WarehouseLevel class, this is the level of a warehouse, it will store
 max 30 fasica, and it will be a observer. 
+code effect: WarehouseLevel.java
+**************
+Step 5
+add add and remove method to WarehouseLevel.java
 code effect: WarehouseLevel.java
