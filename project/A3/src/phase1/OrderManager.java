@@ -41,11 +41,13 @@ public class OrderManager {
 	public Map<Integer, Order> generatePick() throws InterruptedException {
 		Map<Integer, Order> pick = new HashMap<Integer, Order>();
 		 if (this.orders.containsKey(trail)) {
-			 pick.put(4, this.orders.get(trail));
-			 pick.put(3, this.orders.get(trail-1));
-			 pick.put(2, this.orders.get(trail-2));
-			 pick.put(1, this.orders.get(trail-3));
+			 for (int i = 0; i < 4; i++) {
+				pick.put(4-i, this.orders.get(trail-i));
+				this.orders.get(trail-i).setStatus("picked");
+			 }
+		
 			 trail += 4; 
+	
 		 } else {
 			 Thread.sleep(5000);
 			 generatePick();
