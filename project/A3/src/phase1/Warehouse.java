@@ -15,11 +15,11 @@ public class Warehouse extends Observable {
 	/***
 	 * construct the warehouse
 	 */
-	public Warehouse(){};
+	public Warehouse(){}
 	
 	public Warehouse(String WarehouseName){
 		this.WarehouseName = WarehouseName;
-	};
+	}
 	
 	/***
 	 * this function is use to initial ware house state in the beginning.

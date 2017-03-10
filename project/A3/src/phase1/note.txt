@@ -9,6 +9,6 @@ build the 4D Arraylist for warehouse
 code effect: Warehouse.java
 **************
 Step 3 
-add some methond idea to the warehouse, but have not implement yet
+add some methods idea to the warehouse, but have not implement yet
 code effect: warehouse.java
 **************
