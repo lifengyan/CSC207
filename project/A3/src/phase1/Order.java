@@ -16,6 +16,7 @@ public class Order {
 		this.backSKU = back;
 		orderCount++;
 		
+		
 	}
 	
 	public void setStatus(String status) {
@@ -25,6 +26,14 @@ public class Order {
 	
 	public int getOrderCount() {
 		return orderCount;
+	}
+	
+	public int getFront() {
+		return this.frontSKU;
+	}
+	
+	public int getBack() {
+		return this.backSKU;
 	}
 	
 	public boolean equals(Order other) {
