@@ -1,0 +1,9 @@
+********
+Step 1
+Code Effect: Order.java
+Create a order class
+********
+Step 2
+Code Effect: OrderManager.java
+Use ordermanager to track and store all orders by hashmap
+
