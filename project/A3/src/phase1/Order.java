@@ -4,13 +4,17 @@ public class Order {
 	private String colour;
 	private String model;
 	/** The first item is the front SKU and the second is the back SKU*/
-	private int[] SKU;
+	private int frontSKU;
+	private int backSKU;
+	public static int orderCount = 0;
 	public String status = "ordered";
 	
-	public Order(String colour, String model, int[] SKU) {
+	public Order(String colour, String model, int front, int back) {
 		this.colour = colour;
 		this.model = model;
-		this.SKU = SKU;
+		this.frontSKU = front;
+		this.backSKU = back;
+		orderCount++;
 		
 	}
 	
@@ -19,10 +23,13 @@ public class Order {
 		
 	}
 	
+	public static int getOrderCount() {
+		return orderCount;
+	}
 	
 	public boolean equals(Order other) {
 		return (other.colour == this.colour && other.model== this.model 
-	           && other.SKU == this.SKU);
+	           && other.frontSKU == this.frontSKU && other.backSKU == this.backSKU);
 		
 	}
 	
