@@ -29,3 +29,7 @@ Step 7
 implement the getFascia method in the warehouse, so the picker can use this method
 to get a Fascia from warehouse level 
 code effect: warehouse.getFascia
+**************
+Step 8
+fix warehouseinv construction bug
+code effect: warehouse.warehouseinv

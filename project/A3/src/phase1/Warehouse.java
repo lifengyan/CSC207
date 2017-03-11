@@ -18,19 +18,19 @@ public class Warehouse {
 	public Warehouse(){
 		//build the initial warehouse storage room
 		for( int i = 0; i < 2; ++i ) {
-			  ArrayList<ArrayList> zone = new ArrayList();
+			ArrayList<ArrayList<ArrayList<WarehouseLevel>>> zone = new ArrayList();
 			  warehouseinv.add( zone );
 			  
 			  for( int j = 0; j < 2; ++j ) {
-				  ArrayList<ArrayList> aisles = new ArrayList();
+				  ArrayList<ArrayList<WarehouseLevel>> aisles = new ArrayList();
 				  zone.add( aisles );
 				  
 			    for( int k = 0; k < 3; ++k ) {
-			    	ArrayList<ArrayList> racks = new ArrayList();
+			    	ArrayList<WarehouseLevel> racks = new ArrayList();
 			    	aisles.add( racks);
 			    	
 			    	 for( int l = 0; l <4 ; ++l ) {
-						  ArrayList<WarehouseLevel> level = new ArrayList();
+						  WarehouseLevel level = new WarehouseLevel();
 						  racks.add( level);
 				  }
 			  }
@@ -43,19 +43,19 @@ public class Warehouse {
 		this.WarehouseName = WarehouseName;
 		//build the initial warehouse storage room
 				for( int i = 0; i < 2; ++i ) {
-					  ArrayList<ArrayList> zone = new ArrayList();
+					ArrayList<ArrayList<ArrayList<WarehouseLevel>>> zone = new ArrayList();
 					  warehouseinv.add( zone );
 					  
 					  for( int j = 0; j < 2; ++j ) {
-						  ArrayList<ArrayList> aisles = new ArrayList();
+						  ArrayList<ArrayList<WarehouseLevel>> aisles = new ArrayList();
 						  zone.add( aisles );
 						  
 					    for( int k = 0; k < 3; ++k ) {
-					    	ArrayList<ArrayList> racks = new ArrayList();
+					    	ArrayList<WarehouseLevel> racks = new ArrayList();
 					    	aisles.add( racks);
 					    	
 					    	 for( int l = 0; l <4 ; ++l ) {
-								  ArrayList<WarehouseLevel> level = new ArrayList();
+								  WarehouseLevel level = new WarehouseLevel();
 								  racks.add( level);
 						  }
 					  }
@@ -74,9 +74,9 @@ public class Warehouse {
 	
 	
 	/***
-	 * When a pick scean the barcode, it will tell the system it take 
+	 * When a pick scan the barcode, it will tell the system it take 
 	 * the Fascia from the warehouse. The warehouse will make a note, 
-	 * and check if that rack need resupply.
+	 * and check if that rack need Replenishing.
 	 * @param zone
 	 * @param aisles
 	 * @param racks
