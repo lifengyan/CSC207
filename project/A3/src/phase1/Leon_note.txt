@@ -24,3 +24,8 @@ code effect: WarehouseLevel.java
 Step 6
 change the data design of WarehouseLevel and warehouse inventory system
 code effect: WarehouseLevel.java,warehouse.warehouse
+**************
+Step 7
+implement the getFascia method in the warehouse, so the picker can use this method
+to get a Fascia from warehouse level 
+code effect: warehouse.getFascia

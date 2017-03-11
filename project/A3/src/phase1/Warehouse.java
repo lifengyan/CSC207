@@ -7,7 +7,7 @@ public class Warehouse {
 	//this two ArrayList use to represent two Zone inside the warehouse,
 	//the order followed by aisles,racks,level and in side the WarehouseLevel there
 	//are 30 space to put down the Fascia.
-	static ArrayList<ArrayList> warehouseinv = new ArrayList();
+	static ArrayList<ArrayList<ArrayList<ArrayList<WarehouseLevel>>>> warehouseinv = new ArrayList();
 	
 	
 	private  String WarehouseName;
@@ -41,6 +41,27 @@ public class Warehouse {
 	
 	public Warehouse(String WarehouseName){
 		this.WarehouseName = WarehouseName;
+		//build the initial warehouse storage room
+				for( int i = 0; i < 2; ++i ) {
+					  ArrayList<ArrayList> zone = new ArrayList();
+					  warehouseinv.add( zone );
+					  
+					  for( int j = 0; j < 2; ++j ) {
+						  ArrayList<ArrayList> aisles = new ArrayList();
+						  zone.add( aisles );
+						  
+					    for( int k = 0; k < 3; ++k ) {
+					    	ArrayList<ArrayList> racks = new ArrayList();
+					    	aisles.add( racks);
+					    	
+					    	 for( int l = 0; l <4 ; ++l ) {
+								  ArrayList<WarehouseLevel> level = new ArrayList();
+								  racks.add( level);
+						  }
+					  }
+					}
+				}
+				//
 	}
 	
 	/***
@@ -62,11 +83,8 @@ public class Warehouse {
 	 * @param level
 	 * @return
 	 */
-	
-	public Fascia getFascia (String zone,int aisles,int racks,int level){ 
-		
-		if (zone =="zonea"){
-			return ZoneA[aisles][racks][level;
+	public Fascia getFascia (int zone,int aisles,int racks,int level){ 
+		return warehouseinv.get(zone).get(aisles).get(racks).get(level).removeOne();
 	}
 	
 	

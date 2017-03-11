@@ -9,7 +9,8 @@ public class Fascia {
 		this.Colour = Colour;
 		this.Model = Colour;
 		this.SKU = SKU;
-			
 	}
 	
+	public Fascia(){
+	}
 }
