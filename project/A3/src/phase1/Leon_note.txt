@@ -33,3 +33,8 @@ code effect: warehouse.getFascia
 Step 8
 fix warehouseinv construction bug
 code effect: warehouse.warehouseinv
+**************
+Step 9
+implement StorageInital metond in warehouse. it will read from a csv file and put all the
+fasica in to place. And also change the WarehouseLevel name into level.
+code effect: warehouse.StorageInital

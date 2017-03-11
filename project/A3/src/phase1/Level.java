@@ -3,10 +3,10 @@ package phase1;
 import java.util.ArrayList;
 
 
-public class WarehouseLevel  {
+public class Level  {
 	private ArrayList <Fascia> fasciaList = new ArrayList();
 	
-	public WarehouseLevel(){
+	public Level(){
 	}
 	
 	/***
