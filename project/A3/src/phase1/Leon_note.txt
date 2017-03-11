@@ -20,3 +20,7 @@ code effect: WarehouseLevel.java
 Step 5
 add add and remove method to WarehouseLevel.java
 code effect: WarehouseLevel.java
+**************
+Step 6
+change the data design of WarehouseLevel and warehouse inventory system
+code effect: WarehouseLevel.java,warehouse.warehouse

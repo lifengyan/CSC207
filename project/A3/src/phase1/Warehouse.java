@@ -3,19 +3,41 @@ package phase1;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class Warehouse extends Observable {
+public class Warehouse {
 	//this two ArrayList use to represent two Zone inside the warehouse,
-	//the order followed by aisles,racks,level and in side the level there
+	//the order followed by aisles,racks,level and in side the WarehouseLevel there
 	//are 30 space to put down the Fascia.
-	static ArrayList<Fascia>[][][][] ZoneA = new ArrayList [2][3][4][30];
-	static ArrayList<Fascia>[][][][] ZoneB = new ArrayList [2][3][4][30];
+	static ArrayList<ArrayList> warehouseinv = new ArrayList();
+	
 	
 	private  String WarehouseName;
 	
 	/***
 	 * construct the warehouse
 	 */
-	public Warehouse(){}
+	public Warehouse(){
+		//build the initial warehouse storage room
+		for( int i = 0; i < 2; ++i ) {
+			  ArrayList<ArrayList> zone = new ArrayList();
+			  warehouseinv.add( zone );
+			  
+			  for( int j = 0; j < 2; ++j ) {
+				  ArrayList<ArrayList> aisles = new ArrayList();
+				  zone.add( aisles );
+				  
+			    for( int k = 0; k < 3; ++k ) {
+			    	ArrayList<ArrayList> racks = new ArrayList();
+			    	aisles.add( racks);
+			    	
+			    	 for( int l = 0; l <4 ; ++l ) {
+						  ArrayList<WarehouseLevel> level = new ArrayList();
+						  racks.add( level);
+				  }
+			  }
+			}
+		}
+		//
+	}
 	
 	public Warehouse(String WarehouseName){
 		this.WarehouseName = WarehouseName;
@@ -42,21 +64,10 @@ public class Warehouse extends Observable {
 	 */
 	
 	public Fascia getFascia (String zone,int aisles,int racks,int level){ 
-		// do something here
-//		if (zone =="zonea"){
-//			ZoneA[aisles][racks][level].remove;
-//			return ZoneA[aisles][racks][level].pop;//
+		
+		if (zone =="zonea"){
+			return ZoneA[aisles][racks][level;
 	}
-	
-	/***
-	 * when there are exactly 5 of fascia left in the rack, ware will 
-	 * replenishing 25 fascia from the reserve room
-	 */
-	public void replenishing (){
-		//do something here
-	}
-	
-	
 	
 	
 	}
