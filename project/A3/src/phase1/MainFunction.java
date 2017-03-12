@@ -55,9 +55,9 @@ public class MainFunction {
 					pickerManager.storePicker(userInput[1]);}// changed the function name
 				
 				else if(userInput[2]=="picked"){ 
-					System.out.println("Picker scan Barcode(please input a SKU):");
+					System.out.println("Picker scan Barcode(please input one SKU):");
 					int userInput2= reader.nextInt();
-					pickerManager.getPicker(userInput[1]).picke(userInput2);}
+					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2);}
 				
 				else if(userInput[2]=="Marshaling"){ 
 					pickerManager.getPicker(userInput[1]).marshaling();}	;
