@@ -1,12 +1,11 @@
 package phase1;
 
 public class Fascia {
-	private int SKU;
-	
-	public Fascia(int SKU){
-		this.SKU = SKU;
-	}
-	
-	public Fascia(){
-	}
+  private int sku;
+
+  public Fascia(int sku) {
+    this.sku = sku;
+  }
+
+  public Fascia() {}
 }

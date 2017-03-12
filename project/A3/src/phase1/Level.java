@@ -1,5 +1,5 @@
 package phase1;
-//this class will be store Fasscia.
+//this class will be store Fascia.
 import java.util.ArrayList;
 
 
@@ -18,8 +18,8 @@ public class Level  {
 	}
 	
 	/***
-	 * when picker remove the fasica, current warehouselevel
-	 * will reduce one unite of fasica, and check if the  level need 
+	 * when picker remove the fascia, current warehouselevel
+	 * will reduce one unite of fascia, and check if the  level need 
 	 * to replenishing.
 	 * 
 	 * @return Fascia 
