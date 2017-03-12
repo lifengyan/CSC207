@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class MainFunction {
 
-	public static String filePath = "";
+	public static String hrFilePath = "";
 	public static String warehousePath ="";
 	public static String transtanblePath = "";
 	
@@ -17,11 +17,7 @@ public class MainFunction {
 	public static void main(String[] args) {
 		OrderManager orderManager = new OrderManager();
 		RequestManager requestManager = new RequestManager();
-		PickerManager pickerManager = new PickerManager();//
-		SequencerManager sequencerManager = new SequencerManager();
-		ReplenisherManager replenisherManager = new ReplenisherManager();
-		LoaderManager loaderManager = new loaderManager();
-		
+		HrSystem hrsystem = new HrSystem();
 		
 		Warehouse WarehouseA = new Warehouse();
 		Translate TranslateA = new Translate();
@@ -32,10 +28,13 @@ public class MainFunction {
 		warehousePath = reader.next();
 		System.out.println("Enter TranslationTable.csv file path: ");
 		transtanblePath = reader.next();
+		System.out.println("Enter Hysystem.csv file path: ");
+        transtanblePath = reader.next();
 		
 		//initial the warehouse and translation table
 		WarehouseA.storageInital(warehousePath);
 		TranslateA.readFromCSVFile(transtanblePath);
+		hrsystem.readFromcsv(hrFilePath);
 			
 		boolean shutdown = false;	
 		
@@ -48,25 +47,24 @@ public class MainFunction {
 			//Us a case statement to find out which command it used
 			switch (userInput[0]){
 			
-				case "order": orderManager.addOrder(userInput[1],userInput[2]);
-				
-				
+				case "order": orderManager.addOrder(userInput[1],userInput[2],TranslateA);
+								
 				case "picker": if (userInput[2]=="ready"){
 					pickerManager.storePicker(userInput[1]);}// changed the function name
 				
 				else if(userInput[2]=="picked"){ 
 					System.out.println("Picker scan Barcode(please input one SKU):");
 					int userInput2= reader.nextInt();
-					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2);}
+					hrsystem.getWorker(userInput[1]).addtoFolkLift(userInput2);}
 				
 				else if(userInput[2]=="Marshaling"){ 
-					pickerManager.getPicker(userInput[1]).marshaling();}	;
+				  hrsystem.getWorker(userInput[1]).marshaling();}	;
 				
-				case "sequencer": sequencerManager.getSequencer(userInput[1]).sequencer();
+				case "sequencer": hrsystem.getWorker(userInput[1]).sequencer();
 				
-				case "replenisher": replenisherManager.getReplenisher(userInput[1]).replenishing();
+				case "replenisher": hrsystem.getWorker(userInput[1]).replenishing();
 				
-				case "loader": loaderManager.getLoader(userInput[1]).loading();
+				case "loader": hrsystem.getWorker(userInput[1]).loading();
 				
 				case "clouse": shutdown = true;
 			}
