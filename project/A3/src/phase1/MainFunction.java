@@ -48,32 +48,26 @@ public class MainFunction {
 			switch (userInput[0]){
 			
 				case "order": orderManager.addOrder(userInput[1],userInput[2],TranslateA);
-<<<<<<< HEAD
-				
-				
-=======
-								
->>>>>>> 92361d0e8cc60afc898dfa36fa8fb3e130c399f2
+
 				case "picker": if (userInput[2]=="ready"){
 					pickerManager.add(userInput[1]);}
 				
 				else if(userInput[2]=="picked"){ 
 					System.out.println("Picker enter pickedsku");
 					int userInput2= reader.nextInt();
-<<<<<<< HEAD
+
 					pickerManager.getPicker(userInput[1]).picke(userInput2);}
-=======
 					hrsystem.getWorker(userInput[1]).addtoFolkLift(userInput2);}
->>>>>>> 92361d0e8cc60afc898dfa36fa8fb3e130c399f2
+
 				
 				else if(userInput[2]=="Marshaling"){ 
 				  hrsystem.getWorker(userInput[1]).marshaling();}	;
 				
-<<<<<<< HEAD
+
 				case "sequencer": sequencerManager.getSequencer(userInput[1]).sequence();
-=======
+
 				case "sequencer": hrsystem.getWorker(userInput[1]).sequencer();
->>>>>>> 92361d0e8cc60afc898dfa36fa8fb3e130c399f2
+
 				
 				case "replenisher": hrsystem.getWorker(userInput[1]).replenishing();
 				
