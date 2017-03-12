@@ -38,7 +38,12 @@ PickerManager.java: used to store all the pickers and keep track of their curren
 Push 4\
 Push 3 was not completed due to unknown reason, here push again.\
 \
-\
+**********\
+Push 5\
+Code effected: Location.java\
+			WarehousePicking.java\
+Note: edited WarehousePicking so that it will read from the traversal_Table, added method to return 8 random locations \
+	 changed variable type from Integer to String in Location.java\
 \
 \
 \

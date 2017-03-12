@@ -1,6 +1,10 @@
 package phase1;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Based on the Integer SKUs in List 'skus', return a List of locations,
@@ -13,10 +17,37 @@ import java.util.ArrayList;
  * @return the List of locations.
  */
 public class WarehousePicking {
-	public static ArrayList<String> optimize(ArrayList<Integer> fasciaList){
+	// file location
+	public static String piclocFile = "";
+	// an array to store all locations from the file
+	static ArrayList<Location> locationList = new ArrayList<Location>(); 
+	
+	
+	// function to store all the locations from the input file
+	public void readFromCSVFile(String piclocFile) throws FileNotFoundException {
+	      
+        Scanner scanner = new Scanner(new FileInputStream(piclocFile));
+        String[] record;
+        while(scanner.hasNextLine()) {
+            record = scanner.nextLine().split(",");
+            Location newLoc = new Location(record[0], record[1], record[2], record[3]);
+            locationList.add(newLoc);
+            }      
+        scanner.close();
+	}
+	
+	
+	public static ArrayList<Location> optimize(ArrayList<Integer> fasciaList){
 		
-		ArrayList<String> location = new ArrayList<String>();
-		return location;
+		ArrayList<Location> locationS = new ArrayList<Location>();
+		// get 8 random locations and return them as an array of Locations
+		for(int i = 0; i<8; i++){
+			int randomNum = ThreadLocalRandom.current().nextInt(1, 47);
+			Location curr = new Location(null, null, null, null);
+			curr = locationList.get(randomNum);
+			locationS.add(curr);
+		}
+		return locationS;
 		
 	}
 }
