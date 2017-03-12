@@ -51,3 +51,7 @@ code effect: Warehosue.writeDown()
 Step 12
 creat hrsystem to manegment all the worker class
 code effect: HrSystem.java, mainfunciton.main
+**************
+Step 13
+implement the warehouse writeDown method.
+code effect: HrSystem.java, mainfunciton.main

@@ -32,6 +32,10 @@ public class Level  {
 		return retFascia;
 	}
 	
+	public int report(){
+	  return fasciaList.size();
+	}
+	
 	/***
 	 * when there are exactly 5 of fascia left in the rack, ware will 
 	 * replenishing 25 fascia from the reserve room

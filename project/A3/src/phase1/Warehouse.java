@@ -6,6 +6,8 @@ import java.util.Observable;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Warehouse {
 	//this two ArrayList use to represent two Zone inside the warehouse,
@@ -103,14 +105,41 @@ public class Warehouse {
 		return warehouseinv.get(zone).get(aisles).get(racks).get(level).removeOne();
 	}
 	
-	public void writeDown (String filePath) throws FileNotFoundException{
-		  Scanner scanner = new Scanner(new FileInputStream(filePath));
-	      String[] record;
-	      //writeDown the warehouseinv.
-	        
-	     
-	      scanner.close();
-		} 
+	public void writeDown (String filePath) throws IOException{
+		  String csvFile = filePath;
+	    FileWriter writer = new FileWriter(csvFile);
+	    for( int i = 0; i < 2; ++i ) { 
+	      
+	      
+	        for( int j = 0; j < 2; ++j ) {
+	         
+	          
+	          for( int k = 0; k < 3; ++k ) {
+	                       
+	               for( int l = 0; l <4 ; ++l ) {
+	                 for(int x=0; x<30;x++){
+	                 writer.append(String.valueOf(i));
+	                 writer.append(",");
+	                 writer.append(String.valueOf(j));
+	                 writer.append(",");
+	                 writer.append(String.valueOf(k));
+	                 writer.append(",");
+	                 writer.append(String.valueOf(l));
+	                 writer.append(",");
+	                 writer.append(String.valueOf(warehouseinv.get(i).get(j).get(k).get(l).report()));
+	                 writer.append("\n");
+	                 
+	                 }
+	               
+	            }
+	        }
+	      }
+	  }
+	    
+	    
+	    
+	}
+	  
 	
 	}
 	
