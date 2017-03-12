@@ -47,3 +47,7 @@ Step 11
 implement writeDown method inside the Warehosue it will record current Warehosue inventory system
 into the warehouse.csv file
 code effect: Warehosue.writeDown()
+**************
+Step 12
+creat hrsystem to manegment all the worker class
+code effect: HrSystem.java, mainfunciton.main
