@@ -1,5 +1,6 @@
 package phase1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,23 +39,22 @@ public class OrderManager {
    * as a key and Object is another HashMap, with the order that orders come in as key and 
    * Order as object.
    */
-  public HashMap<Integer, HashMap<Integer, Order>> generatePick() throws InterruptedException {
-    HashMap<Integer, HashMap<Integer, Order>> pick =
-        new HashMap<Integer, HashMap<Integer, Order>>();
+  public ArrayList<Object> generatePick() {
+    ArrayList<Object> pick = new ArrayList<Object>();
     HashMap<Integer, Order> order = new HashMap<Integer, Order>();
     if (this.orders.containsKey(trail)) {
       for (int i = 0; i < 4; i++) {
         order.put(4 - i, this.orders.get(trail - i));
         this.orders.get(trail - i).setStatus("picked");
       }
-      pick.put(trail, order);
+      pick.add(trail);
       trail += 4;
 
     } else {
-      pick.put(0, order);
+      pick.add(0);
     }
+    pick.add(order);
     return pick;
-
   }
 
   public Map<Integer, Order> getOrders() {
