@@ -11,7 +11,7 @@ Code Effected: PickRequest.java\
 Created this class to get pick order request\
 Note: need to add two getter methods in Order.java\
 **********\
-Push2\
+Push 2\
 Code Effected: PickRequest.java\
 			\
 Created classes: MainFunction.java\
@@ -24,4 +24,23 @@ RequestManager: used to match current request with available picker, get picker 
 PickerInfo: used to store picker status\
 WarehousePicking: used to model the generic software \
 PickRequest: need a better way to store location information for the 8 fascia in the current picking request.\
-**********}
+**********\
+Push 3\
+Code effected: MainFunction.java\
+                        pickRequest.java\
+Created classes: Location.java\
+			   Picker.java\
+			   PickerManager.java\
+Location.java: used to store the location information of each fascia that needs to be picked. Contains zone, aisle, rack and level and SKU, not implemented yet. \
+Picker.java: used to create instance of picker to store their name, status and other informations, added getter and setter methods\
+PickerManager.java: used to store all the pickers and keep track of their current status. (Still need to figure out where to create picker instance), added getter and setter methods\
+**********\
+Push 4\
+Push 3 was not completed due to unknown reason, here push again.\
+\
+\
+\
+\
+\
+\
+}

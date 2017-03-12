@@ -52,10 +52,10 @@ public class MainFunction {
 				
 				
 				case "picker": if (userInput[2]=="ready"){
-					pickerManager.add(userInput[1]);}
+					pickerManager.storePicker(userInput[1]);}// changed the function name
 				
 				else if(userInput[2]=="picked"){ 
-					System.out.println("Picker enter pickedsku");
+					System.out.println("Picker scan Barcode(please input a SKU):");
 					int userInput2= reader.nextInt();
 					pickerManager.getPicker(userInput[1]).picke(userInput2);}
 				

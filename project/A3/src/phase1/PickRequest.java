@@ -28,8 +28,7 @@ public class PickRequest{
 
 		}
 		
-		//--------------------------------------------------------how to get the string and numbers for location?????????????
-		//Method getFasciaList： returns the private Integer array list Contains 8 SKU# for one pick request	
+				//Method getFasciaList： returns the private Integer array list Contains 8 SKU# for one pick request	
 		public static ArrayList<String> optimize(ArrayList<Integer> fasciaList){
 			// using generic software to get ordered locations
 			ArrayList<String> location = new ArrayList<String>();
