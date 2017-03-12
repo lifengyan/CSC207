@@ -6,11 +6,13 @@ public class Location {
 	String aisle;
 	String rack;
 	String level;
+	String sku;
 	// Constructor
-	public Location(String z, String record,String record2, String record3){
+	public Location(String z, String record,String record2, String record3, String record4){
 		this.zone = z;
 		this.aisle = record;
 		this.rack = record2;
 		this.level = record3;
+		this.sku = record4;
 	}
 }
