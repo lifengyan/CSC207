@@ -12,15 +12,18 @@ public class OrderManager {
      */
 	public OrderManager() {
 		 orders = new HashMap<Integer, Order>();
+		 temOrder = new HashMap<Integer, Order>();
 		
 	}
 	
-	public void addOrder(Order order) {
-		 temOrder.put(order.getOrderCount(), order);
-         if (temOrder.size()==4) {
-         	orders.putAll(temOrder);
-         	temOrder.clear();
-         }
+	public void addOrder(String colour, String model, Translate tr) {
+		//add translate 
+		Order order = new Order(colour, model, tr);
+		temOrder.put(order.getOrderCount(), order);
+		if (temOrder.size()==4) {
+			orders.putAll(temOrder);
+			temOrder.clear();
+		}
 		
 	}
 	
@@ -43,6 +46,10 @@ public class OrderManager {
 		return pick;
 		
 		
+	}
+	
+	public Map<Integer, Order> getOrders() {
+		return this.orders;
 	}
 
 }
