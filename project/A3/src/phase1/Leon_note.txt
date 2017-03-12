@@ -38,3 +38,7 @@ Step 9
 implement StorageInital metond in warehouse. it will read from a csv file and put all the
 fasica in to place. And also change the WarehouseLevel name into level.
 code effect: warehouse.StorageInital
+**************
+Step 10
+implement main method inside the Mainfunction. so that user is able to use the system.
+code effect: Mainfunction.main()
