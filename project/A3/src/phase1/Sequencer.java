@@ -1,11 +1,8 @@
 package phase1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Sequencer extends Worker {
-	private String name;
-	private String status = "ready";
 	
 	public Sequencer(String name) {
 		super(name);

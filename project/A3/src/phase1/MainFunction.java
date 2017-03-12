@@ -48,21 +48,21 @@ public class MainFunction {
 			//Us a case statement to find out which command it used
 			switch (userInput[0]){
 			
-				case "order": orderManager.addOrder(userInput[1],userInput[2]);
+				case "order": orderManager.addOrder(userInput[1],userInput[2],TranslateA);
 				
 				
 				case "picker": if (userInput[2]=="ready"){
-					pickerManager.storePicker(userInput[1]);}// changed the function name
+					pickerManager.add(userInput[1]);}
 				
 				else if(userInput[2]=="picked"){ 
-					System.out.println("Picker scan Barcode(please input one SKU):");
+					System.out.println("Picker enter pickedsku");
 					int userInput2= reader.nextInt();
-					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2);}
+					pickerManager.getPicker(userInput[1]).picke(userInput2);}
 				
 				else if(userInput[2]=="Marshaling"){ 
 					pickerManager.getPicker(userInput[1]).marshaling();}	;
 				
-				case "sequencer": sequencerManager.getSequencer(userInput[1]).sequencer();
+				case "sequencer": sequencerManager.getSequencer(userInput[1]).sequence();
 				
 				case "replenisher": replenisherManager.getReplenisher(userInput[1]).replenishing();
 				

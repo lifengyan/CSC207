@@ -13,6 +13,15 @@ public class SequencerManager {
 		this.sqs.add(sq);
 	}
 	
+	public Sequencer getSequencer() {
+		for (int i = 0; i < this.sqs.size(); i++) {
+			if (this.sqs.get(i).getStatus() == "ready") {
+				return this.sqs.get(i);
+			}
+			
+		}
+	}
+	
 	
 	
 

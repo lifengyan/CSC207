@@ -5,7 +5,11 @@ Create a order class
 ********
 Step 2
 Code Effect: OrderManager.java
-Use ordermanager to track and store all orders by hashmap
+Use OrderManager to track and store all orders by HashMap, the key is the order that minivan orders came in 
 ********
 Step 3
+if the picker request picking, OrdrManager will generate a Hashmap of order for picker to pick, the 
+key equals pickid; if pickid = 0, then there are no orders available for picking
+********
+Step 4
 
