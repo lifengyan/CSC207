@@ -8,16 +8,17 @@ public class Order {
 	private int backSKU;
 	private static int orderCount = 0;
 	public String status = "ordered";
+
 	
-	public Order(String colour, String model, int front, int back) {
+	public Order(String colour, String model, Translate tr, OrderManager om) {
 		this.colour = colour;
 		this.model = model;
-		this.frontSKU = front;
-		this.backSKU = back;
+		this.frontSKU = tr.translate(colour, model).get(0);
+		this.backSKU = tr.translate(colour, model).get(1);
 		orderCount++;
-		
-		
+		om.addOrder(this);
 	}
+	
 	
 	public void setStatus(String status) {
 		this.status = status;

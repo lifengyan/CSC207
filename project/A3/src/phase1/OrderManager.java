@@ -1,10 +1,6 @@
 package phase1;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 
 public class OrderManager {
 	private Map<Integer, Order> orders;
@@ -19,33 +15,18 @@ public class OrderManager {
 		
 	}
 	
-	public void readFromCSVFile(String filePath) throws FileNotFoundException {
-      
-        Scanner scanner = new Scanner(new FileInputStream(filePath));
-        String[] record;
-        Order order;
-        while(scanner.hasNextLine()) {
-            record = scanner.nextLine().split(",");
-            order = new Order(record[0], record[1], Integer.valueOf(record[2]), 
-            		Integer.valueOf(record[3]));
-            temOrder.put(order.getOrderCount(), order);
-            if (temOrder.size()==4) {
-            	orders.putAll(temOrder);
-            	temOrder.clear();
-            }      
-  
-        }
-        scanner.close();
+	public void addOrder(Order order) {
+		 temOrder.put(order.getOrderCount(), order);
+         if (temOrder.size()==4) {
+         	orders.putAll(temOrder);
+         	temOrder.clear();
+         }
+		
 	}
-  
-
-    public void add(Order order) {
-    	orders.put(order.getOrderCount(), order);
-    }
+	
     
-    
-	public Map<Integer, HashMap<Integer, Order> > generatePick() throws InterruptedException {
-		Map<Integer, HashMap<Integer, Order>> pick = new HashMap<Integer, HashMap<Integer, Order>>();
+	public HashMap<Integer, HashMap<Integer, Order> > generatePick() throws InterruptedException {
+		HashMap<Integer, HashMap<Integer, Order>> pick = new HashMap<Integer, HashMap<Integer, Order>>();
 		HashMap<Integer, Order> order = new HashMap<Integer, Order>();
 		 if (this.orders.containsKey(trail)) {
 			 for (int i = 0; i < 4; i++) {
