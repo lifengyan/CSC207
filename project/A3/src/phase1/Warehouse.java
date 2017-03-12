@@ -74,8 +74,6 @@ public class Warehouse {
 	public void storageInital (String filePath) throws FileNotFoundException{
 	  Scanner scanner = new Scanner(new FileInputStream(filePath));
       String[] record;
-      Order order;
-      ArrayList<Order> temOrder  = new ArrayList();
       while(scanner.hasNextLine()) {
         
         Fascia temFas = new Fascia();
@@ -105,6 +103,14 @@ public class Warehouse {
 		return warehouseinv.get(zone).get(aisles).get(racks).get(level).removeOne();
 	}
 	
+	public void writeDown (String filePath) throws FileNotFoundException{
+		  Scanner scanner = new Scanner(new FileInputStream(filePath));
+	      String[] record;
+	      //writeDown the warehouseinv.
+	        
+	     
+	      scanner.close();
+		} 
 	
 	}
 	

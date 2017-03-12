@@ -42,3 +42,8 @@ code effect: warehouse.StorageInital
 Step 10
 implement main method inside the Mainfunction. so that user is able to use the system.
 code effect: Mainfunction.main()
+**************
+Step 11
+implement writeDown method inside the Warehosue it will record current Warehosue inventory system
+into the warehouse.csv file
+code effect: Warehosue.writeDown()
