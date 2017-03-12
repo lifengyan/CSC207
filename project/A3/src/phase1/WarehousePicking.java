@@ -3,6 +3,7 @@ package phase1;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -21,29 +22,38 @@ public class WarehousePicking {
 	public static String piclocFile = "";
 	// an array to store all locations from the file
 	static ArrayList<Location> locationList = new ArrayList<Location>(); 
+	private ArrayList<Integer> fasciaList = new ArrayList<Integer>();
 	
-	
-	// function to store all the locations from the input file
-	public void readFromCSVFile(String piclocFile) throws FileNotFoundException {
-	      
-        Scanner scanner = new Scanner(new FileInputStream(piclocFile));
-        String[] record;
-        while(scanner.hasNextLine()) {
-            record = scanner.nextLine().split(",");
-            Location newLoc = new Location(record[0], record[1], record[2], record[3]);
-            locationList.add(newLoc);
-            }      
-        scanner.close();
+	//constructor
+	public WarehousePicking() throws FileNotFoundException{
+		 Scanner scanner = new Scanner(new FileInputStream(piclocFile));
+	        String[] record;
+	        while(scanner.hasNextLine()) {
+	            record = scanner.nextLine().split(",");
+	            Location newLoc = new Location(record[0], record[1], record[2], record[3], record[4]);
+	            locationList.add(newLoc);
+	            }      
+	        scanner.close();
 	}
+
+
+	public ArrayList<Integer> PickRequest(Map<Integer, Order> newRequest){
+		for (Integer key: newRequest.keySet()){
+				Order order = newRequest.get(key);
+				this.fasciaList.add(order.getFront()); //need to add these two getter method in Order Class
+				this.fasciaList.add(order.getBack());
+		}
+		return fasciaList;
+		}
 	
 	
-	public static ArrayList<Location> optimize(ArrayList<Integer> fasciaList){
+	public static ArrayList<Location> optimize(ArrayList<Integer> skus){
 		
 		ArrayList<Location> locationS = new ArrayList<Location>();
 		// get 8 random locations and return them as an array of Locations
 		for(int i = 0; i<8; i++){
 			int randomNum = ThreadLocalRandom.current().nextInt(1, 47);
-			Location curr = new Location(null, null, null, null);
+			Location curr = new Location(null, null, null, null,null);
 			curr = locationList.get(randomNum);
 			locationS.add(curr);
 		}

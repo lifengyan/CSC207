@@ -21,6 +21,21 @@ public class PickerManager {
 			this.freePicker.add(name);
 		}
 		
+		
+		
+		//according to the input string to return this picker
+		public Picker getPicker(String pickerName){
+			for(int i = 0; i < pickerList.size();i++){
+				if (pickerList.get(i).getName() == pickerName){
+					return pickerList.get(i);
+				}
+			
+			}
+			System.out.println("Given picker does not exist");
+			return null; 
+		}
+		
+		
 		// store new picker in pickerList
 		public void storePicker(String pickerName){
 			Picker newPicker = new Picker(pickerName);

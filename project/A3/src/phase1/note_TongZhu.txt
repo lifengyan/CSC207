@@ -45,7 +45,20 @@ Code effected: Location.java\
 Note: edited WarehousePicking so that it will read from the traversal_Table, added method to return 8 random locations \
 	 changed variable type from Integer to String in Location.java\
 \
+**********\
+Push6\
+File deleted: PickRquest.java \
+                     Merged this to WarehousePicking\
 \
+File Modified: WarehousePicking.java\
+			edited its constructor to read the input file and store each line as a Location instance in a array list\
+			edited the optimize method to return array of 8 random locations \
+\
+		     Location.java\
+			added another variable to store the SKU number\
+\
+			PickerManager.java\
+			edited getPicker method.\
 \
 \
 }
