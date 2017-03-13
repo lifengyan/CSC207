@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class MainFunction {
 
-	public static String hrFilePath = "";
-	public static String warehousePath ="";
-	public static String transtanblePath = "";
-	public static String genericSoftPath = "";
+	public static String hrFilePath = "./translation.csv";
+	public static String warehousePath ="./warehouse.csv";
+	public static String transtanblePath = "./translation.csv";
+	public static String genericSoftPath = "./traversal_table.csv";
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
@@ -29,13 +29,13 @@ public class MainFunction {
 		//Receive the user path of Warehouse.csv and TranslationTable.csv
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Enter Warehouse.csv file path: ");
-		warehousePath = reader.next();
+		//warehousePath = reader.next();
 		System.out.println("Enter TranslationTable.csv file path: ");
-		transtanblePath = reader.next();
+		//transtanblePath = reader.next();
 		System.out.println("Enter Hysystem.csv file path: ");
-        transtanblePath = reader.next();
+        //transtanblePath = reader.next();
         System.out.println("Enter Generic Software file path: ");
-        genericSoftPath = reader.next();
+        //genericSoftPath = reader.next();
 		
 		//initial the warehouse and translation table
         try{
@@ -51,7 +51,7 @@ public class MainFunction {
 			//user will input the command and use this program.
 			String[] userInput;
 			System.out.println("Please enter a command");
-			userInput = reader.next().split(" ");
+			userInput = reader.next().split(",");
 			
 			//Us a case statement to find out which command it used
 			switch (userInput[0]){
@@ -59,7 +59,7 @@ public class MainFunction {
 				case "order": orderManager.addOrder(userInput[1],userInput[2],TranslateA);
 				               System.out.println("New order has been created.");;
 
-				case "picker": if (userInput[2]=="ready"){
+				case "picker": if (userInput[2].equals("ready")){
 				    Picker someOne = new Picker(userInput[1]);
 				        
 				     pickerManager.addPicker(someOne);
