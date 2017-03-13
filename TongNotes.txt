@@ -1,0 +1,69 @@
+**********
+Push 1
+Code Effected: PickRequest.java
+Created this class to get pick order request
+Note: need to add two getter methods in Order.java
+**********
+Push 2
+Code Effected: PickRequest.java
+			
+Created classes: MainFunction.java
+			  PickerInfo.java
+			  RequestManager.java
+			  WarehousePicking.java
+Note: 
+MainFunction: an initial version that needs to be edited. 
+RequestManager: used to match current request with available picker, get picker status and make orders ready for sequencing, send picking information to warehouse system, still need to edit the picker communication part.
+PickerInfo: used to store picker status
+WarehousePicking: used to model the generic software 
+PickRequest: need a better way to store location information for the 8 fascia in the current picking request.
+**********
+Push 3
+Code effected: MainFunction.java
+                        pickRequest.java
+Created classes: Location.java
+			   Picker.java
+			   PickerManager.java
+Location.java: used to store the location information of each fascia that needs to be picked. Contains zone, aisle, rack and level and SKU, not implemented yet. 
+Picker.java: used to create instance of picker to store their name, status and other informations, added getter and setter methods
+PickerManager.java: used to store all the pickers and keep track of their current status. (Still need to figure out where to create picker instance), added getter and setter methods
+**********
+Push 4
+Push 3 was not completed due to unknown reason, here push again.
+
+**********
+Push 5
+Code effected: Location.java
+			WarehousePicking.java
+Note: edited WarehousePicking so that it will read from the traversal_Table, added method to return 8 random locations 
+	 changed variable type from Integer to String in Location.java
+
+**********
+Push6
+File deleted: PickRequest.java 
+                     Merged this to WarehousePicking
+
+File Modified: WarehousePicking.java
+			edited its constructor to read the input file and store each line as a Location instance in a array list
+			edited the optimize method to return array of 8 random locations 
+
+		     Location.java
+			added another variable to store the SKU number
+
+			PickerManager.java
+			edited getPicker method.
+**********
+Push 7
+moved all contends from note_TongZhu.txt to here, due to the file type error
+Code effected: Picker.java
+		changed accessibility modifier for all variable to be private
+
+
+
+
+
+
+
+
+
+

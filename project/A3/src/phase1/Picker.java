@@ -6,11 +6,11 @@ public class Picker {
 	
 		
 		// a array contains all the SKU that are already picked by current picker
-		ArrayList<Integer> forkLift = new ArrayList<Integer>();
-		boolean status;
-		ArrayList<Location> locationList = new ArrayList<Location>();
-		Integer requestID; // set to zero when picker is not currently picking
-		String name;
+		private ArrayList<Integer> forkLift = new ArrayList<Integer>();
+		private boolean status;
+		private ArrayList<Location> locationList = new ArrayList<Location>();
+		private Integer requestID; // set to zero when picker is not currently picking
+		private String name;
 		
 		//Constructor, get picker name as a string input
 		public Picker(String pickername){
