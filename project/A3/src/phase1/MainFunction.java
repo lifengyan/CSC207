@@ -1,5 +1,6 @@
 package phase1;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,17 +8,23 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MainFunction {
+	//String basePath = new File("").getAbsolutePath();
 
-	public static String hrFilePath = "/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/hrfile.csv";
-	public static String warehousePath ="/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/warehouse.csv";
-	public static String transtanblePath = "/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/translation.csv";
-	public static String genericSoftPath = "/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/traversal_table.csv";
+
+   
+	public static String hrFilePath = new File("group_0411/project/A3/src/phase1/hrfile.csv").getAbsolutePath();
+	public static String warehousePath = new File("group_0411/project/A3/src/phase1/warehouse.csv").getAbsolutePath();
+	public static String transtanblePath = new File("group_0411/project/A3/src/phase1/translation.csv").getAbsolutePath();
+	public static String genericSoftPath = new File("group_0411/project/A3/src/phase1/traversal_table.csv").getAbsolutePath();
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
 	// that has not yet been sent to the RequestManager
 	
 	public static void main(String[] args)   {
+		String filePath = new File("").getAbsolutePath();
+		System.out.println(filePath);
+		
 		OrderManager orderManager = new OrderManager();
 		PickerManager pickerManager = new PickerManager();
 		WarehousePicking warehousePicking = new WarehousePicking();
@@ -81,7 +88,7 @@ public class MainFunction {
 				    
 				}
 				
-				else if(userInput[2]=="picked"){ 
+				else if(userInput[2].equals("picked")){ 
 					System.out.println("Picker enter pickedsku");
 					int userInput2= reader.nextInt();
 					
