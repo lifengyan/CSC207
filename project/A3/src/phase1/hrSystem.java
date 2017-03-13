@@ -42,7 +42,8 @@ public class hrSystem {
       this.hrSystem.add(ld);  
     } else if (job == "Replenisher"){
       Replenisher rp = new Replenisher(name);
-      this.hrSystem.add(rp); 
+      this.hrSystem.add(rp);
+    }
    
   }
 
