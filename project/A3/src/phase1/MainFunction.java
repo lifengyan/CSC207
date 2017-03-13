@@ -64,10 +64,10 @@ public class MainFunction {
 				      
 				    }else{				      	      
 				      someOne.addLocation(warehousePicking.optimize( warehousePicking.PickRequest(newOrderMap)));
-				      someOne.setRequestID(orderManager.generateNext());
+				      someOne.setRequestid(orderManager.generateNext());
 				      
 				      System.out.println("Picker"+userInput[1]+"resived the order location. he is one his way ");
-				      System.out.println(someOne.getLocation());
+				      System.out.println(someOne.getLoc());
 				     }
 				    
 				}

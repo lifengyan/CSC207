@@ -8,6 +8,7 @@ public class OrderManager {
   private Map<Integer, Order> orders;
   private Map<Integer, Order> temOrder;
   private static int trail = 4;
+  private int hasnext = 0;
 
   /**
    * Creates a new empty OrderManager.
@@ -39,22 +40,22 @@ public class OrderManager {
    * as a key and Object is another HashMap, with the order that orders come in as key and 
    * Order as object.
    */
-  public Pair<Integer,Hashmap<Integer, Order>> generatePick() {
-    Pair<Integer,Hashmap<Integer, Order>> pick = new Pair<Integer,Hashmap<Integer, Order>>();
+  public HashMap<Integer, Order> generatePick() {
     HashMap<Integer, Order> order = new HashMap<Integer, Order>();
     if (this.orders.containsKey(trail)) {
       for (int i = 0; i < 4; i++) {
         order.put(4 - i, this.orders.get(trail - i));
         this.orders.get(trail - i).setStatus("picked");
       }
-      pick.add(trail);
-      trail += 4;
-
+      this.hasnext=trail;
     } else {
-      pick.add(0);
+      this.hasnext = 0;
     }
-    pick.add(order);
-    return pick;
+    return order;
+  }
+  
+  public int generateNext() {
+    return this.hasnext;
   }
 
   public Map<Integer, Order> getOrders() {

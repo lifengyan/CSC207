@@ -57,5 +57,8 @@ public class Picker {
 			return locationList.get(curr++).toString();
 		}
 		
+		public void setRequestid(int id) {
+		  this.requestID = id;
+		}
 		
 }
