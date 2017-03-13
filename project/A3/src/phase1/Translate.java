@@ -17,7 +17,7 @@ public class Translate {
 	}
 	
 	public void readFromCSVFile(String filePath) throws FileNotFoundException {
-	      
+	    System.out.println("reading the translate file");
         Scanner scanner = new Scanner(new FileInputStream(filePath));
         String[] record;
         while(scanner.hasNextLine()) {

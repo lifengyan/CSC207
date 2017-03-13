@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class MainFunction {
 
-	public static String hrFilePath = "./translation.csv";
-	public static String warehousePath ="./warehouse.csv";
-	public static String transtanblePath = "./translation.csv";
-	public static String genericSoftPath = "./traversal_table.csv";
+	public static String hrFilePath = "/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/hrfile.csv";
+	public static String warehousePath ="/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/warehouse.csv";
+	public static String transtanblePath = "/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/translation.csv";
+	public static String genericSoftPath = "/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/traversal_table.csv";
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
@@ -39,11 +39,14 @@ public class MainFunction {
 		
 		//initial the warehouse and translation table
         try{
+        System.out.println("reading file");
         WarehouseA.storageInital(warehousePath);
 		TranslateA.readFromCSVFile(transtanblePath);
 		hrsystemA.readFromCSVFile(hrFilePath);
 		warehousePicking.warehousePickingreader(genericSoftPath);
-        } catch (FileNotFoundException e){}
+        } catch (FileNotFoundException e){
+        	System.out.println("something not right");
+        }
         
 		boolean shutdown = false;	
 		
