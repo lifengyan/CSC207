@@ -80,11 +80,14 @@ public class Warehouse {
         
         Fascia temFas = new Fascia();
         record = scanner.nextLine().split(",");//read the input csv file
+        ArrayList<Integer> locationlist = new ArrayList();
         
-        int[] locationlist = Arrays.asList(record).stream().mapToInt(Integer::parseInt).toArray();//convert string array into int array
-        
-        warehouseinv.get(locationlist[0]).get(locationlist[1]).get(locationlist[2])
-        .get(locationlist[3]).add(new Fascia(locationlist[4]));// level may get to many Fascias shold be a Exception 
+        for (int i = 0; i <record.length; i ++){
+          locationlist.add(Integer.parseInt(record[i])); 
+        }
+       
+        warehouseinv.get(locationlist.get(0)).get(locationlist.get(1)).get(locationlist.get(2))
+        .get(locationlist.get(3)).add(new Fascia(locationlist.get(4)));// level may get to many Fascias shold be a Exception 
        }
       scanner.close();
 	} 
