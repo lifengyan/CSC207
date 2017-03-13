@@ -12,10 +12,10 @@ public class MainFunction {
 
 
    
-	public static String hrFilePath = new File("group_0411/project/A3/src/phase1/hrfile.csv").getAbsolutePath();
-	public static String warehousePath = new File("group_0411/project/A3/src/phase1/warehouse.csv").getAbsolutePath();
-	public static String transtanblePath = new File("group_0411/project/A3/src/phase1/translation.csv").getAbsolutePath();
-	public static String genericSoftPath = new File("group_0411/project/A3/src/phase1/traversal_table.csv").getAbsolutePath();
+	public static String hrFilePath = new File("phase1/hrfile.csv").getAbsolutePath();
+	public static String warehousePath = new File("phase1/warehouse.csv").getAbsolutePath();
+	public static String transtanblePath = new File("phase1/translation.csv").getAbsolutePath();
+	public static String genericSoftPath = new File("phase1/traversal_table.csv").getAbsolutePath();
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
@@ -24,6 +24,11 @@ public class MainFunction {
 	public static void main(String[] args)   {
 		String filePath = new File("").getAbsolutePath();
 		System.out.println(filePath);
+		System.out.println(hrFilePath);
+		System.out.println(warehousePath.equals("/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/warehouse.csv"));
+		System.out.println(transtanblePath);
+		System.out.println(genericSoftPath);
+		
 		
 		OrderManager orderManager = new OrderManager();
 		PickerManager pickerManager = new PickerManager();
