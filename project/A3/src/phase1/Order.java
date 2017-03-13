@@ -39,14 +39,6 @@ public class Order {
   public int getBack() {
     return this.backsku;
   }
-  
-  /**
-   * The orders are equal to one another if its colour and model and sku matches..
-   */
-  public boolean equals(Order other) {
-    return (other.colour == this.colour && other.model == this.model
-        && other.frontsku == this.frontsku && other.backsku == this.backsku);
 
-  }
 
 }
