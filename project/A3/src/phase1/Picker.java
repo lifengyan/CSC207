@@ -11,7 +11,7 @@ public class Picker {
 		private ArrayList<Location> locationList = new ArrayList<Location>();
 		private Integer requestID; // set to zero when picker is not currently picking
 		private String name;
-		
+		private static Integer curr= 0; 
 		//Constructor, get picker name as a string input
 		public Picker(String pickername){
 			this.name = pickername;
@@ -51,6 +51,10 @@ public class Picker {
 		// getter function to get picker's name
 		public String getName(){
 			return this.name;
+		}
+		//getter method to return one location at a time
+		public String getLoc(){
+			return locationList.get(curr++).toString();
 		}
 		
 		
