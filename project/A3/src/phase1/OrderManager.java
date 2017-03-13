@@ -39,8 +39,8 @@ public class OrderManager {
    * as a key and Object is another HashMap, with the order that orders come in as key and 
    * Order as object.
    */
-  public ArrayList<Object> generatePick() {
-    ArrayList<Object> pick = new ArrayList<Object>();
+  public Pair<Integer,Hashmap<Integer, Order>> generatePick() {
+    Pair<Integer,Hashmap<Integer, Order>> pick = new Pair<Integer,Hashmap<Integer, Order>>();
     HashMap<Integer, Order> order = new HashMap<Integer, Order>();
     if (this.orders.containsKey(trail)) {
       for (int i = 0; i < 4; i++) {
