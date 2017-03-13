@@ -19,13 +19,13 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class WarehousePicking {
 	// file location
-	public static String piclocFile = "";
 	// an array to store all locations from the file
-	static ArrayList<Location> locationList = new ArrayList<Location>(); 
+	private static ArrayList<Location> locationList = new ArrayList<Location>(); 
 	private ArrayList<Integer> fasciaList = new ArrayList<Integer>();
 	
 	//constructor
-	public WarehousePicking() throws FileNotFoundException{
+	
+	public void warehousePickingreader(String piclocFile) throws FileNotFoundException{
 		 Scanner scanner = new Scanner(new FileInputStream(piclocFile));
 	        String[] record;
 	        while(scanner.hasNextLine()) {
@@ -47,7 +47,7 @@ public class WarehousePicking {
 		}
 	
 	
-	public static ArrayList<Location> optimize(ArrayList<Integer> skus){
+	public ArrayList<Location> optimize(ArrayList<Integer> skus){
 		
 		ArrayList<Location> locationS = new ArrayList<Location>();
 		// get 8 random locations and return them as an array of Locations

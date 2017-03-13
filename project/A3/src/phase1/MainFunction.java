@@ -11,12 +11,13 @@ public class MainFunction {
 	public static String hrFilePath = "";
 	public static String warehousePath ="";
 	public static String transtanblePath = "";
+	public static String genericSoftPath = "";
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
 	// that has not yet been sent to the RequestManager
 	
-	public static void main(String[] args) {
+	public static void main(String[] args)   {
 		OrderManager orderManager = new OrderManager();
 		PickerManager pickerManager = new PickerManager();
 		WarehousePicking warehousePicking = new WarehousePicking();
@@ -33,12 +34,17 @@ public class MainFunction {
 		transtanblePath = reader.next();
 		System.out.println("Enter Hysystem.csv file path: ");
         transtanblePath = reader.next();
+        System.out.println("Enter Generic Software file path: ");
+        genericSoftPath = reader.next();
 		
 		//initial the warehouse and translation table
-		WarehouseA.storageInital(warehousePath);
+        try{
+        WarehouseA.storageInital(warehousePath);
 		TranslateA.readFromCSVFile(transtanblePath);
 		hrsystemA.readFromCSVFile(hrFilePath);
-			
+		warehousePicking.warehousePickingreader(genericSoftPath);
+        } catch (FileNotFoundException e){}
+        
 		boolean shutdown = false;	
 		
 		while (!shutdown) {
@@ -63,11 +69,11 @@ public class MainFunction {
 				      System.out.println("not enough orders");
 				      
 				    }else{				      	      
-				      someOne.addLocation(warehousePicking.optimize( warehousePicking.PickRequest(newOrderMap)));
+				      someOne.addLocation(warehousePicking.optimize(warehousePicking.PickRequest(newOrderMap)));
 				      someOne.setRequestid(orderManager.generateNext());
 				      
 				      System.out.println("Picker"+userInput[1]+"resived the order location. he is one his way ");
-				      System.out.println(someOne.getLoc());
+				      System.out.println("Picker"+ userInput[1] + " go to location: "+someOne.getLoc());
 				     }
 				    
 				}
@@ -75,25 +81,14 @@ public class MainFunction {
 				else if(userInput[2]=="picked"){ 
 					System.out.println("Picker enter pickedsku");
 					int userInput2= reader.nextInt();
-
-					PickerManager.getPicker(userInput[1]).picke(userInput2);}
-				    hrsystemA.getWorker(userInput[1]).addtoFolkLift(userInput2);}
-
-				
-				else if(userInput[2]=="Marshaling"){ 
-				  hrsystem.getWorker(userInput[1]).marshaling();}	;
+					
+					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2);
+					System.out.println("Picker"+ userInput[1] + " go to location: "+pickerManager.getPicker(userInput[1]).getLoc());
+					}
 				
 
-				case "sequencer": sequencerManager.getSequencer(userInput[1]).sequence();
-
-				case "sequencer": hrsystem.getWorker(userInput[1]).sequencer();
-
 				
-				case "replenisher": hrsystem.getWorker(userInput[1]).replenishing();
 				
-				case "loader": hrsystem.getWorker(userInput[1]).loading();
-				
-				case "clouse": shutdown = true;
 			}
 			
 		
@@ -108,4 +103,3 @@ public class MainFunction {
 		
 	}
 	
-}
