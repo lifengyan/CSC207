@@ -8,8 +8,31 @@ Code Effect: OrderManager.java
 Use OrderManager to track and store all orders by HashMap, the key is the order that minivan orders came in 
 ********
 Step 3
+Code Effect: OrderManager.java
 if the picker request picking, OrdrManager will generate a Hashmap of order for picker to pick, the 
 key equals pickid; if pickid = 0, then there are no orders available for picking
 ********
 Step 4
+Code Effect: Worker.java
+Create super class worker
+
+********
+Step 5
+Code Effect: Sequencer.java
+Create class sequencer that extends this superclass, but have the method sequence, that can compare the 
+sku number of fascia that picker picked, with the ones in ordermanagement
+
+******
+Step 6
+Code Effect: Loader.java Replenisher.java
+Create class Loader and Replenisher that extends worker
+they will do load and replenish respectively
+
+******
+Step 7
+Create Effect: hrSystem.java
+Create a hrSystem that keep track of all workers and it can getWorkers and createEmployee
+
+******
+Step 8
 
