@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Translate {
 	//This class translate the translation table into a HashMap
 	//Using the pair of SKU numbers as keys
-	private HashMap<ArrayList<String>, ArrayList<Integer>> table;
+	private HashMap<String, ArrayList<Integer>> table;
 	
 	public Translate() {
-		 this.table = new HashMap<ArrayList<String>,ArrayList<Integer>>();
+		 this.table = new HashMap<String,ArrayList<Integer>>();
 		
 	}
 	
@@ -22,9 +22,7 @@ public class Translate {
         String[] record;
         while(scanner.hasNextLine()) {
             record = scanner.nextLine().split(",");
-            ArrayList<String> det = new ArrayList<>();
-            det.add(record[0]);
-            det.add(record[1]);
+            String det = record[0] + record[1];
             ArrayList<Integer> sku = new ArrayList<>();
             sku.add(Integer.valueOf(record[2]));
             sku.add(Integer.valueOf(record[3]));
@@ -35,9 +33,7 @@ public class Translate {
 	}
 	
 	public ArrayList<Integer> translate(String colour, String model) {
-		ArrayList<String> tr = new ArrayList<>();
-        tr.add(colour);
-        tr.add(model);
+		String tr = colour + model;
         return this.table.get(tr);
         		
 	}
