@@ -33,7 +33,7 @@ public class MainFunction {
 		OrderManager orderManager = new OrderManager();
 		PickerManager pickerManager = new PickerManager();
 		WarehousePicking warehousePicking = new WarehousePicking();
-		hrSystem hrsystemA = new hrSystem();
+		Hrsystem hrsystemA = new Hrsystem();
 		
 		Warehouse WarehouseA = new Warehouse();
 		Translate TranslateA = new Translate();
@@ -55,7 +55,7 @@ public class MainFunction {
         WarehouseA.storageInital(warehousePath);
 		TranslateA.readFromCSVFile(transtanblePath);
 		
-		hrsystemA.readFromCSVFile(hrFilePath);
+		hrsystemA.readFromcsvfile(hrFilePath);
 		warehousePicking.warehousePickingreader(genericSoftPath);
         } catch (FileNotFoundException e){
         	System.out.println("something not right");
@@ -76,7 +76,7 @@ public class MainFunction {
 				               System.out.println("New order has been created.");
 				               
 				            // check if there is free picker && there are 4 orders to generate a request
-				               if(pickerManager.getFreePicker().size()!= 0 && orderManager.hasNext4()!=0){
+				               if(pickerManager.getFreePicker().size()!= 0 && orderManager.hasNext()!=0){
 				            	   Picker cur = pickerManager.getFreePicker().get(0);
 				            	   pickerManager.deletFreePicker(cur);
 				            	   String pickerName = cur.getName();
@@ -133,17 +133,17 @@ public class MainFunction {
 					}
 				}
 				else if(userInput[2].equals("marshaling")){
-				  hrsystemA.addTOSequencing(pickerManager.getPicker(userInput[1]).getRequestID(),pickerManager.getPicker(userInput[1]).getForkLift());
+				  hrsystemA.addtoSequencing(pickerManager.getPicker(userInput[1]).getRequestID(),pickerManager.getPicker(userInput[1]).getForkLift());
 				  pickerManager.deletPicker(pickerManager.getPicker(userInput[1]));
 				}
 					break;
 				case "sequencer":
 				  Sequencer aSequencer  =  hrsystemA.getSequencer(userInput[1]);
 				  
-				  if (hrsystemA.getSequencingID()==0){
+				  if (hrsystemA.getSequencingid()==0){
 				    System.out.println("not enough for Sequenceing");
 				  }else{
-				    Integer SequencingID = hrsystemA.getSequencingID();
+				    Integer SequencingID = hrsystemA.getSequencingid();
 				    hrsystemA.addToloader(SequencingID, aSequencer.sequence(SequencingID,
 				        hrsystemA.getSequencingItem(SequencingID),orderManager));
 				    System.out.println("Sequenced, send it to loader");

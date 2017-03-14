@@ -8,7 +8,7 @@ public class Picker {
   // a array contains all the SKU that are already picked by current picker
   private ArrayList<Integer> forkLift = new ArrayList<Integer>();
   private ArrayList<Location> locationList = new ArrayList<Location>();
-  private Integer requestID; // set to zero when picker is not currently picking
+  private Integer requestId; // set to zero when picker is not currently picking
   private String name;
   private static Integer curr = 0;
   private Integer currpick = 0;
@@ -24,6 +24,9 @@ public class Picker {
   }
 
   // method to add picked SKU into forkLift
+  /**
+   * Add a fascia with sku number to forklift.
+   */
   public void addtoFolkLift(Integer sku, Warehouse currentWarehouse) {
 
     this.forkLift.add(sku);
@@ -44,8 +47,8 @@ public class Picker {
   }
 
   // getter method to get the requestID that his picker in currently working on.
-  public Integer getRequestID() {
-    return this.requestID;
+  public Integer getRequestid() {
+    return this.requestId;
   }
 
   // getter function to get picker's name
@@ -59,7 +62,7 @@ public class Picker {
   }
 
   public void setRequestid(int id) {
-    this.requestID = id;
+    this.requestId = id;
   }
 
 }
