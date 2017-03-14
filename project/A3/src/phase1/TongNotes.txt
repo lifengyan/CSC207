@@ -76,8 +76,17 @@ Note:
 	Unused variable and methods in Picker.java deleted.
 	changed variables to private type in WarehousePicking.java
 Next Step:
-	- Need to add case in MainFunction where Picker “Alice to Marshaling” and use resetPicker() method in Picker.java. 
-	- also need to add case “sequencer ready”
+	- Need to add case in MainFunction where Picker "Alice to Marshaling" and use resetPicker() method in Picker.java. 
+	- also need to add case "sequencer ready"
 
-
+**********
+Push 10
+Code Effected: 
+		Picker.java
+		PickerManager.java
+		MainFunction.java
+Notes: added new function deletePicker in PickerManager.java
+	deleted unused method resetPicker in Picker.java
+	changed file path initialization in MainFunction.java
+	
 

@@ -41,4 +41,8 @@ public class PickerManager {
 			Picker newPicker = new Picker(pickerName);
 			pickerList.add(newPicker);
 		}
+// After a picker finished picking for the current request, remove this picker from the pickerList
+		public void deletPicker(Picker picker){
+			this.pickerList.remove(picker);
+		}
 }

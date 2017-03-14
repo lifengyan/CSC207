@@ -36,15 +36,7 @@ public class Picker {
 			
 		}
 		
-		// after picker complete this request, empty this request's info
-		public void resetPicker(){
-			
-			this.forkLift = null;// empty this Array list 
-			this.locationList = null;
-			requestID = null;
-			
-			//after reset this picker, add it to freePicker list in pickerManager
-		}
+	
 		// getter method to get forkLift
 		public ArrayList<Integer> getForkLift(){
 			return this.forkLift;

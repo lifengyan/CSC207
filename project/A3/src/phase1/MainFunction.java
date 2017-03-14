@@ -9,23 +9,22 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MainFunction {
-	//String basePath = new File("").getAbsolutePath();
 
-
+	static String filePath = new File("").getAbsolutePath();
    
-	public static String hrFilePath = null;
-	public static String warehousePath = null;
-	public static String transtanblePath = null;
-	public static String genericSoftPath = null;
+	public static String hrFilePath = new File("group_0411/project/A3/src/phase1/hrfile.csv").getAbsolutePath();
+	public static String warehousePath = new File("group_0411/project/A3/src/phase1/warehouse.csv").getAbsolutePath();;
+	public static String transtanblePath = new File("group_0411/project/A3/src/phase1/translation.csv").getAbsolutePath();;
+	public static String genericSoftPath = new File("group_0411/project/A3/src/phase1/traversal_table.csv").getAbsolutePath();;
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
 	// that has not yet been sent to the RequestManager
 	
 	public static void main(String[] args)   {
-		String filePath = new File("").getAbsolutePath();
+
 		System.out.println(filePath);
-		System.out.println(hrFilePath);
+		System.out.println(hrFilePath.equals("/h/u7/c7/04/zhutong1/207Project/group_0411/project/A3/src/phase1/hrfile.csv"));
 		System.out.println(warehousePath);
 		System.out.println(transtanblePath);
 		System.out.println(genericSoftPath);
