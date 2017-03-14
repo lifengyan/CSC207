@@ -20,6 +20,10 @@ public class PickerManager {
 		public void addFreePicker(Picker name){
 			this.freePicker.add(name);
 		}
+		// After a picker finished picking for the current request, remove this picker from the 
+				public void deletFreePicker(Picker picker){
+					this.freePicker.remove(picker);
+				}
 		
 		
 		
@@ -41,7 +45,7 @@ public class PickerManager {
 			Picker newPicker = new Picker(pickerName);
 			pickerList.add(newPicker);
 		}
-// After a picker finished picking for the current request, remove this picker from the pickerList
+// After a picker finished picking for the current request, remove this picker from the 
 		public void deletPicker(Picker picker){
 			this.pickerList.remove(picker);
 		}

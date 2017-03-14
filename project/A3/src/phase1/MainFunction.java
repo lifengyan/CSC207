@@ -40,15 +40,15 @@ public class MainFunction {
 		
 		//Receive the user path of Warehouse.csv and TranslationTable.csv
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Enter Warehouse.csv file path: ");
-		warehousePath = reader.next();
-		System.out.println("Enter TranslationTable.csv file path: ");
-		transtanblePath = reader.next();
-		System.out.println("Enter Hysystem.csv file path: ");
-		hrFilePath = reader.next();
-        System.out.println("Enter Generic Software file path: ");
-        genericSoftPath = reader.next();
-		
+//		System.out.println("Enter Warehouse.csv file path: ");
+//		warehousePath = reader.next();
+//		System.out.println("Enter TranslationTable.csv file path: ");
+//		transtanblePath = reader.next();
+//		System.out.println("Enter Hysystem.csv file path: ");
+//		hrFilePath = reader.next();
+//        System.out.println("Enter Generic Software file path: ");
+//        genericSoftPath = reader.next();
+//		
 		//initial the warehouse and translation table
         try{
         System.out.println("reading file");
@@ -76,8 +76,9 @@ public class MainFunction {
 				               System.out.println("New order has been created.");
 				               
 				            // check if there is free picker && there are 4 orders to generate a request
-				               if(pickerManager.getFreePicker().size()!= 0 && orderManager.generateNext()!=0){
+				               if(pickerManager.getFreePicker().size()!= 0 && orderManager.hasNext4()!=0){
 				            	   Picker cur = pickerManager.getFreePicker().get(0);
+				            	   pickerManager.deletFreePicker(cur);
 				            	   String pickerName = cur.getName();
 				            	   System.out.println("currently free picker:"+pickerName);
 				            	   HashMap<Integer, Order> newOrderMap =  orderManager.generatePick();
@@ -117,10 +118,16 @@ public class MainFunction {
 				}
 				
 				else if(userInput[2].equals("picked")){ 
+					if(!userInput[3].equals("8")){
 					System.out.println("Picker enter pickedsku");
 					int userInput2= reader.nextInt();
 					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, WarehouseA);
 					System.out.println("Picker"+ userInput[1] + " go to location: "+pickerManager.getPicker(userInput[1]).getLoc());
+						}else{
+							System.out.println("Picker enter pickedsku");
+							int userInput2= reader.nextInt();
+							pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, WarehouseA);
+							System.out.println("picker "+ userInput[1]+ "should go to marshaling.");}
 					}
 					
 				else if(userInput[2].equals("marshaling")){
