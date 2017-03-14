@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class hrSystem {
-  private ArrayList<Worker> hrSystemSequencer;
+  private ArrayList<Sequencer> hrSystemSequencer;
   private ArrayList<Worker> hrSystemOther;
   
   private HashMap<Integer,ArrayList<Integer> > sequencingList; 
@@ -17,7 +17,7 @@ public class hrSystem {
   
   public hrSystem() {
 	  this.hrSystemOther = new ArrayList<Worker> ();
-    this.hrSystemSequencer = new ArrayList<Worker>();
+    this.hrSystemSequencer = new ArrayList<Sequencer>();
     this.sequencingList = new HashMap<Integer,ArrayList<Integer> >() ;
   this.loadingList =  new HashMap<Integer,ArrayList<ArrayList<Integer>> > ();
   }
