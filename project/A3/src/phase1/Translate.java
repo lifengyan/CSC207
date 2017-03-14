@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Translate {
 	//This class translate the translation table into a HashMap
 	//Using the pair of SKU numbers as keys
-	private ArrayList<ArrayList<String>> table;
+  private ArrayList<ArrayList<String>> table;
 	
 	public Translate() {
 		 this.table = new ArrayList<ArrayList<String>>();
@@ -16,7 +16,6 @@ public class Translate {
 	}
 	
 	public void readFromCSVFile(String filePath) throws FileNotFoundException {
-	    System.out.println("reading the translate file");
         Scanner scanner = new Scanner(new FileInputStream(filePath));
         String[] record;
         while(scanner.hasNextLine()) {
