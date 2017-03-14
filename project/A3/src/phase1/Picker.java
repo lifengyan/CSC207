@@ -7,7 +7,6 @@ public class Picker {
 		
 		// a array contains all the SKU that are already picked by current picker
 		private ArrayList<Integer> forkLift = new ArrayList<Integer>();
-		private boolean status;
 		private ArrayList<Location> locationList = new ArrayList<Location>();
 		private Integer requestID; // set to zero when picker is not currently picking
 		private String name;
@@ -36,14 +35,10 @@ public class Picker {
 					Integer.valueOf( currLocation.rack), Integer.valueOf( currLocation.level));
 			
 		}
-		// method to change picker status
-		public void changePickerStatus(boolean stA){
-			this.status = stA;// true when ready, false when this picker is currently picking
-		}
 		
 		// after picker complete this request, empty this request's info
 		public void resetPicker(){
-			this.status = true; // indicate the picker is free
+			
 			this.forkLift = null;// empty this Array list 
 			this.locationList = null;
 			requestID = null;

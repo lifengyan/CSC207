@@ -3,8 +3,8 @@ package phase1;
 import java.util.ArrayList;
 
 public class PickerManager {
-		ArrayList<Picker> pickerList = new ArrayList<Picker>();
-		ArrayList<Picker> freePicker = new ArrayList<Picker>();
+		private ArrayList<Picker> pickerList = new ArrayList<Picker>();
+		private ArrayList<Picker> freePicker = new ArrayList<Picker>();
 		
 		// Method addPicker 
 		public void addPicker(Picker pickerName){

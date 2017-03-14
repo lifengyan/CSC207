@@ -127,7 +127,7 @@ public class MainFunction {
 				case "close" : shutdown = true;
 				 		break;
 			}
-			
+			// add case when Picker Alice to Marshaling, use resetPicker()
 			
 				}
 		reader.close();	
