@@ -55,3 +55,7 @@ code effect: HrSystem.java, mainfunciton.main
 Step 13
 implement the warehouse writeDown method.
 code effect: HrSystem.java, mainfunciton.main
+**************
+Step 14
+implement the sequencing and loading command into main function.
+code effect: HrSystem.java, mainfunciton.main

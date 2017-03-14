@@ -3,10 +3,15 @@ package phase1;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class hrSystem {
   private ArrayList<Worker> hrSystem;
+  private HashMap<Integer,ArrayList<Integer> > sequencingList; 
+  private HashMap<Integer,ArrayList<ArrayList<Integer>> > loadingList; 
+ 
   
   public hrSystem() {
     this.hrSystem = new ArrayList<Worker>();
@@ -32,6 +37,29 @@ public class hrSystem {
     }      
     scanner.close();
   }
+  
+  public void addTOSequencing (Integer sequencingID , ArrayList<Integer> Sequencinglist){
+    sequencingList.put(sequencingID, Sequencinglist);
+  }
+  
+  //return sequencing ID
+  public Integer getSequencingID(){
+    if (sequencingList.isEmpty()){
+      return 0;
+    }else{
+      Set<Integer> x =sequencingList.keySet();
+      return x.iterator().next();
+    }
+  }
+  //
+  //return current sequencing item
+    public ArrayList<Integer> getSequencingItem(Integer id){
+    return sequencingList.get(id);
+  }
+    public void addToloader(Integer id, ArrayList<ArrayList<Integer>> loadingitem){
+      loadingList.put(id, loadingitem);
+      sequencingList.remove(id);     
+    }
   
   public void createEmployee(String name, String job) {
     if (job.equals("Sequencer")) {
