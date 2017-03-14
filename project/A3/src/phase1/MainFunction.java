@@ -13,10 +13,10 @@ public class MainFunction {
 
 
    
-	public static String hrFilePath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1/hrfile.csv";
-	public static String warehousePath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1/warehouse.csv";
-	public static String transtanblePath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1/translation.csv";
-	public static String genericSoftPath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1//traversal_table.csv";
+	public static String hrFilePath = null;
+	public static String warehousePath = null;
+	public static String transtanblePath = null;
+	public static String genericSoftPath = null;
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
@@ -42,13 +42,13 @@ public class MainFunction {
 		//Receive the user path of Warehouse.csv and TranslationTable.csv
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Enter Warehouse.csv file path: ");
-		//warehousePath = reader.next();
+		warehousePath = reader.next();
 		System.out.println("Enter TranslationTable.csv file path: ");
-		//transtanblePath = reader.next();
+		transtanblePath = reader.next();
 		System.out.println("Enter Hysystem.csv file path: ");
-        //transtanblePath = reader.next();
+		hrFilePath = reader.next();
         System.out.println("Enter Generic Software file path: ");
-        //genericSoftPath = reader.next();
+        genericSoftPath = reader.next();
 		
 		//initial the warehouse and translation table
         try{
@@ -92,13 +92,14 @@ public class MainFunction {
 
 				               
 
-				case "picker": if (userInput[2].equals("ready")){
+				case "picker": 
+					if (userInput[2].equals("ready")){
 				    Picker someOne = new Picker(userInput[1]);
 				        
 				     pickerManager.addPicker(someOne);
 				     HashMap<Integer, Order> newOrderMap =  orderManager.generatePick();
 				    
-				    if (orderManager.generateNext()==0){
+				     	if (orderManager.generateNext()==0){
 				      System.out.println("not enough orders");
 				      pickerManager.addFreePicker(someOne);// add ready picker who does is waiting for request in Arraylist:freePicker
 				      
@@ -127,14 +128,16 @@ public class MainFunction {
 				 		break;
 			}
 			
-			reader.close();	
+			
 				}
+		reader.close();	
 		try {
 			WarehouseA.writeDown(warehousePath);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 			
 		}

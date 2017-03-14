@@ -87,7 +87,9 @@ public class Warehouse {
         }
        
         warehouseinv.get(locationlist.get(0)).get(locationlist.get(1)).get(locationlist.get(2))
-        .get(locationlist.get(3)).add(new Fascia(locationlist.get(4)));// level may get to many Fascias shold be a Exception 
+        .get(locationlist.get(3)).add(locationlist.get(4));
+        
+        // level may get to many Fascias shold be a Exception 
        }
       scanner.close();
 	} 
@@ -112,15 +114,16 @@ public class Warehouse {
 		  String csvFile = filePath;
 	    FileWriter writer = new FileWriter(csvFile);
 	    for( int i = 0; i < 2; ++i ) { 
-	      
+	      //ZONE
 	      
 	        for( int j = 0; j < 2; ++j ) {
-	         
+	         //AILES
 	          
 	          for( int k = 0; k < 3; ++k ) {
+	        	  //RACK
 	                       
 	               for( int l = 0; l <4 ; ++l ) {
-	                 for(int x=0; x<30;x++){
+	            	   //LEVEL
 	                 writer.append(String.valueOf(i));
 	                 writer.append(",");
 	                 writer.append(String.valueOf(j));
@@ -137,15 +140,14 @@ public class Warehouse {
 	            }
 	        }
 	      }
+	    
+	    writer.close(); 
 	     
 	  }
 	    
-	    writer.close(); 
+	    
 	    
 	}
 	  
-	
-	}
-	
 	
 

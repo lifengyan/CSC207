@@ -13,8 +13,9 @@ public class Level  {
 	 * add fascia in to the level
 	 * @param newFascia
 	 */
-	public void add (Fascia newFascia){
-		fasciaList.add(newFascia);
+	public void add (int numberOfFascia){
+		for(int i =0; i<numberOfFascia; i++){
+		fasciaList.add(new Fascia());}
 	}
 	
 	/***
