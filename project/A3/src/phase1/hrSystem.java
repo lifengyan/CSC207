@@ -15,6 +15,8 @@ public class hrSystem {
   
   public hrSystem() {
     this.hrSystem = new ArrayList<Worker>();
+    this.sequencingList = new HashMap<Integer,ArrayList<Integer> >() ;
+  this.loadingList =  new HashMap<Integer,ArrayList<ArrayList<Integer>> > ();
   }
   
   public Worker getWorker(String name) {
