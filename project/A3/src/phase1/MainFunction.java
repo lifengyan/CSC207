@@ -73,6 +73,21 @@ public class MainFunction {
 			
 				case "order": orderManager.addOrder(userInput[1],userInput[2],TranslateA);
 				               System.out.println("New order has been created.");;
+				               
+				            // check if there is free picker && there are 4 orders to generate a request
+				               if(pickerManager.getFreePicker().size()!= 0 && orderManager.generateNext()!=0){
+				            	   Picker cur = pickerManager.getFreePicker().get(0);
+				            	   String pickerName = cur.getName();
+				            	   System.out.println("currently free picker:"+pickerName);
+				            	   HashMap<Integer, Order> newOrderMap =  orderManager.generatePick();
+				            	   cur.addLocation(warehousePicking.optimize(warehousePicking.PickRequest(newOrderMap)));
+				            	   cur.setRequestid(orderManager.generateNext());
+				            	   System.out.println(cur.getName());
+				               }else if(pickerManager.getFreePicker().size() == 0){
+				            	   System.out.println("no currently free picker");
+				               }
+				          
+				               
 
 				case "picker": if (userInput[2].equals("ready")){
 				    Picker someOne = new Picker(userInput[1]);
@@ -82,10 +97,15 @@ public class MainFunction {
 				    
 				    if (orderManager.generateNext()==0){
 				      System.out.println("not enough orders");
+				      pickerManager.addFreePicker(someOne);// add ready picker who does is waiting for request in Arraylist:freePicker
 				      
 				    }else{				      	      
 				      someOne.addLocation(warehousePicking.optimize(warehousePicking.PickRequest(newOrderMap)));
 				      someOne.setRequestid(orderManager.generateNext());
+				      
+				      
+				      // Do we need correct skus to be stored in this picker?
+				      
 				      
 				      System.out.println("Picker"+userInput[1]+"resived the order location. he is one his way ");
 				      System.out.println("Picker"+ userInput[1] + " go to location: "+someOne.getLoc());

@@ -59,8 +59,11 @@ Code effected: Picker.java
 		changed accessibility modifier for all variable to be private
 
 
+**********
+Push 8
+Code effected: MainFunction.java
 
-
+Note: added new feature to keep track of free pickers
 
 
 
