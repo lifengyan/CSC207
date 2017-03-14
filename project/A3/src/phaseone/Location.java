@@ -1,4 +1,4 @@
-package phase1;
+package phaseone;
 
 public class Location {
 // contains five field of a location of SKU

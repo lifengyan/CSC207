@@ -1,4 +1,4 @@
-package phase1;
+package phaseone;
 
 import java.util.Scanner;
 import java.io.FileInputStream;

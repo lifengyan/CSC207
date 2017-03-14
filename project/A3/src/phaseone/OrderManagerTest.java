@@ -1,4 +1,4 @@
-package phase1;
+package phaseone;
 
 import static org.junit.Assert.*;
 
