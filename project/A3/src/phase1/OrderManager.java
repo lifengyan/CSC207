@@ -46,8 +46,10 @@ public class OrderManager {
       for (int i = 0; i < 4; i++) {
         order.put(4 - i, this.orders.get(trail - i));
         this.orders.get(trail - i).setStatus("picked");
+      
       }
       this.hasnext=trail;
+      trail+=4;
     } else {
       this.hasnext = 0;
     }
