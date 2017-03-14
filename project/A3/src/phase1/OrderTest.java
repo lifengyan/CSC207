@@ -18,37 +18,37 @@ public class OrderTest {
   }
   
   @Test
-  public void testOrder() throws FileNotFoundException {
+  public void testOrder() {
     Order order = new Order("Blue","SES",tr);
-    assertEquals(Order.);
+    assertEquals(order.status,"ordered");
+  }
+
+  @Test
+  public void testSetStatus() {
+    Order order = new Order("Blue","SES",tr);
+    order.setStatus("picked");
+    assertEquals(order.status, "picked");
+   
+   
+  }
+
+  @Test
+  public void testGetOrderCount() {
+    Order order = new Order("Blue","SES",tr);
+    assertEquals(order.getOrderid(), 1);
     
   }
 
   @Test
-  public void testSetStatus() throws FileNotFoundException {
-    Translate tr = new Translate();
-    tr.readFromCSVFile("/Users/lifengyan/Desktop/CSC207Workspace/group_0411/project/A3/src/phase1/translation.csv");
-    Order order = new Order("Blue","SES",tr);
-    order.setStatus("picked");
-    assertEquals("picked",order.status);
-  }
-
-  @Test
-  public void testGetOrderCount() throws FileNotFoundException {
-    Translate tr = new Translate();
-    tr.readFromCSVFile("/Users/lifengyan/Desktop/CSC207Workspace/group_0411/project/A3/src/phase1/translation.csv");
-    Order order = new Order("Blue","SES",tr);
-    assertEquals(1, order.getOrderCount());
-  }
-
-  @Test
   public void testGetFront() {
-    fail("Not yet implemented");
+    Order order = new Order("Blue","SES",tr);
+    assertEquals(order.getFront(),37);
   }
 
   @Test
   public void testGetBack() {
-    fail("Not yet implemented");
+    Order order = new Order("Blue","SES",tr);
+    assertEquals(order.getBack(),38);
   }
 
 }
