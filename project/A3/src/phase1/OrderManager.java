@@ -26,7 +26,7 @@ public class OrderManager {
   public void addOrder(String colour, String model, Translate tr) {
   
     Order order = new Order(colour, model, tr);
-    temOrder.put(order.getOrderCount(), order);
+    temOrder.put(order.getOrderid(), order);
     if (temOrder.size() == 4) {
       orders.putAll(temOrder);
       temOrder.clear();
