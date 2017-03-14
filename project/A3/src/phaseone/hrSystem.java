@@ -22,7 +22,7 @@ public class hrSystem {
   this.loadingList =  new HashMap<Integer,ArrayList<ArrayList<Integer>> > ();
   }
   //get a sequencer
-  public Worker getSequencer(String name) {
+  public Sequencer getSequencer(String name) {
     for (int i=0; i < hrSystemSequencer.size(); i++) {
       if (hrSystemSequencer.get(i).getName().equals(name)) {
         return hrSystemSequencer.get(i);
