@@ -1,6 +1,6 @@
 package phaseone;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -12,10 +12,16 @@ import org.junit.Test;
 public class OrderManagerTest {
   Translate tr = new Translate();
   OrderManager om = new OrderManager();
-  
+
+  /**
+   * Setup the translation table.
+   * @throws FileNotFoundException while file not found
+   */
   @Before
   public void setUp() throws FileNotFoundException {
-    tr.readFromCSVFile("/Users/lifengyan/Desktop/CSC207Workspace/group_0411/project/A3/src/phase1/translation.csv");
+    tr.readFromCSVFile(
+        "/Users/lifengyan/Desktop/CSC207Workspace/"
+        + "group_0411/project/A3/src/phaseone/translation.csv");
   }
 
   @Test
@@ -24,7 +30,7 @@ public class OrderManagerTest {
     om.addOrder("Blue", "S", tr);
     om.addOrder("Red", "SES", tr);
     om.addOrder("Red", "S", tr);
-    assertEquals(om.getOrders().size(),4);
+    assertEquals(om.getOrders().size(), 4);
 
   }
 
@@ -32,8 +38,8 @@ public class OrderManagerTest {
   public void testAddOrder() {
     om.addOrder("Blue", "SES", tr);
     Map<Integer, Order> orders = new HashMap<Integer, Order>();
-    assertEquals(om.getOrders(),orders);
-    
+    assertEquals(om.getOrders(), orders);
+
   }
 
   @Test
@@ -43,13 +49,13 @@ public class OrderManagerTest {
     om.addOrder("Red", "SES", tr);
     om.addOrder("Red", "S", tr);
     om.generatePick();
-    assertEquals(om.generateNext(),4);   
+    assertEquals(om.generateNext(), 4);
   }
 
   @Test
   public void testGenerateNext() {
     om.generatePick();
-    assertEquals(0,om.generateNext());
+    assertEquals(0, om.generateNext());
   }
 
   @Test
@@ -58,7 +64,7 @@ public class OrderManagerTest {
     om.addOrder("Blue", "S", tr);
     om.addOrder("Red", "SES", tr);
     om.addOrder("Red", "S", tr);
-    assertEquals(om.getOrders().get(10).getOrderid(),10);   
+    assertEquals(om.getOrders().get(10).getOrderid(), 10);
   }
 
 }
