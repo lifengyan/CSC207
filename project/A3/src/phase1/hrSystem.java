@@ -51,7 +51,7 @@ public class hrSystem {
       return x.iterator().next();
     }
   }
-  
+  //
   //return current sequencing item
     public ArrayList<Integer> getSequencingItem(Integer id){
     return sequencingList.get(id);
