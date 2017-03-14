@@ -84,13 +84,13 @@ public class hrSystem {
   public void createEmployee(String name, String job) {
     if (job.equals("Sequencer")) {
       Sequencer sq = new Sequencer(name);
-      this.hrSystem.add(sq); 
+      this.hrSystemSequencer.add(sq); 
     } else if (job.equals ("Loader")){
       Loader ld = new Loader(name);
-      this.hrSystem.add(ld);  
+      this.hrSystemOther.add(ld);  
     } else if (job.equals("Replenisher")){
       Replenisher rp = new Replenisher(name);
-      this.hrSystem.add(rp);
+      this.hrSystemOther.add(rp);
     }
    
   }
