@@ -8,26 +8,44 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class hrSystem {
-  private ArrayList<Worker> hrSystem;
+  private ArrayList<Sequencer> hrSystemSequencer;
+  private ArrayList<Worker> hrSystemOther;
+  
   private HashMap<Integer,ArrayList<Integer> > sequencingList; 
   private HashMap<Integer,ArrayList<ArrayList<Integer>> > loadingList; 
  
   
   public hrSystem() {
-    this.hrSystem = new ArrayList<Worker>();
+	  this.hrSystemOther = new ArrayList<Worker> ();
+    this.hrSystemSequencer = new ArrayList<Sequencer>();
     this.sequencingList = new HashMap<Integer,ArrayList<Integer> >() ;
   this.loadingList =  new HashMap<Integer,ArrayList<ArrayList<Integer>> > ();
   }
-  
-  public Worker getWorker(String name) {
-    for (int i=0; i < hrSystem.size(); i++) {
-      if (hrSystem.get(i).getName() == name) {
-        return hrSystem.get(i);
+  //get a sequencer
+  public Sequencer getSequencer(String name) {
+    for (int i=0; i < hrSystemSequencer.size(); i++) {
+      if (hrSystemSequencer.get(i).getName().equals(name)) {
+        return hrSystemSequencer.get(i);
       }
     } 
-    Worker nw = new Worker(name);
+    Sequencer nw = new Sequencer(name);
     return nw;
   }
+  
+  
+  //get a worker class
+  public Worker getworker(String name) {
+	    for (int i=0; i < hrSystemOther.size(); i++) {
+	      if (hrSystemOther.get(i).getName().equals(name)) {
+	        return hrSystemOther.get(i);
+	      }
+	    } 
+	    Worker nw = new Worker(name);
+	    return nw;
+	  }
+	  
+  
+  
   
   public void readFromCSVFile(String filePath) throws FileNotFoundException {
 

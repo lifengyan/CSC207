@@ -12,10 +12,10 @@ public class MainFunction {
 
 	static String filePath = new File("").getAbsolutePath();
    
-	public static String hrFilePath = new File("group_0411/project/A3/src/phase1/hrfile.csv").getAbsolutePath();
-	public static String warehousePath = new File("group_0411/project/A3/src/phase1/warehouse.csv").getAbsolutePath();;
-	public static String transtanblePath = new File("group_0411/project/A3/src/phase1/translation.csv").getAbsolutePath();;
-	public static String genericSoftPath = new File("group_0411/project/A3/src/phase1/traversal_table.csv").getAbsolutePath();;
+	public static String hrFilePath = new File("src/phaseone/hrfile.csv").getAbsolutePath();
+	public static String warehousePath = new File("src/phaseone/warehouse.csv").getAbsolutePath();;
+	public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();;
+	public static String genericSoftPath = new File("src/phaseone/traversal_table.csv").getAbsolutePath();;
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
@@ -118,9 +118,11 @@ public class MainFunction {
 				}
 				
 				else if(userInput[2].equals("picked")){ 
+					if(!pickerManager.getPicker(userInput[1]).equals(null)){
 					if(!userInput[3].equals("8")){
 					System.out.println("Picker enter pickedsku");
 					int userInput2= reader.nextInt();
+					
 					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, WarehouseA);
 					System.out.println("Picker"+ userInput[1] + " go to location: "+pickerManager.getPicker(userInput[1]).getLoc());
 						}else{
@@ -129,14 +131,15 @@ public class MainFunction {
 							pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, WarehouseA);
 							System.out.println("picker "+ userInput[1]+ "should go to marshaling.");}
 					}
-					
+				}
 				else if(userInput[2].equals("marshaling")){
 				  hrsystemA.addTOSequencing(pickerManager.getPicker(userInput[1]).getRequestID(),pickerManager.getPicker(userInput[1]).getForkLift());
 				  pickerManager.deletPicker(pickerManager.getPicker(userInput[1]));
 				}
 					break;
 				case "sequencer":
-				  Sequencer aSequencer  = (Sequencer) hrsystemA.getWorker(userInput[1]);
+				  Sequencer aSequencer  =  hrsystemA.getSequencer(userInput[1]);
+				  
 				  if (hrsystemA.getSequencingID()==0){
 				    System.out.println("not enough for Sequenceing");
 				  }else{
