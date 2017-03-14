@@ -26,8 +26,8 @@ public class Level  {
 	 * 
 	 */
 	public Fascia removeOne(){
-		Fascia retFascia = fasciaList.get(-1);
-		fasciaList.remove(-1);
+		Fascia retFascia = fasciaList.get(fasciaList.size()-1);
+		fasciaList.remove(fasciaList.size()-1);
 		this.Replenishing();
 		return retFascia;
 	}

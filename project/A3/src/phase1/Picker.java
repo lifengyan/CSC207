@@ -12,6 +12,7 @@ public class Picker {
 		private Integer requestID; // set to zero when picker is not currently picking
 		private String name;
 		private static Integer curr= 0; 
+		private Integer currpick =0;
 		//Constructor, get picker name as a string input
 		public Picker(String pickername){
 			this.name = pickername;
@@ -23,8 +24,17 @@ public class Picker {
 		}
 		
 		// method to add picked SKU into forkLift
-		public void addtoFolkLift(Integer sku){
+		public void addtoFolkLift(Integer sku, Warehouse currentWarehouse){
+			
 			this.forkLift.add(sku);
+			Location currLocation = locationList.get(currpick++);
+			int zone = 0;
+				if(currLocation.zone.equals("B")){
+					zone = 1;
+				}	
+			currentWarehouse.getFascia(zone, Integer.valueOf( currLocation.aisle),
+					Integer.valueOf( currLocation.rack), Integer.valueOf( currLocation.level));
+			
 		}
 		// method to change picker status
 		public void changePickerStatus(boolean stA){

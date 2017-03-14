@@ -137,9 +137,10 @@ public class Warehouse {
 	            }
 	        }
 	      }
+	     
 	  }
 	    
-	    
+	    writer.close(); 
 	    
 	}
 	  

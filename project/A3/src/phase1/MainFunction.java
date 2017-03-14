@@ -2,6 +2,7 @@ package phase1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +13,10 @@ public class MainFunction {
 
 
    
-	public static String hrFilePath = new File("phase1/hrfile.csv").getAbsolutePath();
-	public static String warehousePath = new File("phase1/warehouse.csv").getAbsolutePath();
-	public static String transtanblePath = new File("phase1/translation.csv").getAbsolutePath();
-	public static String genericSoftPath = new File("phase1/traversal_table.csv").getAbsolutePath();
+	public static String hrFilePath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1/hrfile.csv";
+	public static String warehousePath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1/warehouse.csv";
+	public static String transtanblePath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1/translation.csv";
+	public static String genericSoftPath = "C:/Users/Leon Zhao/git/group_0411/project/A3/src/phase1//traversal_table.csv";
 	
 	
 	public static boolean newUnhandledRequest = false; // this variable should be in order manager. it tells you whether there is a new request
@@ -25,7 +26,7 @@ public class MainFunction {
 		String filePath = new File("").getAbsolutePath();
 		System.out.println(filePath);
 		System.out.println(hrFilePath);
-		System.out.println(warehousePath.equals("/Users/tongzhu/Documents/CSC207_Project/group_0411/project/A3/src/phase1/warehouse.csv"));
+		System.out.println(warehousePath);
 		System.out.println(transtanblePath);
 		System.out.println(genericSoftPath);
 		
@@ -54,6 +55,7 @@ public class MainFunction {
         System.out.println("reading file");
         WarehouseA.storageInital(warehousePath);
 		TranslateA.readFromCSVFile(transtanblePath);
+		
 		hrsystemA.readFromCSVFile(hrFilePath);
 		warehousePicking.warehousePickingreader(genericSoftPath);
         } catch (FileNotFoundException e){
@@ -72,7 +74,7 @@ public class MainFunction {
 			switch (userInput[0]){
 			
 				case "order": orderManager.addOrder(userInput[1],userInput[2],TranslateA);
-				               System.out.println("New order has been created.");;
+				               System.out.println("New order has been created.");
 				               
 				            // check if there is free picker && there are 4 orders to generate a request
 				               if(pickerManager.getFreePicker().size()!= 0 && orderManager.generateNext()!=0){
@@ -86,7 +88,8 @@ public class MainFunction {
 				               }else if(pickerManager.getFreePicker().size() == 0){
 				            	   System.out.println("no currently free picker");
 				               }
-				          
+				               break;
+
 				               
 
 				case "picker": if (userInput[2].equals("ready")){
@@ -107,8 +110,8 @@ public class MainFunction {
 				      // Do we need correct skus to be stored in this picker?
 				      
 				      
-				      System.out.println("Picker"+userInput[1]+"resived the order location. he is one his way ");
-				      System.out.println("Picker"+ userInput[1] + " go to location: "+someOne.getLoc());
+				      System.out.println("Picker "+userInput[1]+" resived the order location. he is one his way ");
+				      System.out.println("Picker "+ userInput[1] + " go to location: "+someOne.getLoc());
 				     }
 				    
 				}
@@ -116,22 +119,23 @@ public class MainFunction {
 				else if(userInput[2].equals("picked")){ 
 					System.out.println("Picker enter pickedsku");
 					int userInput2= reader.nextInt();
-					
-					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2);
+					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, WarehouseA);
 					System.out.println("Picker"+ userInput[1] + " go to location: "+pickerManager.getPicker(userInput[1]).getLoc());
-					}
-				
-
-				
-				
+					};
+					break;
+				case "close" : shutdown = true;
+				 		break;
 			}
 			
+			reader.close();	
+				}
+		try {
+			WarehouseA.writeDown(warehousePath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-				
-			}
-			
-			
-			
 			
 		}
 
