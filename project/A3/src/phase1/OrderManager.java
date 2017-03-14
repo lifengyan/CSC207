@@ -59,6 +59,11 @@ public class OrderManager {
   public int generateNext() {
     return this.hasnext;
   }
+  public int hasNext4(){
+	  if(this.orders.containsKey(trail)){
+		  return 1;
+	  }else{return 0;}
+  }
 
   public Map<Integer, Order> getOrders() {
     return this.orders;
