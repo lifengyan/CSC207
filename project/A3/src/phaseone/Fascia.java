@@ -7,5 +7,11 @@ public class Fascia {
     this.sku = sku;
   }
 
-  public Fascia() {}
+  public Fascia() {
+
+  }
+
+  public int getsku() {
+    return this.sku;
+  }
 }

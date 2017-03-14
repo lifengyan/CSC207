@@ -11,7 +11,7 @@ public class Order {
   private static int orderCount = 0;
   public String status = "ordered";
   public int orderid;
-  
+
   /**
    * Create a order by giving color and model, the system will look up the SKU.
    */
@@ -42,8 +42,17 @@ public class Order {
     return this.backsku;
   }
   
+  public String getColour() {
+    return this.colour;
+  }
+  
+  public String getModel() {
+    return this.model;
+  }
+
   public boolean equals(Order order) {
-    return (this.getFront() == order.getFront() && this.getBack()==order.getBack());
+    return (this.getFront() == order.getFront() 
+        && this.getBack() == order.getBack());
   }
 
 
