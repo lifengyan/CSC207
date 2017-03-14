@@ -121,10 +121,32 @@ public class MainFunction {
 					int userInput2= reader.nextInt();
 					pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, WarehouseA);
 					System.out.println("Picker"+ userInput[1] + " go to location: "+pickerManager.getPicker(userInput[1]).getLoc());
-					};
+					}
+					
+				else if(userInput[2].equals("marshaling")){
+				  hrsystemA.addTOSequencing(pickerManager.getPicker(userInput[1]).getRequestID(),pickerManager.getPicker(userInput[1]).getForkLift());
+				  pickerManager.deletPicker(pickerManager.getPicker(userInput[1]));
+				}
 					break;
+				case "sequencer":
+				  Sequencer aSequencer  = (Sequencer) hrsystemA.getWorker(userInput[1]);
+				  if (hrsystemA.getSequencingID()==0){
+				    System.out.println("not enough for Sequenceing");
+				  }else{
+				    Integer SequencingID = hrsystemA.getSequencingID();
+				    hrsystemA.addToloader(SequencingID, aSequencer.sequence(SequencingID,
+				        hrsystemA.getSequencingItem(SequencingID),orderManager));
+				    System.out.println("Sequenced, send it to loader");
+				      }
+				  break;
+				  
+				case "loader":
+				  System.out.println("Loader "+userInput[1]+" is loading");
+				  break;
+				  
 				case "close" : shutdown = true;
 				 		break;
+				
 			}
 			// add case when Picker Alice to Marshaling, use resetPicker()
 			

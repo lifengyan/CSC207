@@ -35,6 +35,7 @@ public class Sequencer extends Worker {
     }
     whole.add(front);
     whole.add(back);
+    System.out.println("Picked correct fascia");
     return whole;
 
 
