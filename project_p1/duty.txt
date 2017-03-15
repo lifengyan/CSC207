@@ -28,11 +28,20 @@ Duty:
 ********************************************************************
 Name: Yuan Zhao
 Student ID: 1001696952
-Duty: 
-- Implemented Mainfunction.java, warehouse.java, level.java, fascia, java
-- Debug and improved every class in our project
+Duty:
+-Designed and building warehouse system, including read Warehouse.csv
+story all the warehouse information, and process replenishing, picking,
+and record the final stage of warehouse to warehouse.csv file.
+ Designed and building  the hrSystem, to read, control, use and store all the workers, loaded items,
+ sequenced items. 
+ Designed and building  the main function, connect all  class and methods, read use input to use this
+ programs. 
+- Implemented Mainfunction.java, warehouse.java, level.java, Fascia.java
+- Implemented necessary methods that are missing such as Loader. loading
+- Debug and improved every class in our project such as: OrderManager. generatePick
+-	hrSystem. getworke, and many types error during implement main function 
 - Fix system running bug 
 - Developed the UML
-
+********************************************************************
 
 
