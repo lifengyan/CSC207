@@ -31,6 +31,11 @@ public class PickerManager {
 
 
   // according to the input string to return this picker
+  /**
+   * Get picker.
+   * @param pickerName the name of the picker
+   * @return a picker
+   */
   public Picker getPicker(String pickerName) {
     for (int i = 0; i < pickerList.size(); i++) {
       if (pickerList.get(i).getName().equals(pickerName)) {

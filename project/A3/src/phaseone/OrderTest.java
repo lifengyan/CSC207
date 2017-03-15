@@ -17,7 +17,7 @@ public class OrderTest {
    */
   @Before
   public void setUp() throws FileNotFoundException {
-    tr.readFromCSVFile(
+    tr.readFromcsvfile(
         "/Users/lifengyan/Desktop/CSC207Workspace/"
         + "group_0411/project/A3/src/phase1/translation.csv");
   }
