@@ -1,0 +1,12 @@
+Name: Fengyan Li
+Student ID: 1001674039
+Duty: Use the translation table to translate colour and model into front and back SKU number
+Implemented Order class with orderid equals to the order that minivan order comes in.
+Implemented OrderManager class to keep track of all orders and generate picking request when there are
+four orders available in the system
+Implemented Sequencer.java Replenisher.java Loader.java
+Sequencer has the sequence method to compare sku of fascia on the forklift and the sku numbers
+in the system, to monitor if the picker picked the right fascias.
+Super class Worker of sequencer, replenisher and loader.
+Part of HrSystem that keey track of all workers.
+
