@@ -193,6 +193,7 @@ public class MainFunction {
           shutdown = true;
           break;
         default:
+        	 writer.append("Error during enter command" + "\n");
           break;
 
       }
