@@ -48,7 +48,7 @@ public class MainFunction {
     
     try {
 		FileWriter writer = new FileWriter(eventFile);
-		writer.append("ware House 1.0 event file.\n");
+		writer.append("ware House 1.0 event file.");
 		
 	
     
@@ -75,7 +75,7 @@ public class MainFunction {
       String[] userInput;
       System.out.println("Please enter a command");
       userInput = reader.next().split(",");
-      writer.append("User input: " + userInput +" \n");
+      writer.append("User input: " + userInput.toString() +" \n");
 
       // Us a case statement to find out which command it used
       switch (userInput[0]) {
@@ -127,10 +127,10 @@ public class MainFunction {
               //Print out the current picker location.
               System.out.println(
                   "Picker " + userInput[1] + " resived the order location. he is one his way ");
-              writer.append("Picker " + userInput[1] + " resived the order location. he is one his way. "+ "\n");
+              writer.append("Picker " + userInput[1].toString() + " resived the order location. he is one his way. "+ "\n");
               String pickerlocation = "Picker " + userInput[1] + " go to location: " + someOne.getLoc();
               System.out.println( pickerlocation);
-              writer.append( pickerlocation + "\n");
+              writer.append( pickerlocation.toString() + "\n");
             }
 
 
@@ -157,7 +157,7 @@ public class MainFunction {
                 writer.append( "User input" + userInput2 + "\n");
                 pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, warehouseA);
                 System.out.println("picker " + userInput[1] + "should go to marshaling.");
-                writer.append( "picker " + userInput[1] + "should go to marshaling." + "\n");
+                writer.append( "picker " + userInput[1].toString() + "should go to marshaling." + "\n");
               }
             }
           } else if (userInput[2].equals("marshaling")) {
@@ -186,7 +186,7 @@ public class MainFunction {
 
         case "loader":
           System.out.println("Loader " + userInput[1] + " is loading");
-          writer.append("Loader " + userInput[1] + " is loading" + "\n");
+          writer.append("Loader " + userInput[1].toString() + " is loading" + "\n");
           break;
 
         case "close":
