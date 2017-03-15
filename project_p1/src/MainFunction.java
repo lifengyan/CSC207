@@ -135,7 +135,7 @@ public class MainFunction {
 
 
 
-          } else if (userInput[2].equals("picked")) {
+          } else if (userInput[2].equals("pick")) {
             if (!pickerManager.getPicker(userInput[1]).equals(null)) {
               if (!userInput[3].equals("8")) {
                 System.out.println("Picker enter picked sku");

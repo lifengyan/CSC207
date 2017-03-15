@@ -1,1 +1,15 @@
 
+Use command to compile and run the program in “group_0411/project_p1/src”
+
+1. This system takes input command to model the real world events. Please enter event input commands one line at a time follow 16orders.txt in “group_0411/project_p1/src”. Please make changes to the 16orders.txt following the given format (use “,” instead of “ “ and note some words are changed to lower case)
+
+2. Please keep track of the corresponding SKU numbers for the orders you picked in Translation.csv file, they will be used after each input event of “picker xx pick #” 
+
+3. Every time when input event is “picker,xxx,pick,#” the system will ask for the SKU number that the picker picked, this models the real world event where picker scan a barcode. Please enter any of the 8 SKU numbers corresponding to the 4 orders that are assigned to this picker. Wrong SKU will result message “picked wrong facia” at the sequencing state. Correct SKUs will lead to the loading stage.
+
+5. Please enter “close” for the last event command input to get the correct output files.
+
+4. The final out putfiles are: 
+		warehouse.csv: this is the same as final.csv, returns level of pick face that have less than 30 fascia.
+		orders.csv: contains orders that were placed on the truck.
+

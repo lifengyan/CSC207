@@ -1,3 +1,5 @@
+**More detailed duty information can be found in Ambernotes.txt, Leon_note.txt and TongNotes.txt**
+
 Name: Fengyan Li
 Student ID: 1001674039
 Duty: Use the translation table to translate colour and model into front and back SKU number

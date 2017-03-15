@@ -22,7 +22,10 @@ public class Loader extends Worker {
 	  String FrontSku = "";
 	  String BackSku = "" ;
 	  
-	
+              if(loadinglist.keySet.size() == 0){
+                  writter.close();
+                  return;
+              }
 		 for (Integer key:  loadinglist.keySet())
 		 {
 			 for (int i=0; i<2; i++){
