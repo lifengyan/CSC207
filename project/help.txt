@@ -1,6 +1,7 @@
 
-1.
-2. Please make changes to 16order.txt following the given format(use “,” instead of “ “ and note some word are changed to lower case)
+1.All .java and input files are in folder group_0411/project/src, help.txt and other files are in group_0411/project
+
+2. Please input command one line at a time as specified in 16orders.txt file and follow the same format if make any changes. 
 
 3. Please keep track of the corresponding SKU numbers for the orders you picked in Translation.csv file, they will be used after each “picker pick” event.
 
