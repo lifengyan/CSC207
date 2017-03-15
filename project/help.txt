@@ -1,1 +1,30 @@
 
+1. Use following commands to model real world interaction with the software: 
+	Enter one event at a time. Sample event input can be found in 16orders.txt. 
+	For misspelled words, the system will ask for another correct input.
+
+	“order,Green,SES”: available colors and models can be found in Translation.csv file, 
+			   please keep track of the corresponding SKU numbers for the orders you picked 
+			   in Translation.csv file, they will be used later
+
+	“picker,Alice,ready”: Picker name(Alice here) can be any name specified by user
+
+	“picker,Alice,picked,1”: must enter command ”picker,Alice,ready” before this line 
+   			 	and must follow the order, ie 1,2,3,4,5...etc
+
+	“picker,Alice,picked,2”
+	“picker,Alice,picked,3”
+	“picker,Alice,picked,4”
+	“picker,Alice,picked,5”
+	“picker,Alice,picked,6”
+	“picker,Alice,picked,7”
+	“picker,Alice,picked,8”
+
+	“picker,Alice,marshaling”
+	“sequencer,Sue,sequences”: name of sequencer can be specified by user
+	“loader,Bill,loads”: name of loader can be any name that is specified by the user
+
+2. Every time when input event is  “picker,Alice,picked,#”, the system will ask for the SKU number that the picker picked(this models the real world event where picker scan a barcode). Enter any of the SKU number corresponding to the orders that you entered earlier, wrong SKU number will result message “picked wrong fascia” at the sequencing state. Correct SKUs will lead to the loading stage.
+
+3. For sample of input events please refer to event.txt
+
