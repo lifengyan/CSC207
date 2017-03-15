@@ -1,6 +1,6 @@
 package phaseone;
 
-public class Worker {
+public  class Worker {
 
   // Worker Superclass
   private String name;
@@ -18,5 +18,7 @@ public class Worker {
   public String getStatus() {
     return this.status;
   }
+  
+
 
 }
