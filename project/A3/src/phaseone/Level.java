@@ -19,6 +19,14 @@ public class Level {
       fasciaList.add(new Fascia());
     }
   }
+  public void set(int numberOfFascia) {
+	  int differnt = fasciaList.size()-numberOfFascia;
+		  for(int i = 0; i< differnt; i++){
+			  fasciaList.remove(0);
+		  }
+
+	 
+	  }
 
   /**
    * when picker remove the fascia, current warehouselevel will reduce one unite of fascia, and

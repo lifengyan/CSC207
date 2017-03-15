@@ -16,43 +16,17 @@ New order has been created
 Currently no free picker. 
 User input: [Ljava.lang.String;@677327b6 
 Picker bob resived the order location. he is one his way. 
-Picker bob go to location: Zone: B, Aisle 0, Rack 1, Level 0, SKU# 29
+Picker bob go to location: Zone: B, Aisle 0, Rack 2, Level 3, SKU# 36
 User input: [Ljava.lang.String;@6d6f6e28 
 Picker enter picked sku
 User input1
-Pickerbob go to location: Zone: A, Aisle 0, Rack 2, Level 0, SKU# 9
+Pickerbob go to location: Zone: A, Aisle 0, Rack 2, Level 1, SKU# 10
 User input: [Ljava.lang.String;@135fbaa4 
 Picker enter picked sku
-User input1
-Pickerbob go to location: Zone: A, Aisle 0, Rack 1, Level 2, SKU# 7
+User input2
+Pickerbob go to location: Zone: A, Aisle 1, Rack 2, Level 3, SKU# 24
 User input: [Ljava.lang.String;@45ee12a7 
 Picker enter picked sku
-User input1
-Pickerbob go to location: Zone: B, Aisle 1, Rack 1, Level 0, SKU# 41
+User input23
+Pickerbob go to location: Zone: A, Aisle 1, Rack 1, Level 3, SKU# 20
 User input: [Ljava.lang.String;@330bedb4 
-Picker enter picked sku
-User input1
-Pickerbob go to location: Zone: A, Aisle 0, Rack 1, Level 0, SKU# 5
-User input: [Ljava.lang.String;@2503dbd3 
-Picker enter picked sku
-User input2
-Pickerbob go to location: Zone: A, Aisle 1, Rack 0, Level 3, SKU# 16
-User input: [Ljava.lang.String;@4b67cf4d 
-Picker enter picked sku
-User input2
-Pickerbob go to location: Zone: A, Aisle 0, Rack 2, Level 0, SKU# 9
-User input: [Ljava.lang.String;@7ea987ac 
-Picker enter picked sku
-User input2
-Pickerbob go to location: Zone: A, Aisle 0, Rack 1, Level 3, SKU# 8
-User input: [Ljava.lang.String;@12a3a380 
-Picker enter picked sku
-User input2
-picker bobshould go to marshaling.
-User input: [Ljava.lang.String;@29453f44 
-picker send his/her items to marshaling room.
-User input: [Ljava.lang.String;@5cad8086 
-Sequenced, send it to loader
-User input: [Ljava.lang.String;@6e0be858 
-Loader leon is loading
-User input: [Ljava.lang.String;@61bbe9ba 

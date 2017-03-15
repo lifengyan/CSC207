@@ -34,6 +34,7 @@ public class Warehouse {
 
           for (int l = 0; l < 4; ++l) {
             Level level = new Level();
+            level.add(30);
             racks.add(level);
           }
         }
@@ -42,33 +43,6 @@ public class Warehouse {
     //
   }
 
-  /**
-   * Build the initial Warehouse storage room.
-   * @param warehouseName the name of the warehouse
-   */
-  public Warehouse(String warehouseName) {
-    this.warehouseName = warehouseName;
-    for (int i = 0; i < 2; ++i) {
-      ArrayList<ArrayList<ArrayList<Level>>> zone = new ArrayList<>();
-      warehouseinv.add(zone);
-
-      for (int j = 0; j < 2; ++j) {
-        ArrayList<ArrayList<Level>> aisles = new ArrayList<>();
-        zone.add(aisles);
-
-        for (int k = 0; k < 3; ++k) {
-          ArrayList<Level> racks = new ArrayList<>();
-          aisles.add(racks);
-
-          for (int l = 0; l < 4; ++l) {
-            Level level = new Level();
-            racks.add(level);
-          }
-        }
-      }
-    }
-    //
-  }
   
   public String getWarehouseName() {
     return this.warehouseName;
@@ -86,13 +60,17 @@ public class Warehouse {
       //Tem Fascia?
       record = scanner.nextLine().split(",");
       ArrayList<Integer> locationlist = new ArrayList<>();
-
+      if (record[0].equals("A")){
+    	  record[0] = "0";
+      }else{record[0] = "1";}
+    	  
       for (int i = 0; i < record.length; i++) {
+    	 
         locationlist.add(Integer.parseInt(record[i]));
       }
 
       warehouseinv.get(locationlist.get(0)).get(locationlist.get(1)).get(locationlist.get(2))
-          .get(locationlist.get(3)).add(locationlist.get(4));
+          .get(locationlist.get(3)).set(locationlist.get(4));
 
     }
     scanner.close();
@@ -133,6 +111,7 @@ public class Warehouse {
 
           for (int l = 0; l < 4; ++l) {
             // LEVEL
+        	  if ( warehouseinv.get(i).get(j).get(k).get(l).report()!=30 ){
             writer.append(String.valueOf(i));
             writer.append(",");
             writer.append(String.valueOf(j));
@@ -142,7 +121,7 @@ public class Warehouse {
             writer.append(String.valueOf(l));
             writer.append(",");
             writer.append(String.valueOf(warehouseinv.get(i).get(j).get(k).get(l).report()));
-            writer.append("\n");
+            writer.append("\n");}
 
           }
 
