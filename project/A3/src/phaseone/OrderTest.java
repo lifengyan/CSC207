@@ -2,6 +2,7 @@ package phaseone;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.junit.Before;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 public class OrderTest {
   Translate tr = new Translate();
+  public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
   
   /**
    * Set up Translation Table.
@@ -17,9 +19,7 @@ public class OrderTest {
    */
   @Before
   public void setUp() throws FileNotFoundException {
-    tr.readFromcsvfile(
-        "/Users/lifengyan/Desktop/CSC207Workspace/"
-        + "group_0411/project/A3/src/phase1/translation.csv");
+    tr.readFromcsvfile(transtanblePath);
   }
 
   @Test
