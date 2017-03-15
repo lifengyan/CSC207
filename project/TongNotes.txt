@@ -88,5 +88,9 @@ Code Effected:
 Notes: added new function deletePicker in PickerManager.java
 	deleted unused method resetPicker in Picker.java
 	changed file path initialization in MainFunction.java
-	
+
+**********
+Push 11
+File edited: help.txt
+Notes: provide detailed instruction on how to run the program.	
 
