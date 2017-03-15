@@ -1,6 +1,10 @@
 package phaseone;
 
-public  class Worker {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public abstract class Worker {
 
   // Worker Superclass
   private String name;
@@ -18,6 +22,10 @@ public  class Worker {
   public String getStatus() {
     return this.status;
   }
+  
+  public void load(HashMap<Integer, ArrayList<ArrayList<Integer>>> loadinglist, String filePath) 
+		  throws IOException {}
+  
   
 
 

@@ -17,7 +17,7 @@ public class MainFunction {
   public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
   public static String genericSoftPath = new File("src/phaseone/traversal_table.csv").getAbsolutePath();
   public static String eventFile = new File("src/phaseone/events.txt").getAbsolutePath();
-
+  public static String orderFile = new File("src/phaseone/order.csv").getAbsolutePath();
 
   public static boolean newUnhandledRequest = false;
 
@@ -186,7 +186,13 @@ public class MainFunction {
 
         case "loader":
           System.out.println("Loader " + userInput[1] + " is loading");
+
+          Loader someONe = hrsystemA.getLoader(userInput[1]);
+          
+          someONe.load(hrsystemA.loadingList, orderFile);
+           
           writer.append("Loader " + userInput[1].toString() + " is loading" + "\n");
+          
           break;
 
         case "close":
