@@ -19,9 +19,20 @@ Duty:
 - Implemented Picker.java class
 - Implemented PickerManager.java class
 - Implemented WarehousePicking.java class
+- Implemented location.java class
 - Edited the 16orders.txt input file to match system requirement
 - Developed Picker system part of the UML
 - Edited and improved MainFunction.java 
 - Debugged the system
 - Developed help.txt file
 ********************************************************************
+Name: Yuan Zhao
+Student ID: 1001696952
+Duty: 
+- Implemented Mainfunction.java, warehouse.java, level.java, fascia, java
+- Debug and improved every class in our project
+- Fix system running bug 
+- Developed the UML
+
+
+
