@@ -23,7 +23,7 @@ public class Loader extends Worker {
 	  String BackSku = "" ;
 	  
               if(loadinglist.keySet.size() == 0){
-                  writter.close();
+                  writer.close();
                   return;
               }
 		 for (Integer key:  loadinglist.keySet())
