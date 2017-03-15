@@ -23,6 +23,7 @@ public class Hrsystem {
     this.hrSystemSequencer = new ArrayList<Sequencer>();
     this.sequencingList = new HashMap<Integer, ArrayList<Integer>>();
     this.loadingList = new HashMap<Integer, ArrayList<ArrayList<Integer>>>();
+    this.hrSystemLoader = new ArrayList<Loader> ();
   }
 
   
@@ -114,8 +115,10 @@ public class Hrsystem {
       Sequencer sq = new Sequencer(name);
       this.hrSystemSequencer.add(sq);
     } else if (job.equals("Loader")) {
-      Loader ld = new Loader(name);
-      this.hrSystemOther.add(ld);
+      
+    	Loader ld = new Loader(name);
+      this.hrSystemLoader.add(ld);
+      
     } else if (job.equals("Replenisher")) {
       Replenisher rp = new Replenisher(name);
       this.hrSystemOther.add(rp);

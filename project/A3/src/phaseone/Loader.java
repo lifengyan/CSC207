@@ -19,8 +19,8 @@ public class Loader extends Worker {
 	  
 	  String csvFile = filePath;
 	  FileWriter writer = new FileWriter(csvFile);
-	  String FrontSku = null;
-	  String BackSku = null ;
+	  String FrontSku = "";
+	  String BackSku = "" ;
 	  
 	
 		 for (Integer key:  loadinglist.keySet())
@@ -35,7 +35,7 @@ public class Loader extends Worker {
 				 }
 			 }
 			 
-			 writer.append("pick ID:" + Integer.toString(key) +"," + FrontSku + BackSku);
+			 writer.append("pick ID: " + Integer.toString(key) +"," + FrontSku + BackSku);
 			 
 		 }
 		  
