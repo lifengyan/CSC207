@@ -41,7 +41,7 @@ public class MainFunction {
 
     Warehouse warehouseA = new Warehouse();
     Translate translateA = new Translate();
-
+//test
     
     Scanner reader = new Scanner(System.in);
     
