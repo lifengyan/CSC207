@@ -28,3 +28,8 @@
 
 3. For sample of input events please refer to event.txt
 
+4. The final output files are:
+		warehouse.csv: this is the same as final.csv, returns levels of pick 
+				face that have less than 30 fascia.
+		orders.csv: contains orders that were placed on the truck
+
