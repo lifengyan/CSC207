@@ -10,9 +10,10 @@ import java.util.Set;
 public class Hrsystem {
   private ArrayList<Sequencer> hrSystemSequencer;
   private ArrayList<Worker> hrSystemOther;
+  private ArrayList<Loader> hrSystemLoader;
 
   private HashMap<Integer, ArrayList<Integer>> sequencingList;
-  private HashMap<Integer, ArrayList<ArrayList<Integer>>> loadingList;
+  public HashMap<Integer, ArrayList<ArrayList<Integer>>> loadingList;
 
   /**
    * Construct Hrsystem.
@@ -41,20 +42,16 @@ public class Hrsystem {
   }
 
 
-  /**
-   * Get a worker by name.
-   * @param name of worker
-   * @return a worker
-   */
-  public Worker getworker(String name) {
-    for (int i = 0; i < hrSystemOther.size(); i++) {
-      if (hrSystemOther.get(i).getName().equals(name)) {
-        return hrSystemOther.get(i);
-      }
-    }
-    Worker nw = new Worker(name);
-    return nw;
-  }
+  public Loader getLoader(String name) {
+	    for (int i = 0; i < hrSystemLoader.size(); i++) {
+	      if (hrSystemLoader.get(i).getName().equals(name)) {
+	        return hrSystemLoader.get(i);
+	      }
+	    }
+	    Loader nw = new Loader(name);
+	    return nw;
+	  }
+
 
 
   /**
