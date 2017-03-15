@@ -8,5 +8,18 @@ Implemented Sequencer.java Replenisher.java Loader.java
 Sequencer has the sequence method to compare sku of fascia on the forklift and the sku numbers
 in the system, to monitor if the picker picked the right fascias.
 Super class Worker of sequencer, replenisher and loader.
-Part of HrSystem that keey track of all workers.
-
+Part of HrSystem that keep track of all workers.
+********************************************************************
+Name: Tong Zhu
+Student ID: 1000401004
+Duty:
+- Designed and improved Picker system
+- Implemented Picker.java class
+- Implemented PickerManager.java class
+- Implemented WarehousePicking.java class
+- Edited the 16orders.txt input file to match system requirement
+- Developed Picker system part of the UML
+- Edited and improved MainFunction.java 
+- Debugged the system
+- Developed help.txt file
+********************************************************************
