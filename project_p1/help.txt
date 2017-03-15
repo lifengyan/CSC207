@@ -1,5 +1,5 @@
 
-* Use command to compile and run the program, files are in “group_0411/project_p1/src”
+* Use command to compile and run the program, files are in “group_0411/project_p1/src/phaseone”
 
 * To run in eclipse, create a package called “phaseone” with all the code in it.
 
