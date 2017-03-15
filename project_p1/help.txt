@@ -1,5 +1,9 @@
 
-Use command to compile and run the program in “group_0411/project_p1/src”
+* Use command to compile and run the program, files are in “group_0411/project_p1/src”
+
+* To run in eclipse, create a package called “phaseone” with all the code in it.
+
+* Note: the file path might be wrong depending on what base path the function getAbsolutePath() returns, to change it correct file path, the code can be found in MainFunction:Line 15-20
 
 1. This system takes input command to model the real world events. Please enter event input commands one line at a time follow 16orders.txt in “group_0411/project_p1/src”. Please make changes to the 16orders.txt following the given format (use “,” instead of “ “ and note some words are changed to lower case)
 
@@ -12,4 +16,6 @@ Use command to compile and run the program in “group_0411/project_p1/src”
 4. The final out putfiles are: 
 		warehouse.csv: this is the same as final.csv, returns level of pick face that have less than 30 fascia.
 		orders.csv: contains orders that were placed on the truck.
+
+Event.txt is a file contains sample of the program run 
 
