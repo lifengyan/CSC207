@@ -112,7 +112,11 @@ public class Warehouse {
           for (int l = 0; l < 4; ++l) {
             // LEVEL
         	  if ( warehouseinv.get(i).get(j).get(k).get(l).report()!=30 ){
-            writer.append(String.valueOf(i));
+        	String zone = "A";
+        	if (i!=0){
+        		zone = "B";
+        	}
+            writer.append(String.valueOf(zone));
             writer.append(",");
             writer.append(String.valueOf(j));
             writer.append(",");
