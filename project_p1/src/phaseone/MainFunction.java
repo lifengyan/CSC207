@@ -12,12 +12,12 @@ public class MainFunction {
 
   static String filePath = new File("").getAbsolutePath();
 
-  public static String hrFilePath = new File("src/hrfile.csv").getAbsolutePath();
-  public static String warehousePath = new File("src/warehouse.csv").getAbsolutePath();
-  public static String transtanblePath = new File("src/translation.csv").getAbsolutePath();
-  public static String genericSoftPath = new File("src/traversal_table.csv").getAbsolutePath();
-  public static String eventFile = new File("src/events.txt").getAbsolutePath();
-  public static String orderFile = new File("src/order.csv").getAbsolutePath();
+  public static String hrFilePath = new File("src/phaseone/hrfile.csv").getAbsolutePath();
+  public static String warehousePath = new File("src/phaseone/warehouse.csv").getAbsolutePath();
+  public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
+  public static String genericSoftPath = new File("src/phaseone/traversal_table.csv").getAbsolutePath();
+  public static String eventFile = new File("src/phaseone/events.txt").getAbsolutePath();
+  public static String orderFile = new File("src/phaseone/order.csv").getAbsolutePath();
 
   public static boolean newUnhandledRequest = false;
 
