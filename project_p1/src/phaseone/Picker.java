@@ -10,7 +10,7 @@ public class Picker {
   private ArrayList<Location> locationList = new ArrayList<Location>();
   private Integer requestId; // set to zero when picker is not currently picking
   private String name;
-  private static Integer curr = 0;
+  private Integer curr = 0;
   private Integer currpick = 0;
 
   // Constructor, get picker name as a string input
