@@ -1,7 +1,5 @@
 package phasetwo;
 
-import phaseone.Translate;
-
 public class Order {
   private String colour;
   private String model;

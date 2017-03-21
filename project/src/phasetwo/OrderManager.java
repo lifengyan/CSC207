@@ -3,7 +3,6 @@ package phasetwo;
 import java.util.HashMap;
 import java.util.Map;
 
-import phaseone.Translate;
 
 public class OrderManager {
   private Map<Integer, Order> orders;
