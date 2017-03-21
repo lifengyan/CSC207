@@ -16,22 +16,22 @@ public class Warehouse {
   private String warehouseName;
 
   /**
-   * Construct the warehouse.
+   * Construct the warehouse, entire warehouse are build in a nest arraylist
    */
   public Warehouse() {
-    // build the initial warehouse storage room
+	  //build the zone level
     for (int i = 0; i < 2; ++i) {
       ArrayList<ArrayList<ArrayList<Level>>> zone = new ArrayList<>();
       warehouseinv.add(zone);
-
+      //build the aisles level
       for (int j = 0; j < 2; ++j) {
         ArrayList<ArrayList<Level>> aisles = new ArrayList<>();
         zone.add(aisles);
-
+        //build the rack level
         for (int k = 0; k < 3; ++k) {
           ArrayList<Level> racks = new ArrayList<>();
           aisles.add(racks);
-
+          //build the level level
           for (int l = 0; l < 4; ++l) {
             Level level = new Level();
             level.add(30);
@@ -44,9 +44,7 @@ public class Warehouse {
   }
 
   
-  public String getWarehouseName() {
-    return this.warehouseName;
-  }
+  
 
   /**
    * This function is use to initial ware house state in the beginning. It will read the csv file
@@ -56,9 +54,7 @@ public class Warehouse {
     Scanner scanner = new Scanner(new FileInputStream(filePath));
     String[] record;
     while (scanner.hasNextLine()) {
-
-      //Tem Fascia?
-      record = scanner.nextLine().split(",");
+        record = scanner.nextLine().split(",");
       ArrayList<Integer> locationlist = new ArrayList<>();
       if (record[0].equals("A")){
     	  record[0] = "0";
@@ -86,7 +82,7 @@ public class Warehouse {
    * @param aisles aisles of warehouse
    * @param racks rack of warehouse
    * @param level level of warehouse
-   * @return a fascia 
+   * @return a Fascia 
    */
   public Fascia getFascia(int zone, int aisles, int racks, int level) {
     return warehouseinv.get(zone).get(aisles).get(racks).get(level).removeOne();
@@ -94,6 +90,7 @@ public class Warehouse {
 
   /**
    * Write down the warehouse system into a csv file.
+   * only record the level that does not has 30 Fascia
    * @param filePath a file to write 
    * @throws IOException throw an exception
    */
@@ -126,15 +123,12 @@ public class Warehouse {
             writer.append(",");
             writer.append(String.valueOf(warehouseinv.get(i).get(j).get(k).get(l).report()));
             writer.append("\n");}
-
           }
 
         }
       }
     }
-
     writer.close();
-
   }
 
 
