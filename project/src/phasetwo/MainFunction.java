@@ -82,93 +82,21 @@ public class MainFunction {
       switch (userInput[0]) {
 
         case "order":
-          orderManager.addOrder(userInput[1], userInput[2], translateA);
-          System.out.println("New order has been created.");
-          writer.append("New order has been created\n");
-
-          // check if there is free picker && there are 4 orders to generate a request
-          if (pickerManager.getFreePicker().size() != 0 && orderManager.hasNext() != 0) {
-            Picker cur = pickerManager.getFreePicker().get(0);
-            pickerManager.deletFreePicker(cur);
-            String pickerName = cur.getName();
-            System.out.println("currently free picker:" + pickerName);
-            writer.append("currently free picker:" + pickerName +" \n");
-            HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
-            cur.addLocation(warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-            cur.setRequestid(orderManager.generateNext());
-            System.out.println(cur.getName());
-          } else if (pickerManager.getFreePicker().size() == 0) {
-            System.out.println("Currently no free picker");
-            writer.append("Currently no free picker. \n");
-          }
+          createorder(orderManager, pickerManager, warehousePicking, translateA, writer, userInput);
           break;
-
-
 
         case "picker":
           if (userInput[2].equals("ready")) {
-            Picker someOne = new Picker(userInput[1]);
-
-            pickerManager.addPicker(someOne);
-            HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
-
-            if (orderManager.generateNext() == 0) {
-              System.out.println("not enough orders");
-              writer.append("Not enough orders. \n");
-              pickerManager.addFreePicker(someOne);
-              // add ready picker who does is waiting for
-              // request in Arraylist:freePicker
-
-            } else {
-              someOne.addLocation(
-                  warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-              someOne.setRequestid(orderManager.generateNext());
-
-
-              //Print out the current picker location.
-              System.out.println(
-                  "Picker " + userInput[1] + " resived the order location. he is one his way ");
-              writer.append("Picker " + userInput[1].toString() + " resived the order location. he is one his way. "+ "\n");
-              String pickerlocation = "Picker " + userInput[1] + " go to location: " + someOne.getLoc();
-              System.out.println( pickerlocation);
-              writer.append( pickerlocation.toString() + "\n");
-            }
-
-
+        	  pickerReady(orderManager, pickerManager, warehousePicking, writer, userInput);
 
           } else if (userInput[2].equals("pick")) {
-            if (!pickerManager.getPicker(userInput[1]).equals(null)) {
-              if (!userInput[3].equals("8")) {
-                System.out.println("Picker enter picked sku");
-                writer.append( "Picker enter picked sku" + "\n");
-                int userInput2 = reader.nextInt();
-                writer.append( "User input" + userInput2 + "\n");
-                pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, warehouseA);
-                //print out the next location
-                String nextLocation = "Picker" + userInput[1] + " go to location: "
-                        + pickerManager.getPicker(userInput[1]).getLoc();
-                System.out.println(nextLocation);
-                writer.append( nextLocation + "\n");
-                
-                
-              } else {
-                System.out.println("Picker enter pickedsku");
-                writer.append( "Picker enter picked sku" + "\n");
-                int userInput2 = reader.nextInt();
-                writer.append( "User input" + userInput2 + "\n");
-                pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, warehouseA);
-                System.out.println("picker " + userInput[1] + "should go to marshaling.");
-                writer.append( "picker " + userInput[1].toString() + "should go to marshaling." + "\n");
-              }
-            }
+            pickerPicked(pickerManager, warehouseA, reader, writer, userInput);
+            
           } else if (userInput[2].equals("marshaling")) {
-        	  System.out.println("picker send his/her items to marshaling room.");
-        	  writer.append("picker send his/her items to marshaling room." + "\n");
-            hrsystemA.addtoSequencing(pickerManager.getPicker(userInput[1]).getRequestid(),
-                pickerManager.getPicker(userInput[1]).getForkLift());
-            pickerManager.deletPicker(pickerManager.getPicker(userInput[1]));
+        	  pickerToMarshaling(pickerManager, hrsystemA, writer, userInput);
           }
           break;
+          
         case "sequencer":
           Sequencer sequencer = hrsystemA.getSequencer(userInput[1]);
 
@@ -222,6 +150,97 @@ public class MainFunction {
 
 
   }
+
+private static void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, FileWriter writer,
+		String[] userInput) throws IOException {
+	System.out.println("picker send his/her items to marshaling room.");
+	  writer.append("picker send his/her items to marshaling room." + "\n");
+	hrsystemA.addtoSequencing(pickerManager.getPicker(userInput[1]).getRequestid(),
+	    pickerManager.getPicker(userInput[1]).getForkLift());
+	pickerManager.deletPicker(pickerManager.getPicker(userInput[1]));
+}
+
+private static void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Scanner reader, FileWriter writer,
+		String[] userInput) throws IOException {
+	if (!pickerManager.getPicker(userInput[1]).equals(null)) {
+	  if (!userInput[3].equals("8")) {
+	    System.out.println("Picker enter picked sku");
+	    writer.append( "Picker enter picked sku" + "\n");
+	    int userInput2 = reader.nextInt();
+	    writer.append( "User input" + userInput2 + "\n");
+	    pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, warehouseA);
+	    //print out the next location
+	    String nextLocation = "Picker" + userInput[1] + " go to location: "
+	            + pickerManager.getPicker(userInput[1]).getLoc();
+	    System.out.println(nextLocation);
+	    writer.append( nextLocation + "\n");
+	    
+	    
+	  } else {
+	    System.out.println("Picker enter pickedsku");
+	    writer.append( "Picker enter picked sku" + "\n");
+	    int userInput2 = reader.nextInt();
+	    writer.append( "User input" + userInput2 + "\n");
+	    pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, warehouseA);
+	    System.out.println("picker " + userInput[1] + "should go to marshaling.");
+	    writer.append( "picker " + userInput[1].toString() + "should go to marshaling." + "\n");
+	  }
+	}
+}
+
+private static void pickerReady(OrderManager orderManager, PickerManager pickerManager,
+		WarehousePicking warehousePicking, FileWriter writer, String[] userInput) throws IOException {
+	Picker someOne = new Picker(userInput[1]);
+
+	pickerManager.addPicker(someOne);
+	HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
+
+	if (orderManager.generateNext() == 0) {
+	  System.out.println("not enough orders");
+	  writer.append("Not enough orders. \n");
+	  pickerManager.addFreePicker(someOne);
+	  // add ready picker who does is waiting for
+	  // request in Arraylist:freePicker
+
+	} else {
+	  someOne.addLocation(
+	      warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
+	  someOne.setRequestid(orderManager.generateNext());
+
+
+	  //Print out the current picker location.
+	  System.out.println(
+	      "Picker " + userInput[1] + " resived the order location. he is one his way ");
+	  writer.append("Picker " + userInput[1].toString() + " resived the order location. he is one his way. "+ "\n");
+	  String pickerlocation = "Picker " + userInput[1] + " go to location: " + someOne.getLoc();
+	  System.out.println( pickerlocation);
+	  writer.append( pickerlocation.toString() + "\n");
+	}
+}
+
+private static void createorder(OrderManager orderManager, PickerManager pickerManager,
+		WarehousePicking warehousePicking, Translate translateA, FileWriter writer, String[] userInput)
+		throws IOException {
+	orderManager.addOrder(userInput[1], userInput[2], translateA);
+	  System.out.println("New order has been created.");
+	  writer.append("New order has been created\n");
+
+	  // check if there is free picker && there are 4 orders to generate a request
+	  if (pickerManager.getFreePicker().size() != 0 && orderManager.hasNext() != 0) {
+	    Picker cur = pickerManager.getFreePicker().get(0);
+	    pickerManager.deletFreePicker(cur);
+	    String pickerName = cur.getName();
+	    System.out.println("currently free picker:" + pickerName);
+	    writer.append("currently free picker:" + pickerName +" \n");
+	    HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
+	    cur.addLocation(warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
+	    cur.setRequestid(orderManager.generateNext());
+	    System.out.println(cur.getName());
+	  } else if (pickerManager.getFreePicker().size() == 0) {
+	    System.out.println("Currently no free picker");
+	    writer.append("Currently no free picker. \n");
+	  }
+}
 
 
 }

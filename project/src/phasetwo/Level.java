@@ -5,12 +5,14 @@ import java.util.ArrayList;
 
 
 public class Level {
+	// each Level will use fasciaList to store all the Fascia 
   private ArrayList<Fascia> fasciaList = new ArrayList<>();
-
+  
+  //Constructor
   public Level() {}
 
   /**
-   * Add new fascia.
+   * Add new any number of Fascia in to level.
    * 
    * @param numberOfFascia a integer
    */
@@ -19,6 +21,11 @@ public class Level {
       fasciaList.add(new Fascia());
     }
   }
+  
+  /***
+   * this method allow warehouse build the 
+   * @param numberOfFascia
+   */
   public void set(int numberOfFascia) {
 	  int differnt = fasciaList.size()-numberOfFascia;
 		  for(int i = 0; i< differnt; i++){
@@ -29,7 +36,7 @@ public class Level {
 	  }
 
   /**
-   * when picker remove the fascia, current warehouselevel will reduce one unite of fascia, and
+   * when picker remove the fascia, current level will reduce one unite of fascia, and
    * check if the level need to replenishing.
    * 
    * @return Fascia
@@ -42,6 +49,10 @@ public class Level {
     return retFascia;
   }
 
+  /***
+   * report how many Fascia left 
+   * @return
+   */
   public int report() {
     return fasciaList.size();
   }
