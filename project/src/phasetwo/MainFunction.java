@@ -90,32 +90,55 @@ public class MainFunction {
         	  pickerReady(orderManager, pickerManager, warehousePicking, writer, userInput);
 
           } else if (userInput[2].equals("pick")) {
-            pickerPicked(pickerManager, warehouseA, reader, writer, userInput);
-            
+        	  pickerPicked(pickerManager, warehouseA, reader, writer, userInput);
+
           } else if (userInput[2].equals("marshaling")) {
         	  pickerToMarshaling(pickerManager, hrsystemA, writer, userInput);
           }
           break;
           
         case "sequencer":
-          Sequencer sequencer = hrsystemA.getSequencer(userInput[1]);
+        	  if (userInput[2].equals("ready")) {
+        		   Sequencer sequencer = hrsystemA.getSequencer(userInput[1]);
+        		   if (hrsystemA.getSequencingid() == 0) {
+        	            System.out.println("not enough for Sequenceing");
+        	            writer.append("not enough for Sequenceing" + "\n");
+        	          } else {
+        	            Integer sequencingId = hrsystemA.getSequencingid();
 
-          if (hrsystemA.getSequencingid() == 0) {
-            System.out.println("not enough for Sequenceing");
-            writer.append("not enough for Sequenceing" + "\n");
-          } else {
-            Integer sequencingId = hrsystemA.getSequencingid();
-            hrsystemA.addToloader(sequencingId, sequencer.sequence(sequencingId,
-                hrsystemA.getSequencingItem(sequencingId), orderManager));
-            System.out.println("Sequenced, send it to loader");
-            writer.append("Sequenced, send it to loader" + "\n");
-            
-          }
+        	            hrsystemA.addToloader(sequencingId, sequencer.sequence(sequencingId,
+        	            	    hrsystemA.getSequencingItem(sequencingId), orderManager));
+        	            System.out.println("Sequenced, send it to loader");
+        	            writer.append("Sequenced, send it to loader" + "\n");
+        	          }
+        		  
+        	  }else if(userInput[2].equals("scan")){
+        		  //sequencer scan item one by one
+        	  }else if(userInput[2].equals("rescan")){
+        		  //sequencer rescan
+        	  }else if(userInput[2].equals("finish")){
+        		  //sequencer finish sequencing send all the item to loader
+        	  }
+       
+
+         
           break;
 
         case "loader":
+        	  Loader someONe = hrsystemA.getLoader(userInput[1]);
+        	  if (userInput[2].equals("ready")) {
+        		
+        		  
+        	  }else if (userInput[2].equals("scan")){
+        		 //loader scan one by one
+        	  }else if (userInput[2].equals("rescan")){
+        		  //loader rescan
+        	  }else if (userInput[2].equals("loading")){
+        		//loader finish loading send all the item to truck
+        	  }
+        	  
+        	  
           System.out.println("Loader " + userInput[1] + " is loading");
-
           Loader someONe = hrsystemA.getLoader(userInput[1]);
           
           someONe.load(hrsystemA.loadingList, orderFile);
