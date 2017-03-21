@@ -43,8 +43,9 @@ public class PickerManager {
       }
 
     }
-    System.out.println("Given picker does not exist");
-    return null;
+    this.addPicker(new Picker(pickerName));
+    Picker currentpicket = this.getPicker(pickerName);
+    return currentpicket;
   }
 
 

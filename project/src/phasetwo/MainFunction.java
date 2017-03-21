@@ -86,18 +86,20 @@ public class MainFunction {
           break;
 
         case "picker":
+        	 Picker currentPicker = pickerManager.getPicker(userInput[1]);
           if (userInput[2].equals("ready")) {
-        	  pickerReady(orderManager, pickerManager, warehousePicking, writer, userInput);
+        	  pickerReady(orderManager, pickerManager, warehousePicking, writer, userInput,currentPicker);
 
           } else if (userInput[2].equals("pick")) {
-        	  pickerPicked(pickerManager, warehouseA, reader, writer, userInput);
+        	  pickerPicked(pickerManager, warehouseA, reader, writer, userInput,currentPicker);
 
           } else if (userInput[2].equals("marshaling")) {
-        	  pickerToMarshaling(pickerManager, hrsystemA, writer, userInput);
+        	  pickerToMarshaling(pickerManager, hrsystemA, writer, userInput,currentPicker);
           }
           break;
           
         case "sequencer":
+        	
         	  if (userInput[2].equals("ready")) {
         		   Sequencer sequencer = hrsystemA.getSequencer(userInput[1]);
         		   if (hrsystemA.getSequencingid() == 0) {
@@ -139,7 +141,7 @@ public class MainFunction {
         	  
         	  
           System.out.println("Loader " + userInput[1] + " is loading");
-          Loader someONe = hrsystemA.getLoader(userInput[1]);
+          
           
           someONe.load(hrsystemA.loadingList, orderFile);
            
@@ -175,67 +177,63 @@ public class MainFunction {
   }
 
 private static void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, FileWriter writer,
-		String[] userInput) throws IOException {
+		String[] userInput, Picker currentPicker) throws IOException {
+	
 	System.out.println("picker send his/her items to marshaling room.");
 	  writer.append("picker send his/her items to marshaling room." + "\n");
-	hrsystemA.addtoSequencing(pickerManager.getPicker(userInput[1]).getRequestid(),
-	    pickerManager.getPicker(userInput[1]).getForkLift());
-	pickerManager.deletPicker(pickerManager.getPicker(userInput[1]));
+	hrsystemA.addtoSequencing(currentPicker.getRequestid(),
+			currentPicker.getForkLift());
+	pickerManager.deletPicker(currentPicker);
 }
 
 private static void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Scanner reader, FileWriter writer,
-		String[] userInput) throws IOException {
+		String[] userInput, Picker currentPicker) throws IOException {
 	if (!pickerManager.getPicker(userInput[1]).equals(null)) {
-	  if (!userInput[3].equals("8")) {
-	    System.out.println("Picker enter picked sku");
-	    writer.append( "Picker enter picked sku" + "\n");
-	    int userInput2 = reader.nextInt();
-	    writer.append( "User input" + userInput2 + "\n");
-	    pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, warehouseA);
-	    //print out the next location
-	    String nextLocation = "Picker" + userInput[1] + " go to location: "
-	            + pickerManager.getPicker(userInput[1]).getLoc();
-	    System.out.println(nextLocation);
-	    writer.append( nextLocation + "\n");
-	    
-	    
-	  } else {
-	    System.out.println("Picker enter pickedsku");
-	    writer.append( "Picker enter picked sku" + "\n");
-	    int userInput2 = reader.nextInt();
-	    writer.append( "User input" + userInput2 + "\n");
-	    pickerManager.getPicker(userInput[1]).addtoFolkLift(userInput2, warehouseA);
-	    System.out.println("picker " + userInput[1] + "should go to marshaling.");
-	    writer.append( "picker " + userInput[1].toString() + "should go to marshaling." + "\n");
-	  }
+		String userInputSku = userInput[3];
+		//check if the picker picked the correct Fasica
+		if (currentPicker.checkPickerScanedCorrectSKU(userInputSku)){
+			currentPicker.addtoFolkLift(userInputSku, warehouseA);
+			//check if the picker get all 8 of the sku
+			if (currentPicker.checkgotAllSKU()){ 
+				 System.out.println("picker " + userInput[1] + "should go to marshaling.");	
+			}else{//picked did not have 8 sku, tell them go to next location
+				String nextLocation = "Picker" + userInput[1] + " go to location: "
+			            + pickerManager.getPicker(userInput[1]).getLoc();
+				System.out.println(nextLocation);
+			}
+		//when picker picked wrong  Fascia from warehouse
+		}else{
+			System.out.println("You picked wrong Fasica, Sku did not match");
+			String nextLocation = "Picker" + userInput[1] + " go to location: "
+		            + pickerManager.getPicker(userInput[1]).getLoc();
+			System.out.println(nextLocation);
+			//we might need a method to put back the Fascia
+		}
+	
 	}
 }
 
 private static void pickerReady(OrderManager orderManager, PickerManager pickerManager,
-		WarehousePicking warehousePicking, FileWriter writer, String[] userInput) throws IOException {
-	Picker someOne = new Picker(userInput[1]);
-
-	pickerManager.addPicker(someOne);
+		WarehousePicking warehousePicking, FileWriter writer, String[] userInput, Picker currentPicker) throws IOException {
+	
 	HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
-
 	if (orderManager.generateNext() == 0) {
 	  System.out.println("not enough orders");
 	  writer.append("Not enough orders. \n");
-	  pickerManager.addFreePicker(someOne);
+	  pickerManager.addFreePicker(currentPicker);
 	  // add ready picker who does is waiting for
 	  // request in Arraylist:freePicker
 
 	} else {
-	  someOne.addLocation(
+		currentPicker.addLocation(
 	      warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-	  someOne.setRequestid(orderManager.generateNext());
-
+		currentPicker.setRequestid(orderManager.generateNext());
 
 	  //Print out the current picker location.
 	  System.out.println(
 	      "Picker " + userInput[1] + " resived the order location. he is one his way ");
 	  writer.append("Picker " + userInput[1].toString() + " resived the order location. he is one his way. "+ "\n");
-	  String pickerlocation = "Picker " + userInput[1] + " go to location: " + someOne.getLoc();
+	  String pickerlocation = "Picker " + userInput[1] + " go to location: " + currentPicker.getLoc();
 	  System.out.println( pickerlocation);
 	  writer.append( pickerlocation.toString() + "\n");
 	}
