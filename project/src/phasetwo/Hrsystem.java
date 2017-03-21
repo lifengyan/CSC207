@@ -13,8 +13,8 @@ public class Hrsystem {
   private ArrayList<Worker> hrSystemOther;
   private ArrayList<Loader> hrSystemLoader;
 
-  private HashMap<Integer, ArrayList<Integer>> sequencingList;
-  public HashMap<Integer, ArrayList<ArrayList<Integer>>> loadingList;
+  private HashMap<Integer, ArrayList<String>> sequencingList;
+  public HashMap<Integer, ArrayList<ArrayList<String>>> loadingList;
 
   /**
    * Construct Hrsystem.
@@ -22,8 +22,8 @@ public class Hrsystem {
   public Hrsystem() {
     this.hrSystemOther = new ArrayList<Worker>();
     this.hrSystemSequencer = new ArrayList<Sequencer>();
-    this.sequencingList = new HashMap<Integer, ArrayList<Integer>>();
-    this.loadingList = new HashMap<Integer, ArrayList<ArrayList<Integer>>>();
+    this.sequencingList = new HashMap<Integer, ArrayList<String>>();
+    this.loadingList = new HashMap<Integer, ArrayList<ArrayList<String>>>();
     this.hrSystemLoader = new ArrayList<Loader> ();
   }
 
@@ -77,7 +77,7 @@ public class Hrsystem {
    * @param sequencingId is the id of Sequencer
    * @param sequencinglist the list of Sequencer
    */
-  public void addtoSequencing(Integer sequencingId, ArrayList<Integer> sequencinglist) {
+  public void addtoSequencing(Integer sequencingId, ArrayList<String> sequencinglist) {
     sequencingList.put(sequencingId, sequencinglist);
   }
 
@@ -97,11 +97,11 @@ public class Hrsystem {
 
   //
   // return current sequencing item
-  public ArrayList<Integer> getSequencingItem(Integer id) {
+  public ArrayList<String> getSequencingItem(Integer id) {
     return sequencingList.get(id);
   }
 
-  public void addToloader(Integer id, ArrayList<ArrayList<Integer>> loadingitem) {
+  public void addToloader(Integer id, ArrayList<ArrayList<String>> loadingitem) {
     loadingList.put(id, loadingitem);
     sequencingList.remove(id);
   }

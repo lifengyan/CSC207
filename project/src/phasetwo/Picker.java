@@ -6,7 +6,7 @@ public class Picker {
 
 
   // a array contains all the SKU that are already picked by current picker
-  private ArrayList<Integer> forkLift = new ArrayList<Integer>();
+  private ArrayList<String> forkLift = new ArrayList<String>();
   private ArrayList<Location> locationList = new ArrayList<Location>();
   private Integer requestId; // set to zero when picker is not currently picking
   private String name;
@@ -42,7 +42,7 @@ public class Picker {
   /**
    * Add a fascia with sku number to forklift.
    */
-  public void addtoFolkLift(Integer sku, Warehouse currentWarehouse) {
+  public void addtoFolkLift(String sku, Warehouse currentWarehouse) {
 
     this.forkLift.add(sku);
     int previouspick = currentpick -1;
@@ -58,7 +58,7 @@ public class Picker {
 
 
   // getter method to get forkLift
-  public ArrayList<Integer> getForkLift() {
+  public ArrayList<String> getForkLift() {
     return this.forkLift;
   }
 
