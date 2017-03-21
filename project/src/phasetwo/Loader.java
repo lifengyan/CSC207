@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import phaseone.Worker;
 
 public class Loader extends Worker {
 

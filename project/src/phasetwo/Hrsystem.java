@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
-import phaseone.Replenisher;
-import phaseone.Sequencer;
-import phaseone.Worker;
 
 public class Hrsystem {
   private ArrayList<Sequencer> hrSystemSequencer;
