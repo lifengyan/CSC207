@@ -3,49 +3,53 @@ package phasetwo;
 import java.util.ArrayList;
 
 public class Sequencer extends Worker {
+  private int id;
+  private int count = 0;
+  private int cursku;
+  private ArrayList<ArrayList<Integer>> pallets;
+  
 
   public Sequencer(String name) {
     super(name);
-
+    pallets = new ArrayList<ArrayList<Integer>>();
+    
   }
   
-  /**
-   * Compare the sku number that picker picked and the ones in ordermanager.
-   * 
-   */
   
-  //int to record pickid = id  private receivedID(int) id = pickid 
-  // scan(SKU): record No. return Boolean if this fascia is right
-  //
+  public void ready(int pickid) {
+    this.id = pickid;
+  }
   
-  //Sequencer scan one sku each time and tell if it is right to main function, if right, 
+  public int scan(int sku) {
+    this.cursku = sku;
+    return this.count;   
+  }
   
-
-  public ArrayList<ArrayList<Integer>> sequence(int pickid, ArrayList<Integer> pickedList,
-      OrderManager om) {
-    ArrayList<ArrayList<Integer>> whole = new ArrayList<ArrayList<Integer>>();
-    ArrayList<Integer> front = new ArrayList<Integer>();
-    ArrayList<Integer> back = new ArrayList<Integer>();
+  
+  public boolean compare(OrderManager om) {
     int in = 3;
     while (in > -1) {
-      int fr = om.getOrders().get(pickid - in).getFront();
-      int bk = om.getOrders().get(pickid - in).getBack();
-      if (pickedList.contains(fr) && pickedList.contains(bk)) {
-        front.add(fr);
-        back.add(bk);
-        in--;
+      if (om.getOrders().get(id - in).getFront() == cursku) {
+        this.pallets.get(0).add(3-in, cursku);
+        this.count++;
+        return true;
+      } else if (om.getOrders().get(id - in).getBack() == cursku){
+        this.pallets.get(1).add(3-in, cursku);
+        this.count++;
+        return true;
       } else {
-        System.out.println("Picked wrong fascia");
-        whole.add(pickedList);
-        return whole;
+        in--;
       }
     }
-    whole.add(front);
-    whole.add(back);
-    System.out.println("Picked correct fascia");
-    return whole;
-
-
-
+    return false;  
   }
+  
+  public int rescan(int sku) {
+    this.count = 0;
+    this.cursku = sku;
+    this.pallets = new ArrayList<ArrayList<Integer>>();
+    return this.count;
+  }
+  
+  
 }
