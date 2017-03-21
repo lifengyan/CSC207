@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.*;
+import java.util.logging.Level;
 
 public class MainFunction {
 
@@ -19,7 +21,7 @@ public class MainFunction {
   public static String genericSoftPath = new File("src/phaseone/traversal_table.csv").getAbsolutePath();
   public static String eventFile = new File("src/phaseone/events.txt").getAbsolutePath();
   public static String orderFile = new File("src/phaseone/order.csv").getAbsolutePath();
-
+  private static final Logger LOGGER = Logger.getLogger( MainFunction.class.getName() );
   public static boolean newUnhandledRequest = false;
 
   // that has not yet been sent to the RequestManager
@@ -56,17 +58,16 @@ public class MainFunction {
     // initial the warehouse and translation table
     try {
       System.out.println("reading file");
-      writer.append("reading warehouse.csv file\n");
+      LOGGER.log(Level.CONFIG, "reading warehouse.csv file"); 
       warehouseA.storageInital(warehousePath);
-      writer.append("reading transtanble.csv file\n");
+      LOGGER.log(Level.CONFIG, "reading transtanble.csv file"); 
       translateA.readFromcsvfile(transtanblePath);
-      writer.append("reading hrfile.csv file\n");
+      LOGGER.log(Level.CONFIG, "reading hrfile.csv file"); 
       hrsystemA.readFromcsvfile(hrFilePath);
-      writer.append("reading warehousePicking.csv file\n");
+      LOGGER.log(Level.CONFIG, "reading warehousePicking.csv file"); 
       warehousePicking.warehousePickingreader(genericSoftPath);
     } catch (FileNotFoundException ex) {
-      System.out.println("File reading incorrect");
-      writer.append("File reading incorrect\n");
+    	LOGGER.log(Level.SEVERE, "File reading incorrect", ex); 
     }
 
     boolean shutdown = false;
@@ -127,7 +128,7 @@ public class MainFunction {
           break;
 
         case "loader":
-        	  Loader someONe = hrsystemA.getLoader(userInput[1]);
+        	  Loader currentLoader = hrsystemA.getLoader(userInput[1]);
         	  if (userInput[2].equals("ready")) {
         		
         		  
@@ -143,7 +144,7 @@ public class MainFunction {
           System.out.println("Loader " + userInput[1] + " is loading");
           
           
-          someONe.load(hrsystemA.loadingList, orderFile);
+          currentLoader.load(hrsystemA.loadingList, orderFile);
            
           writer.append("Loader " + userInput[1].toString() + " is loading" + "\n");
           
