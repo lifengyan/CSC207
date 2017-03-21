@@ -1,4 +1,4 @@
-package phaseone;
+package phasetwo;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
+
+import phaseone.Replenisher;
+import phaseone.Sequencer;
+import phaseone.Worker;
 
 public class Hrsystem {
   private ArrayList<Sequencer> hrSystemSequencer;

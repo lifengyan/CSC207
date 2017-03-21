@@ -1,4 +1,4 @@
-package phaseone;
+package phasetwo;
 
 import java.util.ArrayList;
 
@@ -13,6 +13,13 @@ public class Sequencer extends Worker {
    * Compare the sku number that picker picked and the ones in ordermanager.
    * 
    */
+  
+  //int to record pickid = id  private receivedID(int) id = pickid 
+  // scan(SKU): record No. return Boolean if this fascia is right
+  //
+  
+  //Sequencer scan one sku each time and tell if it is right to main function, if right, 
+  
 
   public ArrayList<ArrayList<Integer>> sequence(int pickid, ArrayList<Integer> pickedList,
       OrderManager om) {

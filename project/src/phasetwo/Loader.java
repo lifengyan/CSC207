@@ -1,4 +1,4 @@
-package phaseone;
+package phasetwo;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import phaseone.Worker;
 
 public class Loader extends Worker {
 
@@ -22,7 +24,7 @@ public class Loader extends Worker {
 	  String FrontSku = "";
 	  String BackSku = "" ;
 	  
-              if(loadinglist.keySet.size() == 0){
+              if(loadinglist.keySet().size() == 0){
                   writer.close();
                   return;
               }

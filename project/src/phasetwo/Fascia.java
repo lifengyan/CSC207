@@ -1,4 +1,4 @@
-package phaseone;
+package phasetwo;
 
 public class Fascia {
   private int sku;
