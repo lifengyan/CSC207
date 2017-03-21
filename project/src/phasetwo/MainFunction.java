@@ -32,11 +32,12 @@ public class MainFunction {
    * @param args to run
    */
   public static void main(String[] args) {
-
-    System.out.println(filePath);
-    
-
-
+	// Creating and Assigning handlers to LOGGER object
+	Handler consoleHandler = new ConsoleHandler();
+	Handler fileHandler = new FileHandler("./eventslog.log");
+	LOGGER.addHandler(consoleHandler);
+	LOGGER.addHandler(fileHandler);
+	//Initiate all the Manager
     OrderManager orderManager = new OrderManager();
     PickerManager pickerManager = new PickerManager();
     WarehousePicking warehousePicking = new WarehousePicking();
