@@ -31,6 +31,9 @@ public class Location {
         + sku;
   }
 
-
+  // getter function for sku
+  public String getSKU(){
+	  return this.sku;
+  }
 
 }
