@@ -1,4 +1,4 @@
-package phaseone;
+package phasetwo;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import phaseone.Translate;
 
 public class OrderManagerTest {
   Translate tr = new Translate();

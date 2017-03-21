@@ -1,4 +1,4 @@
-package phaseone;
+package phasetwo;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
