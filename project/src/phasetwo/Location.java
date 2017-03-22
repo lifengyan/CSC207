@@ -1,37 +1,47 @@
 package phasetwo;
-
+/**
+ * This class is used to store fascia's location information as well as their SKU number,
+ * @author TongZhu
+ * 
+ *
+ */
 public class Location {
-  // contains five field of a location of SKU
+  // contains a fascia's location informations and its SKU number
   String zone;
   String aisle;
   String rack;
   String level;
   String sku;
 
-  // Constructor
+ 
   /**
-   * Construct the location.
-   * @param zn zone
-   * @param record aisle
-   * @param record2 rack
-   * @param record3 level
-   * @param record4 sku
+   * Constructor for the location class that assign values to five String variables
+   * @param zn zone information
+   * @param ai aisle information
+   * @param ra rack information
+   * @param le level information 
+   * @param sKu SKU number
    */
-  public Location(String zn, String record, String record2, String record3, String record4) {
+  public Location(String zn, String ai, String ra, String le, String sKu) {
     this.zone = zn;
-    this.aisle = record;
-    this.rack = record2;
-    this.level = record3;
-    this.sku = record4;
+    this.aisle = ai;
+    this.rack = ra;
+    this.level = le;
+    this.sku = sKu;
   }
 
-  // add a toString method
+  /**
+   * Returns the location information of a SKU in as string type
+   */
   public String toString() {
     return "Zone: " + zone + ", Aisle " + aisle + ", Rack " + rack + ", Level " + level + ", SKU# "
         + sku;
   }
 
-  // getter function for sku
+  /**
+   * this is a getter function that returns SKU number as a string type
+   * @return
+   */
   public String getSKU(){
 	  return this.sku;
   }

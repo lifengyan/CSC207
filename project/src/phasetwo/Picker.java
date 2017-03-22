@@ -14,6 +14,10 @@ public class Picker {
   private Integer currentpick = 0;
 
   // Constructor, get picker name as a string input
+  /**
+   * 
+   * @param pickername
+   */
   public Picker(String pickername) {
     this.name = pickername;
   }

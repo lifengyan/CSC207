@@ -20,7 +20,7 @@ public class WarehousePicking {
   // file location
   // an array to store all locations from the file
   private static ArrayList<Location> locationList = new ArrayList<Location>();
-  private ArrayList<Integer> fasciaList = new ArrayList<Integer>();
+  private ArrayList<String> fasciaList = new ArrayList<String>();
 
   // constructor
   
@@ -47,7 +47,7 @@ public class WarehousePicking {
    * @return a arraylist of sku number
    */
 
-  public ArrayList<Integer> pickRequest(Map<Integer, Order> newRequest) {
+  public ArrayList<String> pickRequest(Map<Integer, Order> newRequest) {
     for (Integer key : newRequest.keySet()) {
       Order order = newRequest.get(key);
       this.fasciaList.add(order.getFront()); 
