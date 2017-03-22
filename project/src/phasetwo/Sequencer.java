@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Sequencer extends Worker {
   private int id;
   private int count = 0;
-  private int cursku;
-  private ArrayList<Integer> frontpallet;
-  private ArrayList<Integer> backpallet;
+  private String cursku;
+  private ArrayList<String> frontpallet;
+  private ArrayList<String> backpallet;
   
 
   public Sequencer(String name) {
     super(name);
-    frontpallet = new ArrayList<Integer>();
-    backpallet = new ArrayList<Integer>();
+    frontpallet = new ArrayList<String>();
+    backpallet = new ArrayList<String>();
     
   }
   
@@ -22,7 +22,7 @@ public class Sequencer extends Worker {
     this.id = pickid;
   }
   
-  public int scan(int sku) {
+  public int scan(String sku) {
     this.cursku = sku;
     return this.count;   
   }
@@ -31,11 +31,11 @@ public class Sequencer extends Worker {
   public boolean compare(OrderManager om) {
     int in = 3;
     while (in > -1) {
-      if (om.getOrders().get(id - in).getFront() == cursku) {
+      if (om.getOrders().get(id - in).getFront().equals(cursku)) {
         frontpallet.add(cursku);
         this.count++;
         return true;
-      } else if (om.getOrders().get(id - in).getBack() == cursku){
+      } else if (om.getOrders().get(id - in).getBack().equals(cursku)){
         backpallet.add(cursku);
         this.count++;
         return true;
@@ -44,21 +44,22 @@ public class Sequencer extends Worker {
       }
     }
     //sequencer sendback id; ordermanager repick;
+    
     return false;  
   }
   
-  public int rescan(int sku) {
+  public int rescan(String sku) {
     this.count = 0;
     this.cursku = sku;
-    frontpallet = new ArrayList<Integer>();
-    backpallet = new ArrayList<Integer>();
+    frontpallet = new ArrayList<String>();
+    backpallet = new ArrayList<String>();
     return this.count;
   }
   
-  public ArrayList<ArrayList<Integer>> sequencing(OrderManager om) {
-    frontpallet = new ArrayList<Integer>();
-    backpallet = new ArrayList<Integer>();
-    ArrayList<ArrayList<Integer>> whole = new ArrayList<ArrayList<Integer>>();
+  public ArrayList<ArrayList<String>> sequencing(OrderManager om) {
+    frontpallet = new ArrayList<String>();
+    backpallet = new ArrayList<String>();
+    ArrayList<ArrayList<String>> whole = new ArrayList<ArrayList<String>>();
     int in = 3;
     while (in > -1) {
       frontpallet.add(om.getOrders().get(id - in).getFront());
@@ -70,6 +71,10 @@ public class Sequencer extends Worker {
     return whole;
     
     }
+  
+  public void repick(OrderManager om) {
+   
+  }
     
   
   
