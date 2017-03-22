@@ -25,7 +25,7 @@ public class Translate {
     String[] record;
     while (scanner.hasNextLine()) {
       record = scanner.nextLine().split(",");
-      ArrayList<String> info = new ArrayList<>();
+      ArrayList<String> info = new ArrayList<String>();
       info.add(0, record[0]);
       info.add(1, record[1]);
       info.add(2, record[2]);
@@ -42,13 +42,13 @@ public class Translate {
    * @param model of minivan
    * @return a ArrayList of integer
    */
-  public ArrayList<Integer> translate(String colour, String model) {
+  public ArrayList<String> translate(String colour, String model) {
     int in = 0;
     while (in < this.table.size()) {
       if (this.table.get(in).get(0).equals(colour) && this.table.get(in).get(1).equals(model)) {
-        ArrayList<Integer> rt = new ArrayList<>();
-        rt.add(Integer.parseInt(this.table.get(in).get(2)));
-        rt.add(Integer.parseInt(this.table.get(in).get(3)));
+        ArrayList<String> rt = new ArrayList<String>();
+        rt.add(this.table.get(in).get(2));
+        rt.add(this.table.get(in).get(3));
         return rt;
       } else {
         in++;
@@ -56,7 +56,7 @@ public class Translate {
 
     }
     System.out.println("Not in the system");
-    ArrayList<Integer> rt = new ArrayList<>();
+    ArrayList<String> rt = new ArrayList<>();
     return rt;
   }
 
