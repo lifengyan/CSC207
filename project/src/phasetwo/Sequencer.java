@@ -16,6 +16,10 @@ public class Sequencer extends Worker {
     
   }
   
+  public int pickingId(){
+    return id;
+  }
+  
   
   public void ready(int pickid) {
     this.id = pickid;
@@ -47,12 +51,10 @@ public class Sequencer extends Worker {
     return false;  
   }
   
-  public int rescan(String sku) {
+  public void rescan() {
     this.count = 0;
-    this.cursku = sku;
     frontpallet = new ArrayList<String>();
     backpallet = new ArrayList<String>();
-    return this.count;
   }
   
   public ArrayList<ArrayList<String>> sequencing(OrderManager om) {

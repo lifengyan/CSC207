@@ -102,14 +102,12 @@ public class MainFunction {
           case "sequencer":
             Sequencer currSequencer = hrsystemA.getSequencer(userInput[1]);
                 if (userInput[2].equals("ready")) {
-               
                      sequencerReady(hrsystemA, userInput, currSequencer);
-                    
                 }else if(userInput[2].equals("scan")){
-                    //sequencer scan item one by one
-                  currSequencer.scan(userInput[3]);
-                  
+                    SequencerScan(orderManager, hrsystemA, userInput, currSequencer);
                 }else if(userInput[2].equals("rescan")){
+                  currSequencer.rescan();
+                  LOGGER.log(Level.FINER,"Sequencer "+ currSequencer.getName() + " is about to rescan all the fascia");
                     //sequencer rescan
                 }else if(userInput[2].equals("finish")){
                     //sequencer finish sequencing send all the item to loader
@@ -166,6 +164,28 @@ public class MainFunction {
     
 
 
+  }
+
+  private static void SequencerScan(OrderManager orderManager, Hrsystem hrsystemA,
+      String[] userInput, Sequencer currSequencer) {
+    //sequencer scan item one by one 
+    if (currSequencer.scan(userInput[3])==7 && currSequencer.compare(orderManager)){
+      // if all 8 of them are correct, Sequencer will send them to loading 
+      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan all 8 Fascia");
+        hrsystemA.addToloader(currSequencer.pickingId(),currSequencer.sequencing(orderManager));
+        LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " sequencing all Fascia "
+            + "and send them to loading");
+          
+    }else if (!currSequencer.compare(orderManager)){
+      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan" + userInput[3] );
+      currSequencer.repick(orderManager);
+      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " find error send back all the Fasica with "
+          + "picking ID of " + currSequencer.pickingId() );
+      
+    }else{
+      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan" + userInput[3] + 
+          " and it is a correct one");
+    }
   }
 
   private static void sequencerReady(Hrsystem hrsystemA, String[] userInput,
