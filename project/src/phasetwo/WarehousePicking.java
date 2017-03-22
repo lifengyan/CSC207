@@ -8,28 +8,26 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * Simulates the generic software, which gives optimized location list for picker to go in order 
+ * to spend minimum time to get all 8 fascias in one picking request.
+ * <p>
  * Based on the Integer SKUs in List 'skus', return a List of locations, where each location is a
  * String containing 5 pieces of information: the zone character (in the range ['A'..'B']), the
  * aisle number (an integer in the range [0..1]), the rack number (an integer in the range ([0..2]),
  * and the level on the rack (an integer in the range [0..3]), and the SKU number.
  * 
- * @param skus the list of SKUs to retrieve.
- * @return the List of locations.
  */
 public class WarehousePicking {
-  // file location
-  // an array to store all locations from the file
-  private static ArrayList<Location> locationList = new ArrayList<Location>();
+  private static ArrayList<Location> locationList = new ArrayList<Location>(); 
   private ArrayList<String> fasciaList = new ArrayList<String>();
 
-  // constructor
   
   /**
-   * A constructor that read the file and add to location list.
+   * constructor reads the input file and read each line of the file as a Location instance 
+   * then stores to location list.
    * @param piclocFile file to read 
    * @throws FileNotFoundException while file is not found
    */
-
   public void warehousePickingreader(String piclocFile) throws FileNotFoundException {
     Scanner scanner = new Scanner(new FileInputStream(piclocFile));
     String[] record;
@@ -42,11 +40,11 @@ public class WarehousePicking {
   }
 
   /**
-   * Add the sku number of order need to be picked to fascia list. 
-   * @param newRequest the new picking request
-   * @return a arraylist of sku number
+   * Adds all SKU numbers in one picking request and add to fasciaList. FasciaList is 
+   * then used to generate corresponding locations in optimize method
+   * @param newRequest the new picking request which contains 4 orders and 8 fascias
+   * @return a String type arrayList of 8 SKU number
    */
-
   public ArrayList<String> pickRequest(Map<Integer, Order> newRequest) {
     for (Integer key : newRequest.keySet()) {
       Order order = newRequest.get(key);
@@ -57,13 +55,11 @@ public class WarehousePicking {
   }
 
   /**
-   * Generate optimize path of location of fascia to be picked.
-   * @param skus SKU number of picked fascia
-   * @return an ArrayList of location
+   * Generate optimize path for pickers to get all 8 fascias in one picking request with minimum time
+   * @param skus Integer type arrayList with 8 SKU numbers in one picking request
+   * @return an Location type ArrayList of location for 8 fascias in one picking request
    */
-
-  public ArrayList<Location> optimize(ArrayList<Integer> skus) {
-
+  public ArrayList<Location> optimize(ArrayList<String> skus) {
     ArrayList<Location> locationS = new ArrayList<Location>();
     // get 8 random locations and return them as an array of Locations
     for (int i = 0; i < 8; i++) {
@@ -73,6 +69,5 @@ public class WarehousePicking {
       locationS.add(curr);
     }
     return locationS;
-
   }
 }
