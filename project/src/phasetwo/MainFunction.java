@@ -15,7 +15,6 @@ import java.util.logging.Level;
 public class MainFunction {
 
   static String filePath = new File("").getAbsolutePath();
-
   public static String hrFilePath = new File("src/phaseone/hrfile.csv").getAbsolutePath();
   public static String warehousePath = new File("src/phaseone/warehouse.csv").getAbsolutePath();
   public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
@@ -87,7 +86,7 @@ public class MainFunction {
             break;
 
           case "picker":
-               Picker currentPicker = pickerManager.getPicker(userInput[1]);
+               Picker currentPicker = pickerManager.getORaddPicker(userInput[1]);
             if (userInput[2].equals("ready")) {
                 pickerReady(orderManager, pickerManager, warehousePicking, LOGGER, userInput,currentPicker);
 
@@ -210,7 +209,7 @@ private static void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrs
 
 private static void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Scanner reader, Logger LOGGER,
 		String[] userInput, Picker currentPicker) throws IOException {
-	if (!pickerManager.getPicker(userInput[1]).equals(null)) {
+	if (!pickerManager.getORaddPicker(userInput[1]).equals(null)) {
 		String userInputSku = userInput[3];
 		//check if the picker picked the correct Fasica
 		if (currentPicker.checkPickerScanedCorrectSKU(userInputSku)){
@@ -220,14 +219,14 @@ private static void pickerPicked(PickerManager pickerManager, Warehouse warehous
 			  LOGGER.log(Level.FINE,"picker " + userInput[1] + "should go to marshaling.");	
 			}else{//picked did not have 8 sku, tell them go to next location
 				String nextLocation = "Picker" + userInput[1] + " go to location: "
-			            + pickerManager.getPicker(userInput[1]).getLoc();
+			            + pickerManager.getORaddPicker(userInput[1]).getLoc();
 				LOGGER.log(Level.FINE, nextLocation);
 			}
 		//when picker picked wrong  Fascia from warehouse
 		}else{
 		    LOGGER.log(Level.FINE,"You picked wrong Fasica, Sku did not match");
 			String nextLocation = "Picker" + userInput[1] + " go to location: "
-		            + pickerManager.getPicker(userInput[1]).getLoc();
+		            + pickerManager.getORaddPicker(userInput[1]).getLoc();
 			LOGGER.log(Level.FINE,nextLocation);
 			//we might need a method to put back the Fascia
 		}
