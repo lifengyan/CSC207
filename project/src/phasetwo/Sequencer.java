@@ -6,12 +6,14 @@ public class Sequencer extends Worker {
   private int id;
   private int count = 0;
   private int cursku;
-  private ArrayList<ArrayList<Integer>> pallets;
+  private ArrayList<Integer> frontpallet;
+  private ArrayList<Integer> backpallet;
   
 
   public Sequencer(String name) {
     super(name);
-    pallets = new ArrayList<ArrayList<Integer>>();
+    frontpallet = new ArrayList<Integer>();
+    backpallet = new ArrayList<Integer>();
     
   }
   
@@ -30,11 +32,11 @@ public class Sequencer extends Worker {
     int in = 3;
     while (in > -1) {
       if (om.getOrders().get(id - in).getFront() == cursku) {
-        this.pallets.get(0).add(3-in, cursku);
+        frontpallet.add(3-in, cursku);
         this.count++;
         return true;
       } else if (om.getOrders().get(id - in).getBack() == cursku){
-        this.pallets.get(1).add(3-in, cursku);
+        backpallet.add(3-in, cursku);
         this.count++;
         return true;
       } else {
@@ -47,7 +49,8 @@ public class Sequencer extends Worker {
   public int rescan(int sku) {
     this.count = 0;
     this.cursku = sku;
-    this.pallets = new ArrayList<ArrayList<Integer>>();
+    frontpallet = new ArrayList<Integer>();
+    backpallet = new ArrayList<Integer>();
     return this.count;
   }
   
