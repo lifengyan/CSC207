@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Sequencer extends Worker {
   private int id;
-  private int count = 0;
-  private int cursku;
+  private String count = null;
+  private String cursku;
   private ArrayList<Integer> frontpallet;
   private ArrayList<Integer> backpallet;
   
@@ -22,7 +22,7 @@ public class Sequencer extends Worker {
     this.id = pickid;
   }
   
-  public int scan(int sku) {
+  public String scan(String sku) {
     this.cursku = sku;
     return this.count;   
   }
