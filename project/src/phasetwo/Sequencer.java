@@ -8,7 +8,6 @@ public class Sequencer extends Worker {
   private String cursku;
   private ArrayList<String> frontpallet;
   private ArrayList<String> backpallet;
-  
 
   public Sequencer(String name) {
     super(name);

@@ -2,6 +2,7 @@ package phasetwo;
 
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,8 +20,8 @@ public class MainFunction {
   public static String warehousePath = new File("src/phaseone/warehouse.csv").getAbsolutePath();
   public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
   public static String genericSoftPath = new File("src/phaseone/traversal_table.csv").getAbsolutePath();
-  public static String eventFile = new File("src/phaseone/events.txt").getAbsolutePath();
   public static String orderFile = new File("src/phaseone/order.csv").getAbsolutePath();
+  public static String commandFile = new File("src/16order.txt").getAbsolutePath();
   private static final Logger LOGGER = Logger.getLogger( MainFunction.class.getName() );
   public static boolean newUnhandledRequest = false;
 
@@ -37,6 +38,7 @@ public class MainFunction {
 	Handler fileHandler = new FileHandler("./eventslog.log");
 	LOGGER.addHandler(consoleHandler);
 	LOGGER.addHandler(fileHandler);
+	LOGGER.setLevel(Level.ALL);
 	//Initiate all the Manager
     OrderManager orderManager = new OrderManager();
     PickerManager pickerManager = new PickerManager();
@@ -51,13 +53,12 @@ public class MainFunction {
     
     
     try {
-		FileWriter writer = new FileWriter(eventFile);
-		writer.append("ware House 1.0 event file.");
+    	Scanner scanner = new Scanner(new FileInputStream(commandFile));
 		
 	
     
     // initial the warehouse and translation table
-    try {
+
       System.out.println("reading file");
       LOGGER.log(Level.CONFIG, "reading warehouse.csv file"); 
       warehouseA.storageInital(warehousePath);
@@ -67,128 +68,127 @@ public class MainFunction {
       hrsystemA.readFromcsvfile(hrFilePath);
       LOGGER.log(Level.CONFIG, "reading warehousePicking.csv file"); 
       warehousePicking.warehousePickingreader(genericSoftPath);
-    } catch (FileNotFoundException ex) {
-    	LOGGER.log(Level.SEVERE, "File reading incorrect", ex); 
-    }
+      
 
-    boolean shutdown = false;
+      boolean shutdown = false;
 
-    while (!shutdown) {
-      // user will input the command and use this program.
-      String[] userInput;
-      System.out.println("Please enter a command");
-      userInput = reader.next().split(",");
-      writer.append("User input: " + userInput.toString() +" \n");
+      while (scanner.hasNextLine()) {
+        // user will input the command and use this program.
+        String[] userInput;
+        LOGGER.log(Level.FINER,"Please enter a command" );
+        System.out.println("Please enter a command");
+        userInput = scanner.next().split(",");
+        LOGGER.log(Level.FINEST,"User input: " + userInput.toString() +" \n" );
+        // Us a case statement to find out which command it used
+        switch (userInput[0]) {
 
-      // Us a case statement to find out which command it used
-      switch (userInput[0]) {
+          case "order":
+            createorder(orderManager, pickerManager, warehousePicking, translateA, LOGGER, userInput);
+            break;
 
-        case "order":
-          createorder(orderManager, pickerManager, warehousePicking, translateA, writer, userInput);
-          break;
+          case "picker":
+               Picker currentPicker = pickerManager.getPicker(userInput[1]);
+            if (userInput[2].equals("ready")) {
+                pickerReady(orderManager, pickerManager, warehousePicking, LOGGER, userInput,currentPicker);
 
-        case "picker":
-        	 Picker currentPicker = pickerManager.getPicker(userInput[1]);
-          if (userInput[2].equals("ready")) {
-        	  pickerReady(orderManager, pickerManager, warehousePicking, writer, userInput,currentPicker);
+            } else if (userInput[2].equals("pick")) {
+                pickerPicked(pickerManager, warehouseA, reader, LOGGER, userInput,currentPicker);
 
-          } else if (userInput[2].equals("pick")) {
-        	  pickerPicked(pickerManager, warehouseA, reader, writer, userInput,currentPicker);
-
-          } else if (userInput[2].equals("marshaling")) {
-        	  pickerToMarshaling(pickerManager, hrsystemA, writer, userInput,currentPicker);
-          }
-          break;
-          
-        case "sequencer":
-        	
-        	  if (userInput[2].equals("ready")) {
-        		   Sequencer sequencer = hrsystemA.getSequencer(userInput[1]);
-        		   if (hrsystemA.getSequencingid() == 0) {
-        	            System.out.println("not enough for Sequenceing");
-        	            writer.append("not enough for Sequenceing" + "\n");
-        	          } else {
-        	            Integer sequencingId = hrsystemA.getSequencingid();
-
-        	            hrsystemA.addToloader(sequencingId, sequencer.sequence(sequencingId,
-        	            	    hrsystemA.getSequencingItem(sequencingId), orderManager));
-        	            System.out.println("Sequenced, send it to loader");
-        	            writer.append("Sequenced, send it to loader" + "\n");
-        	          }
-        		  
-        	  }else if(userInput[2].equals("scan")){
-        		  //sequencer scan item one by one
-        	  }else if(userInput[2].equals("rescan")){
-        		  //sequencer rescan
-        	  }else if(userInput[2].equals("finish")){
-        		  //sequencer finish sequencing send all the item to loader
-        	  }
-       
-
+            } else if (userInput[2].equals("marshaling")) {
+                pickerToMarshaling(pickerManager, hrsystemA, LOGGER, userInput,currentPicker);
+            }
+            break;
+            
+          case "sequencer":
+            Sequencer currSequencer = hrsystemA.getSequencer(userInput[1]);
+                if (userInput[2].equals("ready")) {
+               
+                     sequencerReady(hrsystemA, userInput, currSequencer);
+                    
+                }else if(userInput[2].equals("scan")){
+                    //sequencer scan item one by one
+                  currSequencer.scan(userInput[3]);
+                  
+                }else if(userInput[2].equals("rescan")){
+                    //sequencer rescan
+                }else if(userInput[2].equals("finish")){
+                    //sequencer finish sequencing send all the item to loader
+                }
          
-          break;
 
-        case "loader":
-        	  Loader currentLoader = hrsystemA.getLoader(userInput[1]);
-        	  if (userInput[2].equals("ready")) {
-        		
-        		  
-        	  }else if (userInput[2].equals("scan")){
-        		 //loader scan one by one
-        	  }else if (userInput[2].equals("rescan")){
-        		  //loader rescan
-        	  }else if (userInput[2].equals("loading")){
-        		//loader finish loading send all the item to truck
-        	  }
-        	  
-        	  
-          System.out.println("Loader " + userInput[1] + " is loading");
-          
-          
-          currentLoader.load(hrsystemA.loadingList, orderFile);
            
-          writer.append("Loader " + userInput[1].toString() + " is loading" + "\n");
-          
-          break;
+            break;
 
-        case "close":
-          shutdown = true;
-          break;
-        default:
-        	 writer.append("Error during enter command" + "\n");
-          break;
+          case "loader":
+                Loader currentLoader = hrsystemA.getLoader(userInput[1]);
+                if (userInput[2].equals("ready")) {
+                  
+                    
+                }else if (userInput[2].equals("scan")){
+                   //loader scan one by one
+                }else if (userInput[2].equals("rescan")){
+                    //loader rescan
+                }else if (userInput[2].equals("loading")){
+                  //loader finish loading send all the item to truck
+                }
+                
+                
+            System.out.println("Loader " + userInput[1] + " is loading");
+            
+            
+            currentLoader.load(hrsystemA.loadingList, orderFile);
+             
+            writer.append("Loader " + userInput[1].toString() + " is loading" + "\n");
+            
+            break;
+
+          case "close":
+            shutdown = true;
+            break;
+          default:
+              
+               writer.append("Error during enter command" + "\n");
+            break;
+
+        }
+     
 
       }
-   
-
-    }
-    reader.close();
-    try {
+      reader.close();
       warehouseA.writeDown(warehousePath);
-    } catch (IOException ex) {
-         ex.printStackTrace();
-    }
-    
-    writer.close();
-    } catch (IOException e) {
-		System.out.println("Event File does not extis");
-	}
+      
+
+    } catch (FileNotFoundException ex) {
+      LOGGER.log(Level.SEVERE, "File reading incorrect", ex); 
+  } catch (IOException ex) {
+    ex.printStackTrace();
+  }
     
 
 
   }
 
-private static void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, FileWriter writer,
+  private static void sequencerReady(Hrsystem hrsystemA, String[] userInput,
+      Sequencer currSequencer) {
+    if (hrsystemA.getSequencingid() == 0) {
+          LOGGER.log(Level.FINE,"not enough for Sequenceing" + "\n");
+        } else {
+          Integer sequencingId = hrsystemA.getSequencingid();
+          currSequencer.ready(hrsystemA.getSequencingid());
+          LOGGER.log(Level.FINE, "Sequencer " + userInput[1]+" resive the picked ID of " + 
+          hrsystemA.getSequencingid().toString());
+        }
+  }
+
+private static void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, Logger LOGGER,
 		String[] userInput, Picker currentPicker) throws IOException {
-	
-	System.out.println("picker send his/her items to marshaling room.");
-	  writer.append("picker send his/her items to marshaling room." + "\n");
-	hrsystemA.addtoSequencing(currentPicker.getRequestid(),
-			currentPicker.getForkLift());
+	hrsystemA.addtoSequencing(currentPicker.getRequestid(),currentPicker.getForkLift());
+	LOGGER.log(Level.FINE,"picker send his/her items to marshaling room.");
 	pickerManager.deletPicker(currentPicker);
+	
 }
 
-private static void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Scanner reader, FileWriter writer,
+private static void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Scanner reader, Logger LOGGER,
 		String[] userInput, Picker currentPicker) throws IOException {
 	if (!pickerManager.getPicker(userInput[1]).equals(null)) {
 		String userInputSku = userInput[3];
@@ -197,18 +197,18 @@ private static void pickerPicked(PickerManager pickerManager, Warehouse warehous
 			currentPicker.addtoFolkLift(userInputSku, warehouseA);
 			//check if the picker get all 8 of the sku
 			if (currentPicker.checkgotAllSKU()){ 
-				 System.out.println("picker " + userInput[1] + "should go to marshaling.");	
+			  LOGGER.log(Level.FINE,"picker " + userInput[1] + "should go to marshaling.");	
 			}else{//picked did not have 8 sku, tell them go to next location
 				String nextLocation = "Picker" + userInput[1] + " go to location: "
 			            + pickerManager.getPicker(userInput[1]).getLoc();
-				System.out.println(nextLocation);
+				LOGGER.log(Level.FINE, nextLocation);
 			}
 		//when picker picked wrong  Fascia from warehouse
 		}else{
-			System.out.println("You picked wrong Fasica, Sku did not match");
+		    LOGGER.log(Level.FINE,"You picked wrong Fasica, Sku did not match");
 			String nextLocation = "Picker" + userInput[1] + " go to location: "
 		            + pickerManager.getPicker(userInput[1]).getLoc();
-			System.out.println(nextLocation);
+			LOGGER.log(Level.FINE,nextLocation);
 			//we might need a method to put back the Fascia
 		}
 	
@@ -216,13 +216,13 @@ private static void pickerPicked(PickerManager pickerManager, Warehouse warehous
 }
 
 private static void pickerReady(OrderManager orderManager, PickerManager pickerManager,
-		WarehousePicking warehousePicking, FileWriter writer, String[] userInput, Picker currentPicker) throws IOException {
+		WarehousePicking warehousePicking,  Logger LOGGER, String[] userInput, Picker currentPicker) throws IOException {
 	
 	HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
 	if (orderManager.generateNext() == 0) {
-	  System.out.println("not enough orders");
-	  writer.append("Not enough orders. \n");
+	  LOGGER.log(Level.FINE,"not enough orders for " + currentPicker.getName() );
 	  pickerManager.addFreePicker(currentPicker);
+	  LOGGER.log(Level.FINE,"add " + currentPicker.getName() + "as a free picker to the system");
 	  // add ready picker who does is waiting for
 	  // request in Arraylist:freePicker
 
@@ -232,36 +232,31 @@ private static void pickerReady(OrderManager orderManager, PickerManager pickerM
 		currentPicker.setRequestid(orderManager.generateNext());
 
 	  //Print out the current picker location.
-	  System.out.println(
-	      "Picker " + userInput[1] + " resived the order location. he is one his way ");
-	  writer.append("Picker " + userInput[1].toString() + " resived the order location. he is one his way. "+ "\n");
-	  String pickerlocation = "Picker " + userInput[1] + " go to location: " + currentPicker.getLoc();
-	  System.out.println( pickerlocation);
-	  writer.append( pickerlocation.toString() + "\n");
+	LOGGER.log(Level.FINE,"Picker " + userInput[1] + " resived the order location. they are on their way.");
+	  LOGGER.log(Level.FINE, "Picker " + userInput[1] + " go to location: " + currentPicker.getLoc() );
+	
 	}
 }
 
 private static void createorder(OrderManager orderManager, PickerManager pickerManager,
-		WarehousePicking warehousePicking, Translate translateA, FileWriter writer, String[] userInput)
+		WarehousePicking warehousePicking, Translate translateA, Logger LOGGER, String[] userInput)
 		throws IOException {
 	orderManager.addOrder(userInput[1], userInput[2], translateA);
-	  System.out.println("New order has been created.");
-	  writer.append("New order has been created\n");
-
+	  LOGGER.log(Level.FINE, "New order " + userInput[1]+ " " + userInput[2] + " has been created.");
+	  
 	  // check if there is free picker && there are 4 orders to generate a request
 	  if (pickerManager.getFreePicker().size() != 0 && orderManager.hasNext() != 0) {
-	    Picker cur = pickerManager.getFreePicker().get(0);
-	    pickerManager.deletFreePicker(cur);
-	    String pickerName = cur.getName();
-	    System.out.println("currently free picker:" + pickerName);
-	    writer.append("currently free picker:" + pickerName +" \n");
+	    //there is free pick and also enough order for pick 
+	    Picker curFreePicker = pickerManager.getFreePicker().get(0);
+	    pickerManager.deletFreePicker(curFreePicker);
+	    String pickerName = curFreePicker.getName();
+	    LOGGER.log(Level.FINE,"currently free picker " + pickerName + " resive the picking request");
+	    //assign the free picker with the order
 	    HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
-	    cur.addLocation(warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-	    cur.setRequestid(orderManager.generateNext());
-	    System.out.println(cur.getName());
+	    curFreePicker.addLocation(warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
+	    curFreePicker.setRequestid(orderManager.generateNext());
 	  } else if (pickerManager.getFreePicker().size() == 0) {
-	    System.out.println("Currently no free picker");
-	    writer.append("Currently no free picker. \n");
+	    LOGGER.log(Level.FINE,"Currently not enough free picker or order for picking");
 	  }
 }
 
