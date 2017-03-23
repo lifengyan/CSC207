@@ -219,14 +219,14 @@ private static void pickerPicked(PickerManager pickerManager, Warehouse warehous
 			  LOGGER.log(Level.FINE,"picker " + userInput[1] + "should go to marshaling.");	
 			}else{//picked did not have 8 sku, tell them go to next location
 				String nextLocation = "Picker" + userInput[1] + " go to location: "
-			            + pickerManager.getORaddPicker(userInput[1]).getLoc();
+			            + pickerManager.getORaddPicker(userInput[1]).getNextLocation();
 				LOGGER.log(Level.FINE, nextLocation);
 			}
 		//when picker picked wrong  Fascia from warehouse
 		}else{
 		    LOGGER.log(Level.FINE,"You picked wrong Fasica, Sku did not match");
 			String nextLocation = "Picker" + userInput[1] + " go to location: "
-		            + pickerManager.getORaddPicker(userInput[1]).getLoc();
+		            + pickerManager.getORaddPicker(userInput[1]).getNextLocation();
 			LOGGER.log(Level.FINE,nextLocation);
 			//we might need a method to put back the Fascia
 		}
@@ -252,7 +252,7 @@ private static void pickerReady(OrderManager orderManager, PickerManager pickerM
 
 	  //Print out the current picker location.
 	LOGGER.log(Level.FINE,"Picker " + userInput[1] + " resived the order location. they are on their way.");
-	  LOGGER.log(Level.FINE, "Picker " + userInput[1] + " go to location: " + currentPicker.getLoc() );
+	  LOGGER.log(Level.FINE, "Picker " + userInput[1] + " go to location: " + currentPicker.getNextLocation() );
 	
 	}
 }
