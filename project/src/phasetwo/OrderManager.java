@@ -1,5 +1,6 @@
 package phasetwo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,17 +8,21 @@ import java.util.Map;
 public class OrderManager {
   private Map<Integer, Order> orders;
   private Map<Integer, Order> temOrder;
+  private ArrayList<Order> repick;
   private static int trail = 4;
   private int hasnext = 0;
 
   /**
    * Creates a new empty OrderManager.
+   * temOrder is to store orders when there are less than four new comes in
+   * repick is to store orders that need to be repicked
    */
   public OrderManager() {
     orders = new HashMap<Integer, Order>();
     temOrder = new HashMap<Integer, Order>();
-
+    repick = new ArrayList<Order>();
   }
+
 
   /**
    * Add order to the temOrder system, if there are 4 orders, then they will all move to the orders
@@ -41,41 +46,51 @@ public class OrderManager {
    */
   public HashMap<Integer, Order> generatePick() {
     HashMap<Integer, Order> order = new HashMap<Integer, Order>();
-    if (this.orders.containsKey(trail)) {
-      for (int i = 0; i < 4; i++) {
-        order.put(4 - i, this.orders.get(trail - i));
-        this.orders.get(trail - i).setStatus("picked");
-
+    if (!this.repick.isEmpty()) {
+      int mn = 1;
+      while (mn < 5) {
+        Order or = this.repick.remove(0);
+        order.put(mn, or);
+        mn++;
       }
-      this.hasnext = trail;
-      trail += 4;
     } else {
-      this.hasnext = 0;
+      if (this.orders.containsKey(trail)) {
+        for (int i = 0; i < 4; i++) {
+          order.put(4 - i, this.orders.get(trail - i));
+          this.orders.get(trail - i).setfrontStatus("picked");
+          this.orders.get(trail - i).setbackStatus("picked");
+
+        }
+        this.hasnext = trail;
+        trail += 4;
+      } else {
+        this.hasnext = 0;
+      }
     }
+
     return order;
+  }
+
+  /**
+   * Change the orders status in the main system to "repicked" and move them to 
+   * the repick.
+   * @param id the pickid
+   */
+  public void repick(int id) {
+    int in = 3;
+    while (in > -1) {
+      this.orders.get(id - in).setfrontStatus("repick");
+      this.orders.get(id - in).setbackStatus("repick");
+      this.repick.add(this.orders.get(id - in));
+      in--;
+    }
   }
 
   public int generateNext() {
     return this.hasnext;
   }
 
-  /**
-   * If it has next pick to generate, will return a pick id, or it will return zero.
-   * 
-   * @return integer
-   */
-  public int hasNext() {
-    if (this.orders.containsKey(trail)) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
-  
-  //repick(pickedid) put it back to order system with priority
-
   public Map<Integer, Order> getOrders() {
     return this.orders;
   }
-
 }

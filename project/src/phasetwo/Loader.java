@@ -1,12 +1,9 @@
 package phasetwo;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 
 public class Loader extends Worker {
@@ -15,7 +12,7 @@ public class Loader extends Worker {
     super(name);
   }
 
-  public void load(HashMap<Integer, ArrayList<ArrayList<Integer>>> loadinglist, String filePath) 
+  public void load(HashMap<Integer, ArrayList<ArrayList<String>>> loadinglist, String filePath) 
 		  throws IOException  {
 	  
 	  String csvFile = filePath;
@@ -32,9 +29,9 @@ public class Loader extends Worker {
 			 for (int i=0; i<2; i++){
 				 for (int j=0; j<4; j++){
 					 if (i==0){
-						 FrontSku = FrontSku + Integer.toString(loadinglist.get(key).get(i).get(j)) + ",";
+						 FrontSku = FrontSku + loadinglist.get(key).get(i).get(j) + ",";
 					 }else{
-						 BackSku = BackSku + Integer.toString(loadinglist.get(key).get(i).get(j)) + ",";
+						 BackSku = BackSku + loadinglist.get(key).get(i).get(j) + ",";
 					 }
 				 }
 			 }

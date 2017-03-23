@@ -8,8 +8,6 @@ import java.io.FileNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 
-import phaseone.Translate;
-
 
 public class OrderTest {
   Translate tr = new Translate();
