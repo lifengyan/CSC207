@@ -32,6 +32,7 @@ public class MainFunction {
    * @param args to run
    */
   public static void main(String[] args) {
+    try {
 	// Creating and Assigning handlers to LOGGER object
 	Handler consoleHandler = new ConsoleHandler();
 	Handler fileHandler = new FileHandler("./eventslog.log");
@@ -52,7 +53,7 @@ public class MainFunction {
     Scanner reader = new Scanner(System.in);
     
     
-    try {
+  
     	Scanner scanner = new Scanner(new FileInputStream(commandFile));
 		
 	
@@ -83,8 +84,8 @@ public class MainFunction {
         switch (userInput[0]) {
 
           case "order":
-            
-            createorder(orderManager, pickerManager, warehousePicking, translateA, LOGGER, userInput);
+            Cammand OrderCommand = new PickerCommand(theSystem,userInput);
+            OrderCommand.execute();
             break;
 
           case "picker":
@@ -94,7 +95,7 @@ public class MainFunction {
             
           case "sequencer":
             Cammand SqeuencerCommand = new SqeuencerCommand(theSystem,userInput);
-            PickerCommand.execute();
+            SqeuencerCommand.execute();
             break;
 
           case "loader":
@@ -116,16 +117,16 @@ public class MainFunction {
             
             currentLoader.load(hrsystemA.loadingList, orderFile);
              
-            writer.append("Loader " + userInput[1].toString() + " is loading" + "\n");
+            LOGGER.log(Level.FINE,"Loader " + userInput[1].toString() + " is loading" + "\n");
             
             break;
 
           case "close":
             shutdown = true;
             break;
+            
           default:
-              
-               writer.append("Error during enter command" + "\n");
+            LOGGER.log(Level.INFO,"Error during enter command" + "\n");
             break;
 
         }
