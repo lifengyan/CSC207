@@ -46,6 +46,7 @@ public class MainFunction {
 
     Warehouse warehouseA = new Warehouse();
     Translate translateA = new Translate();
+    
 //test
     
     Scanner reader = new Scanner(System.in);
@@ -68,7 +69,7 @@ public class MainFunction {
       LOGGER.log(Level.CONFIG, "reading warehousePicking.csv file"); 
       warehousePicking.warehousePickingreader(genericSoftPath);
       
-
+      warehouseSystem theSystem =  new warehouseSystem (orderManager,hrsystemA,pickerManager,warehousePicking,warehouseA,translateA,LOGGER);
       boolean shutdown = false;
 
       while (scanner.hasNextLine()) {
@@ -86,16 +87,8 @@ public class MainFunction {
             break;
 
           case "picker":
-               Picker currentPicker = pickerManager.getORaddPicker(userInput[1]);
-            if (userInput[2].equals("ready")) {
-                pickerReady(orderManager, pickerManager, warehousePicking, LOGGER, userInput,currentPicker);
-
-            } else if (userInput[2].equals("pick")) {
-                pickerPicked(pickerManager, warehouseA, reader, LOGGER, userInput,currentPicker);
-
-            } else if (userInput[2].equals("marshaling")) {
-                pickerToMarshaling(pickerManager, hrsystemA, LOGGER, userInput,currentPicker);
-            }
+            Cammand PickerCommand = new PickerCommand(theSystem,userInput);
+            PickerCommand.execute();
             break;
             
           case "sequencer":
