@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Loader extends Worker {
-
+public class Loader implements Worker {
+  private  String name;
   public Loader(String name) {
-    super(name);
+    this.name = name;
   }
 
   public void load(HashMap<Integer, ArrayList<ArrayList<String>>> loadinglist, String filePath) 
@@ -45,6 +45,19 @@ public class Loader extends Worker {
     
     
   }
+
+  @Override
+  public String getName() {
+    // TODO Auto-generated method stub
+    return name;
+  }
+
+  @Override
+  public int getid() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
 
 
 }

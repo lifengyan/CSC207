@@ -46,7 +46,7 @@ theSystem.warehousePicking, theSystem.LOGGER,
  * @param currentPicker
  * @throws IOException
  */
-private static void pickerReady(OrderManager orderManager, PickerManager pickerManager,
+private  void pickerReady(OrderManager orderManager, PickerManager pickerManager,
         WarehousePicking warehousePicking,  Logger LOGGER, String[] userInput, Picker currentPicker) throws IOException {
     
     HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
@@ -79,7 +79,7 @@ private static void pickerReady(OrderManager orderManager, PickerManager pickerM
  * @param currentPicker
  * @throws IOException
  */
-private static void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Logger LOGGER,
+private  void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Logger LOGGER,
         String[] userInput, Picker currentPicker) throws IOException {
     if (!pickerManager.getORaddPicker(userInput[1]).equals(null)) {
         String userInputSku = userInput[3];
@@ -105,8 +105,18 @@ private static void pickerPicked(PickerManager pickerManager, Warehouse warehous
     
     }
 }
-  
-private static void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, Logger LOGGER,
+
+/***
+ *  when picker picked enough item, it will move to the Marshaling room
+ *  and put all the item from forkeleft to the marshling room
+ * @param pickerManager
+ * @param hrsystemA
+ * @param LOGGER
+ * @param userInput
+ * @param currentPicker
+ * @throws IOException
+ */
+private  void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, Logger LOGGER,
     String[] userInput, Picker currentPicker) throws IOException {
 hrsystemA.addtoSequencing(currentPicker.getRequestid(),currentPicker.getForkLift());
 LOGGER.log(Level.FINE,"picker send his/her items to marshaling room.");

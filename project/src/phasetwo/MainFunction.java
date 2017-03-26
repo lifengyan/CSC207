@@ -83,6 +83,7 @@ public class MainFunction {
         switch (userInput[0]) {
 
           case "order":
+            
             createorder(orderManager, pickerManager, warehousePicking, translateA, LOGGER, userInput);
             break;
 
@@ -92,21 +93,8 @@ public class MainFunction {
             break;
             
           case "sequencer":
-            Sequencer currSequencer = hrsystemA.getSequencer(userInput[1]);
-                if (userInput[2].equals("ready")) {
-                     sequencerReady(hrsystemA, userInput, currSequencer);
-                }else if(userInput[2].equals("scan")){
-                    SequencerScan(orderManager, hrsystemA, userInput, currSequencer);
-                }else if(userInput[2].equals("rescan")){
-                  currSequencer.rescan();
-                  LOGGER.log(Level.FINER,"Sequencer "+ currSequencer.getName() + " is about to rescan all the fascia");
-                    //sequencer rescan
-                }else if(userInput[2].equals("finish")){
-                    //sequencer finish sequencing send all the item to loader
-                }
-         
-
-           
+            Cammand SqeuencerCommand = new SqeuencerCommand(theSystem,userInput);
+            PickerCommand.execute();
             break;
 
           case "loader":
@@ -158,119 +146,7 @@ public class MainFunction {
 
   }
 
-  private static void SequencerScan(OrderManager orderManager, Hrsystem hrsystemA,
-      String[] userInput, Sequencer currSequencer) {
-    //sequencer scan item one by one 
-    if (currSequencer.scan(userInput[3])==7 && currSequencer.compare(orderManager)){
-      // if all 8 of them are correct, Sequencer will send them to loading 
-      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan all 8 Fascia");
-        hrsystemA.addToloader(currSequencer.pickingId(),currSequencer.sequencing(orderManager));
-        LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " sequencing all Fascia "
-            + "and send them to loading");
-          
-    }else if (!currSequencer.compare(orderManager)){
-      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan" + userInput[3] );
-      currSequencer.repick(orderManager);
-      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " find error send back all the Fasica with "
-          + "picking ID of " + currSequencer.pickingId() );
-      
-    }else{
-      LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan" + userInput[3] + 
-          " and it is a correct one");
-    }
-  }
 
-  private static void sequencerReady(Hrsystem hrsystemA, String[] userInput,
-      Sequencer currSequencer) {
-    if (hrsystemA.getSequencingid() == 0) {
-          LOGGER.log(Level.FINE,"not enough for Sequenceing" + "\n");
-        } else {
-          Integer sequencingId = hrsystemA.getSequencingid();
-          currSequencer.ready(hrsystemA.getSequencingid());
-          LOGGER.log(Level.FINE, "Sequencer " + userInput[1]+" resive the picked ID of " + 
-          hrsystemA.getSequencingid().toString());
-        }
-  }
-
-private static void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, Logger LOGGER,
-		String[] userInput, Picker currentPicker) throws IOException {
-	hrsystemA.addtoSequencing(currentPicker.getRequestid(),currentPicker.getForkLift());
-	LOGGER.log(Level.FINE,"picker send his/her items to marshaling room.");
-	pickerManager.deletPicker(currentPicker);
-	
-}
-
-private static void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Scanner reader, Logger LOGGER,
-		String[] userInput, Picker currentPicker) throws IOException {
-	if (!pickerManager.getORaddPicker(userInput[1]).equals(null)) {
-		String userInputSku = userInput[3];
-		//check if the picker picked the correct Fasica
-		if (currentPicker.checkPickerScanedCorrectSKU(userInputSku)){
-			currentPicker.addtoFolkLift(userInputSku, warehouseA);
-			//check if the picker get all 8 of the sku
-			if (currentPicker.checkgotAllSKU()){ 
-			  LOGGER.log(Level.FINE,"picker " + userInput[1] + "should go to marshaling.");	
-			}else{//picked did not have 8 sku, tell them go to next location
-				String nextLocation = "Picker" + userInput[1] + " go to location: "
-			            + pickerManager.getORaddPicker(userInput[1]).getNextLocation();
-				LOGGER.log(Level.FINE, nextLocation);
-			}
-		//when picker picked wrong  Fascia from warehouse
-		}else{
-		    LOGGER.log(Level.FINE,"You picked wrong Fasica, Sku did not match");
-			String nextLocation = "Picker" + userInput[1] + " go to location: "
-		            + pickerManager.getORaddPicker(userInput[1]).getNextLocation();
-			LOGGER.log(Level.FINE,nextLocation);
-			//we might need a method to put back the Fascia
-		}
-	
-	}
-}
-
-private static void pickerReady(OrderManager orderManager, PickerManager pickerManager,
-		WarehousePicking warehousePicking,  Logger LOGGER, String[] userInput, Picker currentPicker) throws IOException {
-	
-	HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
-	if (orderManager.generateNext() == 0) {
-	  LOGGER.log(Level.FINE,"not enough orders for " + currentPicker.getName() );
-	  pickerManager.addFreePicker(currentPicker);
-	  LOGGER.log(Level.FINE,"add " + currentPicker.getName() + "as a free picker to the system");
-	  // add ready picker who does is waiting for
-	  // request in Arraylist:freePicker
-
-	} else {
-		currentPicker.addLocation(
-	      warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-		currentPicker.setRequestid(orderManager.generateNext());
-
-	  //Print out the current picker location.
-	LOGGER.log(Level.FINE,"Picker " + userInput[1] + " resived the order location. they are on their way.");
-	  LOGGER.log(Level.FINE, "Picker " + userInput[1] + " go to location: " + currentPicker.getNextLocation() );
-	
-	}
-}
-
-private static void createorder(OrderManager orderManager, PickerManager pickerManager,
-		WarehousePicking warehousePicking, Translate translateA, Logger LOGGER, String[] userInput)
-		throws IOException {
-	orderManager.addOrder(userInput[1], userInput[2], translateA);
-	  LOGGER.log(Level.FINE, "New order " + userInput[1]+ " " + userInput[2] + " has been created.");
-	  
-	  // check if there is free picker && there are 4 orders to generate a request
-	  if (pickerManager.getFreePicker().size() != 0 && orderManager.hasNext() != 0) {
-	    //there is free pick and also enough order for pick 
-	    Picker curFreePicker = pickerManager.getFreePicker().get(0);
-	    pickerManager.deletFreePicker(curFreePicker);
-	    String pickerName = curFreePicker.getName();
-	    LOGGER.log(Level.FINE,"currently free picker " + pickerName + " resive the picking request");
-	    //assign the free picker with the order
-	    HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
-	    curFreePicker.addLocation(warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-	    curFreePicker.setRequestid(orderManager.generateNext());
-	  } else if (pickerManager.getFreePicker().size() == 0) {
-	    LOGGER.log(Level.FINE,"Currently not enough free picker or order for picking");
-	  }
-}
 
 
 }

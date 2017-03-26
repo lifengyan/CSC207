@@ -2,8 +2,9 @@ package phasetwo;
 
 import java.util.ArrayList;
 
-public class Sequencer extends Worker {
+public class Sequencer implements Worker {
   private int id;
+  private  String name;
   private int count = 0;
   private String cursku;
   private ArrayList<String> frontpallet;
@@ -14,16 +15,19 @@ public class Sequencer extends Worker {
    * @param name Sequencer's name
    */
   public Sequencer(String name) {
-    super(name);
     frontpallet = new ArrayList<String>();
     backpallet = new ArrayList<String>();
+    this.name = name;
+        
   }
 
   /**
    * Retrun the pickId of the picking request that the sequencer is processing.
    * @return the pickId of the picking request that the sequencer is processing
    */
-  public int pickingId() {
+
+  @Override
+  public int getid() {
     return id;
   }
 
@@ -108,6 +112,13 @@ public class Sequencer extends Worker {
     om.repick(this.id);
 
   }
+
+  @Override
+  public String getName() {
+    // TODO Auto-generated method stub
+    return name;
+  }
+
 
 
 
