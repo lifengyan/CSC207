@@ -14,9 +14,6 @@ public class OrderCommand implements Cammand {
   public OrderCommand (warehouseSystem theSystem, String[] userInput){
     this.theSystem = theSystem;
     this.userInput  = userInput;
-    
-    
-    
   }
   
   

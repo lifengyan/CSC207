@@ -4,10 +4,7 @@ package phasetwo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.logging.*;
 import java.util.logging.Level;
@@ -44,20 +41,10 @@ public class MainFunction {
     PickerManager pickerManager = new PickerManager();
     WarehousePicking warehousePicking = new WarehousePicking();
     Hrsystem hrsystemA = new Hrsystem();
-
     Warehouse warehouseA = new Warehouse();
     Translate translateA = new Translate();
-    
-//test
-    
-    Scanner reader = new Scanner(System.in);
-    
-    
-  
-    	Scanner scanner = new Scanner(new FileInputStream(commandFile));
-		
-	
-    
+    Scanner scanner = new Scanner(new FileInputStream(commandFile));
+
     // initial the warehouse and translation table
 
       System.out.println("reading file");
@@ -68,11 +55,8 @@ public class MainFunction {
       LOGGER.log(Level.CONFIG, "reading hrfile.csv file"); 
       hrsystemA.readFromcsvfile(hrFilePath);
       LOGGER.log(Level.CONFIG, "reading warehousePicking.csv file"); 
-      warehousePicking.warehousePickingreader(genericSoftPath);
-      
+      warehousePicking.warehousePickingreader(genericSoftPath);  
       warehouseSystem theSystem =  new warehouseSystem (orderManager,hrsystemA,pickerManager,warehousePicking,warehouseA,translateA,LOGGER);
-      boolean shutdown = false;
-
       while (scanner.hasNextLine()) {
         // user will input the command and use this program.
         String[] userInput;
@@ -128,26 +112,17 @@ public class MainFunction {
           default:
             LOGGER.log(Level.INFO,"Error during enter command" + "\n");
             break;
-
         }
-     
-
       }
-      reader.close();
+      scanner.close();
       warehouseA.writeDown(warehousePath);
-      
-
     } catch (FileNotFoundException ex) {
       LOGGER.log(Level.SEVERE, "File reading incorrect", ex); 
   } catch (IOException ex) {
     ex.printStackTrace();
   }
-    
-
 
   }
-
-
 
 
 }
