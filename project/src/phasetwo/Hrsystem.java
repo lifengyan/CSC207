@@ -9,7 +9,7 @@ import java.util.Set;
 
 
 public class Hrsystem {
-  private ArrayList<Sequencer> hrSystemSequencer;
+  private ArrayList<Sequencer> FreeSequencer;
   private ArrayList<Worker> hrSystemOther;
   private ArrayList<Loader> hrSystemLoader;
 
@@ -21,30 +21,33 @@ public class Hrsystem {
    */
   public Hrsystem() {
     this.hrSystemOther = new ArrayList<Worker>();
-    this.hrSystemSequencer = new ArrayList<Sequencer>();
+    this.FreeSequencer = new ArrayList<Sequencer>();
     this.unsequencingList = new HashMap<Integer, ArrayList<String>>();
     this.loadingList = new HashMap<Integer, ArrayList<ArrayList<String>>>();
     this.hrSystemLoader = new ArrayList<Loader> ();
   }
 
-  
   /**
    * Get a sequencer from hrSystemSequencer by name.
    * @param name of the sequencer
    * @return Sequencer
    */
   public Sequencer getSequencer(String name) {
-    for (int i = 0; i < hrSystemSequencer.size(); i++) {
-      if (hrSystemSequencer.get(i).getName().equals(name)) {
-        return hrSystemSequencer.get(i);
+    for (int i = 0; i < FreeSequencer.size(); i++) {
+      if (FreeSequencer.get(i).getName().equals(name)) {
+        return FreeSequencer.get(i);
       }
     }
     Sequencer nw = new Sequencer(name);
-    hrSystemSequencer.add(nw);
+    FreeSequencer.add(nw);
     return nw;
   }
-
-
+  
+  /***
+   * add  get the loader from free loader list
+   * @param name
+   * @return
+   */
   public Loader getLoader(String name) {
 	    for (int i = 0; i < hrSystemLoader.size(); i++) {
 	      if (hrSystemLoader.get(i).getName().equals(name)) {
@@ -81,8 +84,9 @@ public class Hrsystem {
   public String addtoSequencing(Integer sequencingId, ArrayList<String> sequencinglist) {
     unsequencingList.put(sequencingId, sequencinglist);
     // if there are 
-    if (!hrSystemSequencer.isEmpty()) {
-      Sequencer localSequencer = hrSystemSequencer.get(0);
+    if (!FreeSequencer.isEmpty()) {
+      Sequencer localSequencer = FreeSequencer.get(0);
+      FreeSequencer.remove(0);
       localSequencer.ready(this.getSequencingid());
       return (localSequencer.getName() + "resived the items with pick ID of "+ localSequencer.getid());
     }
@@ -124,7 +128,7 @@ public class Hrsystem {
   public void createEmployee(String name, String job) {
     if (job.equals("Sequencer")) {
       Sequencer sq = new Sequencer(name);
-      this.hrSystemSequencer.add(sq);
+      this.FreeSequencer.add(sq);
     } else if (job.equals("Loader")) {
       
     	Loader ld = new Loader(name);
@@ -136,5 +140,6 @@ public class Hrsystem {
     }
 
   }
-
+ 
+  
 }

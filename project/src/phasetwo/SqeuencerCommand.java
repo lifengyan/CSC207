@@ -59,7 +59,6 @@ public class SqeuencerCommand implements Cammand   {
         hrsystemA.addToloader(currSequencer.getid(),currSequencer.sequencing(orderManager));
         theSystem.LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " sequencing all Fascia "
             + "and send them to loading room");
-          
     }else if (!currSequencer.compare(orderManager)){
       theSystem.LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan" + userInput[3] );
       currSequencer.repick(orderManager);

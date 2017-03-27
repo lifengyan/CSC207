@@ -69,7 +69,8 @@ public class MainFunction {
       hrsystemA.readFromcsvfile(hrFilePath);
       LOGGER.log(Level.CONFIG, "reading warehousePicking.csv file"); 
       warehousePicking.warehousePickingreader(genericSoftPath);  
-      warehouseSystem theSystem =  new warehouseSystem (orderManager,hrsystemA,pickerManager,warehousePicking,warehouseA,translateA,LOGGER);
+      warehouseSystem theSystem =  new warehouseSystem (orderManager,hrsystemA,
+          pickerManager,warehousePicking,warehouseA,translateA,LOGGER);
       while (scanner.hasNextLine()) {
         // user will input the command and use this program.
         String[] userInput;
