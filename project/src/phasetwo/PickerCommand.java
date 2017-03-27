@@ -103,7 +103,7 @@ private  void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Lo
             }
         //when picker picked wrong  Fascia from warehouse
         }else{
-            LOGGER.log(Level.FINE,"picker " + userInput[1] +" picked wrong Fasica, Sku did not match");
+            LOGGER.log(Level.FINE,"picker " + userInput[1] +" picked wrong Fasica, Please put this one back");
             String nextLocation = "Picker " + userInput[1] + " please go to location: "
                     + pickerManager.getORaddPicker(userInput[1]).getNextLocation();
             LOGGER.log(Level.FINE,nextLocation);
