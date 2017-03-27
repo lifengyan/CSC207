@@ -74,7 +74,6 @@ public class MainFunction {
         // user will input the command and use this program.
         String[] userInput;
         LOGGER.log(Level.FINER,"Please enter a command" );
-        System.out.println("Please enter a command");
         String logevent;
         logevent=scanner.next();
         userInput = logevent.split(",");

@@ -43,7 +43,7 @@ public class SqeuencerCommand implements Cammand   {
       theSystem.LOGGER.log(Level.FINE,"not enough for Sequenceing" + "\n");
         } else {
           Integer sequencingId = hrsystemA.getSequencingid();
-          currSequencer.ready(hrsystemA.getSequencingid());
+          currSequencer.ready(sequencingId);
           theSystem.LOGGER.log(Level.FINE, "Sequencer " + userInput[1] + " resive the picked ID of " + 
           hrsystemA.getSequencingid().toString());
         }

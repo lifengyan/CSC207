@@ -54,14 +54,17 @@ public class Sequencer implements Worker {
           this.count++;
           om.getOrders().get(id - in).setfrontStatus("sequenced");
           return true;
+        }else{
+          in--;
         }
+        
       } else if (om.getOrders().get(id - in).getBack().equals(cursku)) {
         if (!om.getOrders().get(id - in).getbackStatus().equals("sequenced")) {
           backpallet.add(cursku);
           this.count++;
           om.getOrders().get(id - in).setbackStatus("sequenced");
           return true;
-        }
+        }else{in--;}
       } else {
         in--;
       }
