@@ -8,16 +8,16 @@ public class SqeuencerCommand implements Cammand   {
   String[] userInput;
   Sequencer currentSequencer;
   
-  
-  
   public SqeuencerCommand(warehouseSystem theSystem, String[] userInput) {
     this.theSystem = theSystem;
     this.userInput  = userInput;
     currentSequencer = theSystem.hrsystem.getSequencer(userInput[1]);
   }
 
-
   @Override
+  /***
+   * execute Sequencer`s command
+   */
   public void execute() throws IOException {
     if (userInput[2].equals("ready")) { 
       sequencerReady(theSystem.hrsystem, userInput, currentSequencer);
@@ -36,7 +36,13 @@ public class SqeuencerCommand implements Cammand   {
     }
 
   }
-
+  
+  /***
+   * Sequencer ready, 
+   * @param hrsystemA
+   * @param userInput
+   * @param currSequencer
+   */
   private  void sequencerReady(Hrsystem hrsystemA, String[] userInput,
       Sequencer currSequencer) {
     int localId =hrsystemA.getSequencingid();

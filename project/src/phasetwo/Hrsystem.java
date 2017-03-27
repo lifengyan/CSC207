@@ -14,7 +14,9 @@ public class Hrsystem {
   private ArrayList<Loader> hrSystemLoader;
 
   private HashMap<Integer, ArrayList<String>> unsequencingList;
+  private HashMap<Integer, ArrayList<ArrayList<String>>> unloadingList;
   public HashMap<Integer, ArrayList<ArrayList<String>>> loadingList;
+  private ArrayList<Integer> unloadedID = null;
 
   /**
    * Construct Hrsystem.
@@ -23,8 +25,9 @@ public class Hrsystem {
     this.hrSystemOther = new ArrayList<Worker>();
     this.FreeSequencer = new ArrayList<Sequencer>();
     this.unsequencingList = new HashMap<Integer, ArrayList<String>>();
-    this.loadingList = new HashMap<Integer, ArrayList<ArrayList<String>>>();
+    this.unloadingList = new HashMap<Integer, ArrayList<ArrayList<String>>>();
     this.hrSystemLoader = new ArrayList<Loader> ();
+    this.loadingList = new  HashMap<Integer, ArrayList<ArrayList<String>>>();
   }
 
   /**
@@ -109,15 +112,21 @@ public class Hrsystem {
     }
   }
 
-  //
   // return current sequencing item
   public ArrayList<String> getSequencingItem(Integer id) {
     return unsequencingList.get(id);
   }
-
+  
+  /***
+   * give all the item to 
+   * @param id
+   * @param loadingitem
+   */
   public void addToloader(Integer id, ArrayList<ArrayList<String>> loadingitem) {
-    loadingList.put(id, loadingitem);
+    unloadingList.put(id, loadingitem);
+    unloadedID.add(id);
     unsequencingList.remove(id);
+    
   }
 
   /**
@@ -139,6 +148,21 @@ public class Hrsystem {
       this.hrSystemOther.add(rp);
     }
 
+  }
+
+  public int getLoaderId() {
+    if (!unloadedID.isEmpty()){
+      int reint = unloadedID.get(0);
+      unloadedID.remove(reint);
+      return reint;
+    }else{
+      return 0;
+    }
+    
+  }
+
+  public HashMap<Integer, ArrayList<ArrayList<String>>> getunloadingList() {
+    return  unloadingList;
   }
  
   
