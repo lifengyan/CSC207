@@ -35,6 +35,7 @@ public class WarehousePicking {
       record = scanner.nextLine().split(",");
       Location newLoc = new Location(record[0], record[1], record[2], record[3], record[4]);
       locationList.add(newLoc);
+
     }
     scanner.close();
   }
@@ -62,10 +63,9 @@ public class WarehousePicking {
   public ArrayList<Location> optimize(ArrayList<String> skus) {
     ArrayList<Location> locationS = new ArrayList<Location>();
     // get 8 random locations and return them as an array of Locations
-    for (int i = 0; i < 8; i++) {
-      int randomNum = ThreadLocalRandom.current().nextInt(1, 47);
+    for (String sku : skus) {
       Location curr = new Location(null, null, null, null, null);
-      curr = locationList.get(randomNum);
+        curr = locationList.get(Integer.valueOf(sku)-1);
       locationS.add(curr);
     }
     return locationS;

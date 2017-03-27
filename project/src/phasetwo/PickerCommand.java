@@ -50,7 +50,7 @@ private  void pickerReady(OrderManager orderManager, PickerManager pickerManager
         WarehousePicking warehousePicking,  Logger LOGGER, String[] userInput, Picker currentPicker) throws IOException {
     
     HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
-    if (orderManager.generateNext() == 0) {
+    if (orderManager.hasNext() == 0) {
       LOGGER.log(Level.FINE,"not enough orders for " + currentPicker.getName() );
       pickerManager.addFreePicker(currentPicker);
       LOGGER.log(Level.FINE,"add " + currentPicker.getName() + "as a free picker to the system");
@@ -60,7 +60,7 @@ private  void pickerReady(OrderManager orderManager, PickerManager pickerManager
     } else {
         currentPicker.addLocation(
           warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-        currentPicker.setRequestid(orderManager.generateNext());
+        currentPicker.setRequestid(orderManager.hasNext());
 
       //Print out the current picker location.
     LOGGER.log(Level.FINE,"Picker " + userInput[1] + " resived the order location. they are on their way.");
