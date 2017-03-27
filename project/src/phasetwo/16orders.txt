@@ -12,7 +12,11 @@ picker,Alice,pick,21
 picker,Alice,pick,22
 picker,Alice,pick,3
 order,White,SE
+
 picker,Bob,ready
+loader,Bob,ready
+replanisher,Tom,Ready
+
 picker,Alice,pick,4
 picker,Alice,pick,3
 sequencer,Leon,ready
@@ -26,4 +30,6 @@ sequencer,Leon,scan,3
 sequencer,Leon,scan,4
 sequencer,Leon,scan,4
 
+loader,Bob,ready
+replanisher,Tom,Ready
 replanisher......?
