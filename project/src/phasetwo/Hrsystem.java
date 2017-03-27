@@ -40,6 +40,7 @@ public class Hrsystem {
       }
     }
     Sequencer nw = new Sequencer(name);
+    hrSystemSequencer.add(nw);
     return nw;
   }
 
