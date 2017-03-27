@@ -82,7 +82,7 @@ public class MainFunction {
         switch (userInput[0]) {
 
           case "order":
-            Cammand OrderCommand = new PickerCommand(theSystem,userInput);
+            Cammand OrderCommand = new OrderCommand(theSystem,userInput);
             OrderCommand.execute();
             break;
 
