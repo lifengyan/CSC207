@@ -8,16 +8,25 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.*;
 import java.util.logging.Level;
-
+/**
+ * This system get inputs from user to simulate real world event happens in the company: receiving orders, 
+ * send picking request, assign picking request to pickers, send picker location information, 
+ * keep track of order status. 
+ * <p>
+ * This system takes input files: translation.csv, traversal_table.csv, warehouse.csv, hrfile.csv and 16order.txt
+ * This system generates two output files: warehouse.csv and order.csv.
+ * For more details please refer to UML.pdf and help.txt
+ *
+ */
 public class MainFunction {
-
+	// set up all the files
   static String filePath = new File("").getAbsolutePath();
-  public static String hrFilePath = new File("src/phaseone/hrfile.csv").getAbsolutePath();
-  public static String warehousePath = new File("src/phaseone/warehouse.csv").getAbsolutePath();
-  public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
-  public static String genericSoftPath = new File("src/phaseone/traversal_table.csv").getAbsolutePath();
-  public static String orderFile = new File("src/phaseone/order.csv").getAbsolutePath();
-  public static String commandFile = new File("src/16order.txt").getAbsolutePath();
+  public static String hrFilePath = new File("src/phasetwo/hrfile.csv").getAbsolutePath();
+  public static String warehousePath = new File("src/phasetwo/warehouse.csv").getAbsolutePath();
+  public static String transtanblePath = new File("src/phasetwo/translation.csv").getAbsolutePath();
+  public static String genericSoftPath = new File("src/phasetwo/traversal_table.csv").getAbsolutePath();
+  public static String orderFile = new File("src/phasetwo/order.csv").getAbsolutePath();
+  public static String commandFile = new File("src/phasetwo/16orders.txt").getAbsolutePath();
   private static final Logger LOGGER = Logger.getLogger( MainFunction.class.getName() );
   public static boolean newUnhandledRequest = false;
 
@@ -32,7 +41,10 @@ public class MainFunction {
     try {
 	// Creating and Assigning handlers to LOGGER object
 	Handler consoleHandler = new ConsoleHandler();
-	Handler fileHandler = new FileHandler("./eventslog.log");
+	Handler fileHandler = new FileHandler("log.txt");
+	consoleHandler.setLevel(Level.ALL);
+	fileHandler.setLevel(Level.ALL);
+	fileHandler.setFormatter(new SimpleFormatter());
 	LOGGER.addHandler(consoleHandler);
 	LOGGER.addHandler(fileHandler);
 	LOGGER.setLevel(Level.ALL);
@@ -44,9 +56,9 @@ public class MainFunction {
     Warehouse warehouseA = new Warehouse();
     Translate translateA = new Translate();
     Scanner scanner = new Scanner(new FileInputStream(commandFile));
-
+    // change the logger format to simple type 
     // initial the warehouse and translation table
-
+    
       System.out.println("reading file");
       LOGGER.log(Level.CONFIG, "reading warehouse.csv file"); 
       warehouseA.storageInital(warehousePath);
@@ -62,8 +74,10 @@ public class MainFunction {
         String[] userInput;
         LOGGER.log(Level.FINER,"Please enter a command" );
         System.out.println("Please enter a command");
-        userInput = scanner.next().split(",");
-        LOGGER.log(Level.FINEST,"User input: " + userInput.toString() +" \n" );
+        String logevent;
+        logevent=scanner.next();
+        userInput = logevent.split(",");
+        LOGGER.log(Level.FINEST,"User input: " + logevent +" \n" );
         // Us a case statement to find out which command it used
         switch (userInput[0]) {
 
@@ -106,7 +120,7 @@ public class MainFunction {
             break;
 
           case "close":
-            shutdown = true;
+        
             break;
             
           default:
