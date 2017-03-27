@@ -21,12 +21,16 @@ public class SqeuencerCommand implements Cammand   {
   public void execute() throws IOException {
     if (userInput[2].equals("ready")) { 
       sequencerReady(theSystem.hrsystem, userInput, currentSequencer);
+      
     }else if(userInput[2].equals("scan")){
         SequencerScan(theSystem.orderManager, theSystem.hrsystem, userInput, currentSequencer);
+        
     }else if(userInput[2].equals("rescan")){
+      
       currentSequencer.rescan(theSystem.orderManager);
       theSystem.LOGGER.log(Level.FINER,"Sequencer "+ currentSequencer.getName() + " is about to rescan all the fascia");
-        //sequencer rescan
+       
+      //sequencer rescan
     }else if(userInput[2].equals("finish")){
         //sequencer finish sequencing send all the item to loader
     }
@@ -53,7 +57,7 @@ public class SqeuencerCommand implements Cammand   {
       theSystem.LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan all 8 Fascia");
         hrsystemA.addToloader(currSequencer.getid(),currSequencer.sequencing(orderManager));
         theSystem.LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " sequencing all Fascia "
-            + "and send them to loading");
+            + "and send them to loading room");
           
     }else if (!currSequencer.compare(orderManager)){
       theSystem.LOGGER.log(Level.FINER, "Sequencer " + currSequencer.getName() + " scan" + userInput[3] );
