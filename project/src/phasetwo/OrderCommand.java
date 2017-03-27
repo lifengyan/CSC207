@@ -41,7 +41,7 @@ private static void createorder(OrderManager orderManager, PickerManager pickerM
         //assign the free picker with the order
         HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
         curFreePicker.addLocation(warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));
-        curFreePicker.setRequestid(orderManager.generateNext());
+        curFreePicker.setRequestid(orderManager.hasNext());
       } else if (pickerManager.getFreePicker().size() == 0) {
         LOGGER.log(Level.FINE,"Currently not enough free picker or order for picking");
       }

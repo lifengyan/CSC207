@@ -13,7 +13,7 @@ import org.junit.Test;
 public class SequencerTest {
   Translate tr = new Translate();
   OrderManager om = new OrderManager();
-  public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
+  public static String transtanblePath = new File("src/phasetwo/translation.csv").getAbsolutePath();
 
   /**
    * Set up translation.

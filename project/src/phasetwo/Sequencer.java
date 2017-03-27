@@ -26,7 +26,7 @@ public class Sequencer implements Worker {
    * @return the pickId of the picking request that the sequencer is processing
    */
 
-  @Override
+
   public int getid() {
     return id;
   }
@@ -113,7 +113,6 @@ public class Sequencer implements Worker {
 
   }
 
-  @Override
   public String getName() {
     // TODO Auto-generated method stub
     return name;
