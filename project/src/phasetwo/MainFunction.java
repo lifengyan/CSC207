@@ -59,7 +59,7 @@ public class MainFunction {
     Scanner scanner = new Scanner(new FileInputStream(commandFile));
     // change the logger format to simple type 
     // initial the warehouse and translation table
-    
+    // fix git vairson 
       System.out.println("reading file");
       LOGGER.log(Level.CONFIG, "reading warehouse.csv file"); 
       warehouseA.storageInital(warehousePath);
