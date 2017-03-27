@@ -39,10 +39,11 @@ public class SqeuencerCommand implements Cammand   {
 
   private  void sequencerReady(Hrsystem hrsystemA, String[] userInput,
       Sequencer currSequencer) {
-    if (hrsystemA.getSequencingid() == 0) {
+    int localId =hrsystemA.getSequencingid();
+    if ( localId == 0) {
       theSystem.LOGGER.log(Level.FINE,"not enough for Sequenceing" + "\n");
         } else {
-          Integer sequencingId = hrsystemA.getSequencingid();
+          Integer sequencingId = localId;
           currSequencer.ready(sequencingId);
           theSystem.LOGGER.log(Level.FINE, "Sequencer " + userInput[1] + " resive the picked ID of " + 
           hrsystemA.getSequencingid().toString());
