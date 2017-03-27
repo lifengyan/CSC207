@@ -48,6 +48,7 @@ public class MainFunction {
 	LOGGER.addHandler(consoleHandler);
 	LOGGER.addHandler(fileHandler);
 	LOGGER.setLevel(Level.ALL);
+	
 	//Initiate all the Manager
     OrderManager orderManager = new OrderManager();
     PickerManager pickerManager = new PickerManager();
@@ -130,6 +131,7 @@ public class MainFunction {
       }
       scanner.close();
       warehouseA.writeDown(warehousePath);
+      LOGGER.log(Level.CONFIG, "Program Closed"); 
     } catch (FileNotFoundException ex) {
       LOGGER.log(Level.SEVERE, "File reading incorrect", ex); 
   } catch (IOException ex) {
