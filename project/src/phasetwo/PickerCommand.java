@@ -1,39 +1,48 @@
 package phasetwo;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * PickerCommand acts as an helper function for the main function, it processes
+ * all the userInput that starts with "picker"
+ */
 public class PickerCommand implements Cammand  {
-  //
   warehouseSystem theSystem;
   String[] userInput;
   Picker currentPicker;
-  //pass all the warehouse system information to this picker
+  
+  /**
+   * Constructor for PickerCommand class, store warehouseSystem information and userInput to variables. 
+   * <p>
+   * This constructor create a new picker instance if the given picker does not exist in the pickerManager.
+   * @param theSystem: warehouseSystem information containing all the manager classes
+   * @param userInput: user input line as a string array
+   */
   public PickerCommand (warehouseSystem theSystem, String[] userInput){
     this.theSystem = theSystem;
     this.userInput  = userInput;
     currentPicker = theSystem.pickerManager.getORaddPicker((userInput[1]));
   }
   
-  
+  /**
+   * Processes user input of 'picker ready'or 'picker pick' or 'picker marshaling'. 
+   * Uses helper functions: pickerReady, pickerPicked and pickerToMarshaling
+   */
   @Override
   public void execute() throws IOException {
     if (userInput[2].equals("ready")) {
       pickerReady(theSystem.orderManager, theSystem.pickerManager,
-theSystem.warehousePicking, theSystem.LOGGER, 
-          userInput,currentPicker);
+    		  		theSystem.warehousePicking, theSystem.LOGGER, 
+    		  								userInput,currentPicker);
 
   } else if (userInput[2].equals("pick")) {
       pickerPicked(theSystem.pickerManager, theSystem.warehouse, theSystem.LOGGER, userInput,currentPicker);
 
   } else if (userInput[2].equals("marshaling")) {
       pickerToMarshaling(theSystem.pickerManager, theSystem.hrsystem, theSystem.LOGGER, userInput,currentPicker);
-  }
-
-    
-  }
+  }}
   
   
 /***
