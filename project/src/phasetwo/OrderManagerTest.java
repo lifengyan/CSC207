@@ -13,10 +13,11 @@ import org.junit.Test;
 public class OrderManagerTest {
   Translate tr = new Translate();
   OrderManager om = new OrderManager();
-  public static String transtanblePath = new File("src/phaseone/translation.csv").getAbsolutePath();
+  public static String transtanblePath = new File("src/phasetwo/translation.csv").getAbsolutePath();
 
   /**
    * Setup the translation table.
+   * 
    * @throws FileNotFoundException while file not found
    */
   @Before
@@ -49,14 +50,9 @@ public class OrderManagerTest {
     om.addOrder("Red", "SES", tr);
     om.addOrder("Red", "S", tr);
     om.generatePick();
-    assertEquals(om.generateNext(), 4);
+    assertEquals(om.hasNext(), 4);
   }
 
-  @Test
-  public void testGenerateNext() {
-    om.generatePick();
-    assertEquals(0, om.generateNext());
-  }
 
   @Test
   public void testGetOrders() {
@@ -64,7 +60,20 @@ public class OrderManagerTest {
     om.addOrder("Blue", "S", tr);
     om.addOrder("Red", "SES", tr);
     om.addOrder("Red", "S", tr);
-    assertEquals(om.getOrders().get(10).getOrderid(), 10);
+    assertEquals(om.getOrders().get(13).getOrderid(), 13);
   }
+  
+  @Test
+  public void testRepick() {
+    om.addOrder("Blue", "SES", tr);
+    om.addOrder("Blue", "S", tr);
+    om.addOrder("Red", "SES", tr);
+    om.addOrder("Red", "S", tr);
+    om.repick(17);
+    assertEquals(om.getRepick().size(),4);
+    assertEquals(om.generatePick().get(1).getOrderid(),14);
+   
+  }
+  
 
 }

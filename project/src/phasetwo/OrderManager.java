@@ -51,15 +51,15 @@ public class OrderManager {
       while (mn < 5) {
         Order or = this.repick.remove(0);
         order.put(mn, or);
-        mn++;
+        mn++;      
       }
+      this.hasnext = order.get(4).getOrderid();
     } else {
       if (this.orders.containsKey(trail)) {
         for (int i = 0; i < 4; i++) {
           order.put(4 - i, this.orders.get(trail - i));
           this.orders.get(trail - i).setfrontStatus("picked");
           this.orders.get(trail - i).setbackStatus("picked");
-
         }
         this.hasnext = trail;
         trail += 4;
@@ -86,8 +86,12 @@ public class OrderManager {
     }
   }
 
-  public int generateNext() {
+  public int hasNext() {
     return this.hasnext;
+  }
+  
+  public ArrayList<Order> getRepick() {
+    return this.repick;
   }
 
   public Map<Integer, Order> getOrders() {
