@@ -13,7 +13,6 @@ picker,Alice,pick,22
 picker,Alice,pick,3
 order,White,SE
 picker,Bob,ready
-loader,Bob,ready
 picker,Alice,pick,4
 picker,Alice,pick,3
 picker,Alice,pick,4

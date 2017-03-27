@@ -13,7 +13,7 @@ public class Hrsystem {
   private ArrayList<Worker> hrSystemOther;
   private ArrayList<Loader> hrSystemLoader;
 
-  private HashMap<Integer, ArrayList<String>> sequencingList;
+  private HashMap<Integer, ArrayList<String>> unsequencingList;
   public HashMap<Integer, ArrayList<ArrayList<String>>> loadingList;
 
   /**
@@ -22,7 +22,7 @@ public class Hrsystem {
   public Hrsystem() {
     this.hrSystemOther = new ArrayList<Worker>();
     this.hrSystemSequencer = new ArrayList<Sequencer>();
-    this.sequencingList = new HashMap<Integer, ArrayList<String>>();
+    this.unsequencingList = new HashMap<Integer, ArrayList<String>>();
     this.loadingList = new HashMap<Integer, ArrayList<ArrayList<String>>>();
     this.hrSystemLoader = new ArrayList<Loader> ();
   }
@@ -74,12 +74,19 @@ public class Hrsystem {
   }
 
   /**
-   * Add a new Sequencer to Sequencing List.
+   * Add a new unscreened picking list to Sequencing List.
    * @param sequencingId is the id of Sequencer
    * @param sequencinglist the list of Sequencer
    */
-  public void addtoSequencing(Integer sequencingId, ArrayList<String> sequencinglist) {
-    sequencingList.put(sequencingId, sequencinglist);
+  public String addtoSequencing(Integer sequencingId, ArrayList<String> sequencinglist) {
+    unsequencingList.put(sequencingId, sequencinglist);
+    // if there are 
+    if (!hrSystemSequencer.isEmpty()) {
+      Sequencer localSequencer = hrSystemSequencer.get(0);
+      localSequencer.ready(this.getSequencingid());
+      return (localSequencer.getName() + "resived the items with pick ID of "+ localSequencer.getid());
+    }
+    return "we do not have free sequencer yet";
   }
 
   
@@ -88,23 +95,25 @@ public class Hrsystem {
    * @return a id
    */
   public Integer getSequencingid() {
-    if (sequencingList.isEmpty()) {
+    if (unsequencingList.isEmpty()) {
       return 0;
     } else {
-      Set<Integer> xn = sequencingList.keySet();
-      return xn.iterator().next();
+      Set<Integer> xn = unsequencingList.keySet();
+      int locoalint = xn.iterator().next();
+      unsequencingList.remove(locoalint);
+      return locoalint;
     }
   }
 
   //
   // return current sequencing item
   public ArrayList<String> getSequencingItem(Integer id) {
-    return sequencingList.get(id);
+    return unsequencingList.get(id);
   }
 
   public void addToloader(Integer id, ArrayList<ArrayList<String>> loadingitem) {
     loadingList.put(id, loadingitem);
-    sequencingList.remove(id);
+    unsequencingList.remove(id);
   }
 
   /**

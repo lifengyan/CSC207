@@ -124,7 +124,7 @@ public class MainFunction {
             break;
             
           default:
-            LOGGER.log(Level.INFO,"Error during enter command" + "\n");
+            LOGGER.log(Level.INFO,"Input did not follow the requirement" + "\n");
             break;
         }
       }
@@ -132,14 +132,13 @@ public class MainFunction {
       warehouseA.writeDown(warehousePath);
       LOGGER.log(Level.CONFIG, "Program Closed"); 
     } catch (FileNotFoundException ex) {
-      LOGGER.log(Level.SEVERE, "File reading incorrect", ex); 
-  } catch (IOException ex) {
+      LOGGER.log(Level.SEVERE, "File reading incorrect", ex);} 
+      catch (NullPointerException e ){
+        LOGGER.log(Level.SEVERE, "Error during enter command", e); 
+      } catch (IOException ex) {
     ex.printStackTrace();
   }
-
   }
-
-
 }
 
 

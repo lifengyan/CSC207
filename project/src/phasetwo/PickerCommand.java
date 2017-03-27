@@ -123,8 +123,8 @@ private  void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Lo
  */
 private  void pickerToMarshaling(PickerManager pickerManager, Hrsystem hrsystemA, Logger LOGGER,
     String[] userInput, Picker currentPicker) throws IOException {
-	hrsystemA.addtoSequencing(currentPicker.getRequestid(),currentPicker.getForkLift());
-	LOGGER.log(Level.FINE,"picker send his/her items to marshaling room.");
+    String output =hrsystemA.addtoSequencing(currentPicker.getRequestid(),currentPicker.getForkLift());
+	LOGGER.log(Level.FINE,"picker send his/her items to marshaling room." + output );
 	pickerManager.deletPicker(currentPicker);
 }
 }
