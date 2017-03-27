@@ -110,7 +110,6 @@ public class Sequencer implements Worker {
 
   public void repick(OrderManager om) {
     om.repick(this.id);
-
   }
 
   public String getName() {

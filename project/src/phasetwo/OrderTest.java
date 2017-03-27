@@ -69,6 +69,14 @@ public class OrderTest {
     assertEquals(order.getFront(), "37");
   }
 
+  
+  @Test
+  public void testNotinSystem() {
+    Order order = new Order("Blue", "W", tr);
+    assertEquals(order.getFront(),null);
+
+  }
+  
   @Test
   public void testGetBack() {
     Order order = new Order("Blue", "SES", tr);

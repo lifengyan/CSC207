@@ -7,102 +7,102 @@ import java.util.HashMap;
 
 
 public class Loader implements Worker {
-  private  String name;
-  private ArrayList<Integer> repickid;
-  
+  private String name;
+  private Integer pickid;
+
   public Loader(String name) {
     this.name = name;
   }
+
+
+  public void ready(int pickid) {
+    this.pickid = pickid;
+  }
   
-  public ArrayList<Integer> scan(HashMap<Integer, ArrayList<ArrayList<String>>> loadinglist,
-      OrderManager om) {
-    ArrayList<Integer> repickid = new ArrayList<Integer>();
-    for (Integer key : loadinglist.keySet()) {
-      int in = 3;
-      while (in > -1) {
-        for (int i = 0; i < 2; i++) {
-          for (int j = 0; j < 4; j++) {
-            if (i == 0) {
-              if (!loadinglist.get(key).get(i).get(j)
-                  .equals(om.getOrders().get(key - in).getFront())) {
-                repickid.add(key);
-              }
-            } else {
-              if (!loadinglist.get(key).get(i).get(j)
-                  .equals(om.getOrders().get(key - in).getBack())) {
-                repickid.add(key);
-              }
+  /**
+   * This loader will scan the pallets to see if all the sku numbers are in order. if it is not, 
+   * the loader will send the pickid to OrderManager for repick.
+   * @param pallets the pallets that send to compare
+   * @param loadinglist the loadinglist that sequencer sequenced
+   * @param loaded the list of fascia that loader checked and loaded
+   * @param om the OrderManager system
+   * @return boolean that tells if these pallets are correct
+   */
 
-            }
+  public boolean scan(ArrayList<ArrayList<String>> pallets,
+      HashMap<Integer, ArrayList<ArrayList<String>>> loadinglist,
+      HashMap<Integer, ArrayList<ArrayList<String>>> loaded, OrderManager om) {
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 4; j++) {
+        if (!loadinglist.get(pickid).get(i).get(j).equals(pallets.get(i).get(j))) {
+          repick(om);
+          return false;
+        }
+      }
+    }
+    loaded.put(pickid, pallets);
+    return true;
+  }
 
+
+
+  /**
+   * Call OrderManager to repick these pickid.
+   * 
+   * @param om the OrderManager
+   */
+  public void repick(OrderManager om) {
+    om.repick(this.pickid);
+  }
+
+  /**
+   * Load every sku number of the fascia in the loadinglist in to a file.
+   * @param loaded the loaded list of fascia
+   * @param filePath file to write in
+   * @throws IOException when file is not found.
+   */
+  public void load(HashMap<Integer, ArrayList<ArrayList<String>>> loaded, String filePath)
+      throws IOException {
+
+    String csvFile = filePath;
+    FileWriter writer = new FileWriter(csvFile);
+    String frontSku = "";
+    String backSku = "";
+
+    if (loaded.keySet().size() == 0) {
+      writer.close();
+      return;
+    }
+    for (Integer key : loaded.keySet()) {
+      for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 4; j++) {
+          if (i == 0) {
+            frontSku = frontSku + loaded.get(key).get(i).get(j) + ",";
+          } else {
+            backSku = backSku + loaded.get(key).get(i).get(j) + ",";
           }
         }
       }
 
-    }
-    return repickid;
-  }
+      writer.append("pick ID: " + Integer.toString(key) + "," + frontSku + backSku);
 
-    
-    
-  public void add(Integer in) {
-    if (! this.repickid.contains(in)) {
-      this.repickid.add(in);
-    }  
-  }
-  
-  public void repick(OrderManager om) {
-    for (Integer i: this.repickid) {
-      om.repick(i);     
     }
-  }
 
-  
-  
-  public void load(HashMap<Integer, ArrayList<ArrayList<String>>> loadinglist, String filePath) 
-		  throws IOException  {
-	  
-	  String csvFile = filePath;
-	  FileWriter writer = new FileWriter(csvFile);
-	  String FrontSku = "";
-	  String BackSku = "" ;
-	  
-              if(loadinglist.keySet().size() == 0){
-                  writer.close();
-                  return;
-              }
-		 for (Integer key:  loadinglist.keySet())
-		 {
-			 for (int i=0; i<2; i++){
-				 for (int j=0; j<4; j++){
-					 if (i==0){
-						 FrontSku = FrontSku + loadinglist.get(key).get(i).get(j) + ",";
-					 }else{
-						 BackSku = BackSku + loadinglist.get(key).get(i).get(j) + ",";
-					 }
-				 }
-			 }
-			 
-			 writer.append("pick ID: " + Integer.toString(key) +"," + FrontSku + BackSku);
-			 
-		 }
-		  
-	writer.close();
+    writer.close();
     System.out.println("Loading");
-    
-    
+
+
   }
 
   @Override
   public String getName() {
-    // TODO Auto-generated method stub
     return name;
   }
 
+
   @Override
   public int getid() {
-    // TODO Auto-generated method stub
-    return 0;
+    return this.pickid;
   }
 
 
