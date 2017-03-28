@@ -155,7 +155,7 @@ public class Hrsystem {
   public int getLoaderId() {
     if (!unScanedloadedID.isEmpty()){
       int reint = unScanedloadedID.get(0);
-      unScanedloadedID.remove(reint);
+      unScanedloadedID.remove(0);
       return reint;
     }else{
       return 0;
