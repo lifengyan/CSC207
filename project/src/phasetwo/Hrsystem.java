@@ -60,6 +60,7 @@ public class Hrsystem {
 	      }
 	    }
 	    Loader nw = new Loader(name);
+	    hrSystemLoader.add( nw);
 	    return nw;
 	  }
 

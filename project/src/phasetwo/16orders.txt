@@ -28,3 +28,4 @@ sequencer Leon scan 4
 sequencer Leon scan 4
 loader bobi ready
 loader bobi scan 37 21 3 3 38 22 4 4 
+loader bobi loading
