@@ -25,9 +25,13 @@ public class LoaderCommand implements Cammand{
     }else if (userInput[2].equals("scan")){
       loaderScan();      
     }else if (userInput[2].equals("rescan")){
-        //loader rescan
+      CurrentLoader.ready(CurrentLoader.getid());
+      theSystem.LOGGER.log(Level.FINE, "Loader " + CurrentLoader.getName()
+      + "is going to repick  with id of " +CurrentLoader.getid());
     }else if (userInput[2].equals("loading")){
       //loader finish loading send all the item to truck
+      CurrentLoader.load(theSystem.hrsystem.loadingList, "order.csv");
+      theSystem.LOGGER.log(Level.FINE,"Loader " + userInput[1].toString() + " is loading" + "\n");
     }
     
   }
@@ -62,6 +66,10 @@ public class LoaderCommand implements Cammand{
     int loaderid = hrsystem.getLoaderId();
     if (loaderid != 0){
     currentLoader.ready(loaderid);
+    theSystem.LOGGER.log(Level.FINE, "Loader " + CurrentLoader.getName()
+    + "resive pick id of " +CurrentLoader.getid());
+        
+        
     }
   }
 

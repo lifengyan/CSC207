@@ -98,32 +98,9 @@ public class MainFunction {
             break;
 
           case "loader":
-                Loader currentLoader = hrsystemA.getLoader(userInput[1]);
-                if (userInput[2].equals("ready")) {
-                  
-                    
-                }else if (userInput[2].equals("scan")){
-                   //loader scan one by one
-                }else if (userInput[2].equals("rescan")){
-                    //loader rescan
-                }else if (userInput[2].equals("loading")){
-                  //loader finish loading send all the item to truck
-                }
-                
-                
-            System.out.println("Loader " + userInput[1] + " is loading");
-            
-            
-            currentLoader.load(hrsystemA.loadingList, orderFile);
-             
-            LOGGER.log(Level.FINE,"Loader " + userInput[1].toString() + " is loading" + "\n");
-            
-            break;
-
-          case "close":
-        
-            break;
-            
+            Cammand LoaderCommand = new LoaderCommand( theSystem,userInput);
+            LoaderCommand.execute();
+            break;           
           default:
             LOGGER.log(Level.INFO,"Input did not follow the requirement" + "\n");
             break;

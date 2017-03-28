@@ -16,7 +16,7 @@ public class Hrsystem {
   private HashMap<Integer, ArrayList<String>> unsequencingList;
   private HashMap<Integer, ArrayList<ArrayList<String>>> unloadingList;
   public HashMap<Integer, ArrayList<ArrayList<String>>> loadingList;
-  private ArrayList<Integer> unloadedID = null;
+  private ArrayList<Integer> unScanedloadedID = null;
 
   /**
    * Construct Hrsystem.
@@ -124,7 +124,7 @@ public class Hrsystem {
    */
   public void addToloader(Integer id, ArrayList<ArrayList<String>> loadingitem) {
     unloadingList.put(id, loadingitem);
-    unloadedID.add(id);
+    unScanedloadedID.add(id);
     unsequencingList.remove(id);
     
   }
@@ -151,9 +151,9 @@ public class Hrsystem {
   }
 
   public int getLoaderId() {
-    if (!unloadedID.isEmpty()){
-      int reint = unloadedID.get(0);
-      unloadedID.remove(reint);
+    if (!unScanedloadedID.isEmpty()){
+      int reint = unScanedloadedID.get(0);
+      unScanedloadedID.remove(reint);
       return reint;
     }else{
       return 0;
