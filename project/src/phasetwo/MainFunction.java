@@ -76,8 +76,8 @@ public class MainFunction {
         String[] userInput;
         LOGGER.log(Level.FINER,"Please enter a command" );
         String logevent;
-        logevent=scanner.next();
-        userInput = logevent.split(",");
+        logevent=scanner.nextLine();
+        userInput = logevent.split("\\s+");
         LOGGER.log(Level.FINEST,"User input: " + logevent +" \n" );
         // Us a case statement to find out which command it used
         switch (userInput[0]) {

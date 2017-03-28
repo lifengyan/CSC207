@@ -16,7 +16,7 @@ public class Hrsystem {
   private HashMap<Integer, ArrayList<String>> unsequencingList;
   private HashMap<Integer, ArrayList<ArrayList<String>>> unloadingList;
   public HashMap<Integer, ArrayList<ArrayList<String>>> loadingList;
-  private ArrayList<Integer> unScanedloadedID = null;
+  private ArrayList<Integer> unScanedloadedID;
 
   /**
    * Construct Hrsystem.
@@ -28,6 +28,8 @@ public class Hrsystem {
     this.unloadingList = new HashMap<Integer, ArrayList<ArrayList<String>>>();
     this.hrSystemLoader = new ArrayList<Loader> ();
     this.loadingList = new  HashMap<Integer, ArrayList<ArrayList<String>>>();
+    this.unScanedloadedID = new ArrayList<Integer> ();
+    
   }
 
   /**

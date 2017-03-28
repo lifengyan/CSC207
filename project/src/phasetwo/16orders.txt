@@ -1,28 +1,28 @@
-order,Blue,SES
-order,Red,SES
-order,White,SE
-order,White,SE
-picker,Alice,ready
-order,Beige,S
-order,Green,SES
-order,White,SE
-picker,Alice,pick,37
-picker,Alice,pick,38
-picker,Alice,pick,21
-picker,Alice,pick,22
-picker,Alice,pick,3
-order,White,SE
-picker,Bob,ready
-picker,Alice,pick,4
-picker,Alice,pick,3
-picker,Alice,pick,4
-picker,Alice,marshaling
-sequencer,Leon,ready
-sequencer,Leon,scan,37
-sequencer,Leon,scan,38
-sequencer,Leon,scan,21
-sequencer,Leon,scan,22
-sequencer,Leon,scan,3
-sequencer,Leon,scan,3
-sequencer,Leon,scan,4
-sequencer,Leon,scan,4
+order Blue SES
+order Red SES
+order White SE
+order White SE
+picker Alice ready
+order Beige S
+order Green SES
+order White SE
+picker Alice pick 37
+picker Alice pick 38
+picker Alice pick 21
+picker Alice pick 22
+picker Alice pick 3
+order White SE
+picker Bob ready
+picker Alice pick 4
+picker Alice pick 3
+picker Alice pick 4
+picker Alice marshaling
+sequencer Leon ready
+sequencer Leon scan 37
+sequencer Leon scan 38
+sequencer Leon scan 21
+sequencer Leon scan 22
+sequencer Leon scan 3
+sequencer Leon scan 3
+sequencer Leon scan 4
+sequencer Leon scan 4
