@@ -47,7 +47,6 @@ public class LoaderCommand implements Cammand{
     }
     pallets.add(front);
     pallets.add(back);
-    
     if (CurrentLoader.scan(pallets,theSystem.hrsystem.getunloadingList(),
         theSystem.hrsystem.loadingList, 
         theSystem.orderManager)){
@@ -66,10 +65,10 @@ public class LoaderCommand implements Cammand{
     int loaderid = hrsystem.getLoaderId();
     if (loaderid != 0){
     currentLoader.ready(loaderid);
+    System.out.println(CurrentLoader.getid());
     theSystem.LOGGER.log(Level.FINE, "Loader " + CurrentLoader.getName()
-    + "resive pick id of " +CurrentLoader.getid());
-        
-        
+    + " recieve pick id of " +CurrentLoader.getid());
+                
     }
   }
 
