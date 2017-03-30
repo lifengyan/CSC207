@@ -93,16 +93,17 @@ public class Loader implements Worker {
     }
 
     writer.close();
-
-
   }
-
+  /***
+   * return worker name
+   */
   @Override
   public String getName() {
     return name;
   }
-
-
+  /***
+   * return workker id
+   */
   @Override
   public int getid() {
     return this.pickid;
