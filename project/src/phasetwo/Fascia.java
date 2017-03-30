@@ -1,9 +1,9 @@
 package phasetwo;
 
 public class Fascia {
-  private int sku;
+  private String sku;
 
-  public Fascia(int sku) {
+  public Fascia(String sku) {
     this.sku = sku;
   }
 
@@ -11,7 +11,7 @@ public class Fascia {
 
   }
 
-  public int getsku() {
+  public String getsku() {
     return this.sku;
   }
 }
