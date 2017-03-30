@@ -6,17 +6,21 @@ import java.util.logging.Level;
 
 public class LoaderCommand implements Cammand{
   
-  warehouseSystem theSystem;
-  String[] userInput;
-  Loader CurrentLoader;
-  
+  private warehouseSystem theSystem;
+  private String[] userInput;
+  private Loader CurrentLoader;
+  /***
+   * constuctor the loader command
+   */
   public LoaderCommand(warehouseSystem theSystem, String[] userInput) {
     this.theSystem = theSystem;
     this.userInput  = userInput;
     CurrentLoader = theSystem.hrsystem.getLoader(userInput[1]);
   }
   
-
+/***
+ * this part is to find our what task the loader need to do
+ */
   @Override
   public void execute() throws IOException {
     if (userInput[2].equals("ready")) {
@@ -36,7 +40,9 @@ public class LoaderCommand implements Cammand{
     
   }
 
-
+/***
+ * loader will give system 8 sku and check if it fit the requirements
+ */
   private void loaderScan() {
     ArrayList<String> front = new ArrayList<String>();
     ArrayList<String> back = new ArrayList<String>();
@@ -59,7 +65,9 @@ public class LoaderCommand implements Cammand{
     }
   }
 
-
+/***
+ * get the loader from the hrsystem, if not, creat a new one
+ */
   private void loaderReady(Hrsystem hrsystem, 
       String[] userInput2, Loader currentLoader) {
     int loaderid = hrsystem.getLoaderId();

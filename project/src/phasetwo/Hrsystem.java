@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Hrsystem {
   private ArrayList<Sequencer> FreeSequencer;
-  private ArrayList<Worker> hrSystemOther;
+  private ArrayList<Replenisher> hrSystemOther;
   private ArrayList<Loader> hrSystemLoader;
 
   private HashMap<Integer, ArrayList<String>> unsequencingList;
@@ -22,7 +22,7 @@ public class Hrsystem {
    * Construct Hrsystem.
    */
   public Hrsystem() {
-    this.hrSystemOther = new ArrayList<Worker>();
+    this.hrSystemOther = new ArrayList<Replenisher>();
     this.FreeSequencer = new ArrayList<Sequencer>();
     this.unsequencingList = new HashMap<Integer, ArrayList<String>>();
     this.unloadingList = new HashMap<Integer, ArrayList<ArrayList<String>>>();
@@ -63,8 +63,21 @@ public class Hrsystem {
 	    hrSystemLoader.add( nw);
 	    return nw;
 	  }
-
-
+  /***
+   * return a Replenisher, if ther is no Replenisher in the system create a new one
+   * @param name
+   * @return
+   */
+  public Replenisher getReplenisher(String name) {
+    for (int i = 0; i < hrSystemOther.size(); i++) {
+      if (hrSystemOther.get(i).getName().equals(name)) {
+        return  hrSystemOther.get(i);
+      }
+    }
+    Replenisher nw = new Replenisher(name);
+    hrSystemOther.add( nw);
+    return nw;
+  }
 
   /**
    * Read list of workers from a file input.

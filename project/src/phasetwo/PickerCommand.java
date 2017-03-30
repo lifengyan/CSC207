@@ -9,9 +9,9 @@ import java.util.logging.Logger;
  * all the userInput that starts with "picker"
  */
 public class PickerCommand implements Cammand  {
-  warehouseSystem theSystem;
-  String[] userInput;
-  Picker currentPicker;
+  private warehouseSystem theSystem;
+  private String[] userInput;
+  private Picker currentPicker;
   
   /**
    * Constructor for PickerCommand class, store warehouseSystem information and userInput to variables. 

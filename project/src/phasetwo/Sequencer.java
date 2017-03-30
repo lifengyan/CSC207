@@ -26,15 +26,21 @@ public class Sequencer implements Worker {
    * @return the pickId of the picking request that the sequencer is processing
    */
 
-
+  /**
+   * return pickerid
+   */
   public int getid() {
     return id;
   }
-
+  /***
+   * assign the id to picker
+   */
   public void ready(int pickid) {
     this.id = pickid;
   }
-
+  /***
+   * picker enter the barcode reading sky, return total number of crorrect sku
+   */
   public int scan(String sku) {
     this.cursku = sku;
     return this.count;
@@ -108,13 +114,16 @@ public class Sequencer implements Worker {
     whole.add(frontpallet);
     whole.add(backpallet);
     return whole;
-
   }
-
+  /***
+   * find error, send back to Order Manager to repick
+   */
   public void repick(OrderManager om) {
     om.repick(this.id);
   }
-
+  /***
+   * return woker`s name
+   */
   public String getName() {
     // TODO Auto-generated method stub
     return name;

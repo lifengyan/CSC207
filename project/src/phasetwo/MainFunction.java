@@ -100,7 +100,11 @@ public class MainFunction {
           case "loader":
             Cammand LoaderCommand = new LoaderCommand( theSystem,userInput);
             LoaderCommand.execute();
-            break;           
+            break; 
+          case "replenisher":
+            Cammand ReplenisherCommand = new ReplenisherCommand( theSystem,userInput);
+            ReplenisherCommand.execute();
+            break;  
           default:
             LOGGER.log(Level.INFO,"Input did not follow the requirement" + "\n");
             break;
