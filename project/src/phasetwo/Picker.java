@@ -16,6 +16,9 @@ public class Picker {
   private String name; // name of the picker
   private Integer nextpick = 0;// keep track of how many fascias the picker has picked
 
+  public Integer getcurrentPickNum(){
+	  return (this.nextpick)-1;
+  }
   /**
    * Constructor, get input string as a picker's name and assign it to this.name
    * @param pickername the name of picker for this picker instance
@@ -27,29 +30,15 @@ public class Picker {
 /**
  * add the SKU number of the correct fascia that is picked by picker to the forkLift. 
  * checkPickerScanedCorrectSKU method will be called before this method to make sure it is the
- * correct SKU that goes into the forkLift. Since we incremented nextpick by one in the
- * checkPickerScanedCorrectSKU method, we use nextpick-1 here.
+ * correct SKU that goes into the forkLift. 
+ * The same time, the warehouse stock information will be updated here.
+ * Since we incremented nextpick by one in the checkPickerScanedCorrectSKU method, we use nextpick-1 here.
  * @param sku
  * @param currentWarehouse
  */
-  public void addtoFolkLift(String sku, Warehouse currentWarehouse) {
+  public void addtoFolkLift(String sku) {
     this.forkLift.add(sku);
-    int previouspick = nextpick -1; //here we want the current location not the next one.
-    Location currLocation = locationList.get(previouspick); 
-    int zone = 0;											
-    if (currLocation.zone.equals("B")) {
-      zone = 1;
-    }
-    currentWarehouse.getFascia(zone, Integer.valueOf(currLocation.aisle),
-        Integer.valueOf(currLocation.rack), Integer.valueOf(currLocation.level));
   }
-  
-  /**
-   * if the picker picked a wrong fascia, put it back.
-   */
- public void returnWrongfascia(){
-	 
- }
   
  /**
   * add the arrayList of location for the 8 fascias that the picker needs to pick. 
@@ -121,7 +110,13 @@ public class Picker {
   public String getNextLocation() {
     return locationList.get(nextpick).toString();
   }
-  
+  /**
+   * getter function for location list 
+   * @return
+   */
+  public ArrayList<Location> getLocationList(){
+	  return this.locationList;
+  }
 /**
  * setter function to set the request id of the request that is assigned to this picker
  * @param id a unique request id 

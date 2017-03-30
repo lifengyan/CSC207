@@ -72,7 +72,19 @@ public class Warehouse {
     scanner.close();
   }
 
-
+  
+ /**
+  * helper function used in Main to remove one fascia from location pasted as input parameter 
+  * @param currentLoc the location where picker piked one fascia
+  */
+public void removeOneAtLocation(Location currentLoc){
+	int zone = 0;
+	if(currentLoc.zone.equals("B")){
+		zone = 1;
+	}
+	this.getFascia(zone, Integer.valueOf(currentLoc.aisle), Integer.valueOf(currentLoc.rack), 
+			Integer.valueOf(currentLoc.level));
+}
 
   /**
    * When a pick scan the barcode, it will tell the system it take the Fascia from the warehouse.
@@ -87,6 +99,7 @@ public class Warehouse {
   public Fascia getFascia(int zone, int aisles, int racks, int level) {
     return warehouseinv.get(zone).get(aisles).get(racks).get(level).removeOne();
   }
+  
 
   /**
    * Write down the warehouse system into a csv file.
