@@ -14,16 +14,18 @@ public class OrderCommand implements Cammand {
     this.theSystem = theSystem;
     this.userInput  = userInput;
   }
-  
-  
-
+  /***
+   * order command excute, creat a order base on the input
+   */
   @Override
   public void execute() throws IOException {
     // TODO Auto-generated method stub
     createorder(theSystem.orderManager, theSystem.pickerManager, theSystem.warehousePicking, 
         theSystem.translate, theSystem.LOGGER, userInput);
   }
-
+/***
+ * creat a order, if there are enough order and a free pickerm assign the picking task to this picker
+ */
 private static void createorder(OrderManager orderManager, PickerManager pickerManager,
         WarehousePicking warehousePicking, Translate translateA, Logger LOGGER, String[] userInput)
         throws IOException {

@@ -85,15 +85,21 @@ public class OrderManager {
       in--;
     }
   }
-
+  /***
+   * return the current picking id
+   */
   public int hasNext() {
     return this.hasnext;
   }
-  
+  /***
+   * return the repick list
+   */
   public ArrayList<Order> getRepick() {
     return this.repick;
   }
-
+/***
+ * get all the order
+ */
   public Map<Integer, Order> getOrders() {
     return this.orders;
   }

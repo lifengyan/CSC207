@@ -163,9 +163,10 @@ public class Hrsystem {
       Replenisher rp = new Replenisher(name);
       this.hrSystemOther.add(rp);
     }
-
   }
-
+  /***
+   * return one of the pickid that is sequenced but loader have not scan yet
+   */
   public int getLoaderId() {
     if (!unScanedloadedID.isEmpty()){
       int reint = unScanedloadedID.get(0);
@@ -176,7 +177,9 @@ public class Hrsystem {
     }
     
   }
-
+/***
+ * return the loader scaned but not loadinged list
+ */
   public HashMap<Integer, ArrayList<ArrayList<String>>> getunloadingList() {
     return  unloadingList;
   }
