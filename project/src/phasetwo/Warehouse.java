@@ -12,7 +12,7 @@ public class Warehouse {
   // this two ArrayList use to represent two Zone inside the warehouse,
   // the order followed by aisles,racks,level and in side the WarehouseLevel there
   // are 30 space to put down the Fascia.
-  static ArrayList<ArrayList<ArrayList<ArrayList<Level>>>> warehouseinv = new ArrayList<>();
+  private ArrayList<ArrayList<ArrayList<ArrayList<Level>>>> warehouseinv = new ArrayList<>();
   private String warehouseName;
 
   /**
@@ -129,6 +129,20 @@ public class Warehouse {
       }
     }
     writer.close();
+  }
+  /***
+   * return the level from the warehosue
+   * @param zone
+   * @param aile
+   * @param rack
+   * @param level
+   */
+
+
+
+
+  public Level getLevel(Integer zone, Integer aile, Integer rack, Integer level) {
+    return warehouseinv.get(zone).get(aile).get(rack).get(level);
   }
 
 

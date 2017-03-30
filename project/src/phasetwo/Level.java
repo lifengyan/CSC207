@@ -28,11 +28,14 @@ public class Level {
    */
   public void set(int numberOfFascia) {
 	  int differnt = fasciaList.size()-numberOfFascia;
+	  if (differnt>0){
 		  for(int i = 0; i< differnt; i++){
 			  fasciaList.remove(0);
-		  }
-
-	 
+		  }}else if (differnt<0);{
+	  
+	  for(int i = 0; i< -differnt; i++){
+        fasciaList.add(new Fascia());
+	  }}
 	  }
 
   /**
