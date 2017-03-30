@@ -1,8 +1,8 @@
 order Blue SES
+picker Alice ready
 order Red SES
 order White SE
 order White SE
-picker Alice ready
 order Beige S
 order Green SES
 order White SE
@@ -21,12 +21,27 @@ sequencer Leon ready
 sequencer Leon scan 37
 sequencer Leon scan 38
 sequencer Leon scan 21
+sequencer Leon scan 21
+sequencer Leon scan 3
+sequencer Leon scan 3
+sequencer Leon scan 4
+sequencer Leon scan 4
+picker Alice ready
+picker Alice pick 37
+picker Alice pick 38
+picker Alice pick 21
+picker Alice pick 22
+picker Alice pick 3
+picker Alice pick 4
+picker Alice pick 3
+picker Alice pick 4
+picker Alice marshaling
+sequencer Leon ready
+sequencer Leon scan 37
+sequencer Leon scan 38
+sequencer Leon scan 21
 sequencer Leon scan 22
 sequencer Leon scan 3
 sequencer Leon scan 3
 sequencer Leon scan 4
 sequencer Leon scan 4
-loader bobi ready
-loader bobi scan 37 21 3 3 38 22 4 4 
-loader bobi loading
-replenisher someone replenish A 0 0 2 

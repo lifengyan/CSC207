@@ -12,7 +12,7 @@ public class Hrsystem {
   private ArrayList<Sequencer> FreeSequencer;
   private ArrayList<Replenisher> hrSystemOther;
   private ArrayList<Loader> hrSystemLoader;
-
+  private ArrayList<Sequencer> hrSystemSequencer;
   private HashMap<Integer, ArrayList<String>> unsequencingList;
   private HashMap<Integer, ArrayList<ArrayList<String>>> unloadingList;
   public HashMap<Integer, ArrayList<ArrayList<String>>> loadingList;
@@ -29,6 +29,7 @@ public class Hrsystem {
     this.hrSystemLoader = new ArrayList<Loader> ();
     this.loadingList = new  HashMap<Integer, ArrayList<ArrayList<String>>>();
     this.unScanedloadedID = new ArrayList<Integer> ();
+    this.hrSystemSequencer = new ArrayList<Sequencer>();
     
   }
 
@@ -38,13 +39,28 @@ public class Hrsystem {
    * @return Sequencer
    */
   public Sequencer getSequencer(String name) {
+    
     for (int i = 0; i < FreeSequencer.size(); i++) {
       if (FreeSequencer.get(i).getName().equals(name)) {
-        return FreeSequencer.get(i);
+        Sequencer nw = FreeSequencer.get(i);
+        FreeSequencer.remove(i);
+        return nw;
+      }
+    }
+    for (int i = 0; i < hrSystemSequencer.size(); i++) {
+      if (hrSystemSequencer.get(i).getName().equals(name)) {
+        Sequencer nw = hrSystemSequencer.get(i);
+        return nw;
       }
     }
     Sequencer nw = new Sequencer(name);
-    FreeSequencer.add(nw);
+    // if there is no item for sequencer, then the sequencer will wait and become a free Sequencer
+    
+    if (unsequencingList.isEmpty()){
+      FreeSequencer.add(nw);
+    }else{hrSystemSequencer.add(nw);
+    }
+    
     return nw;
   }
   
@@ -114,7 +130,8 @@ public class Hrsystem {
 
   
   /**
-   * Return a sequencer ID.
+   * Return a sequencer ID. if there is a waiting sequencing a waits, return the id and remove it from the
+   * unsequencing list
    * @return a id
    */
   public Integer getSequencingid() {
@@ -140,9 +157,7 @@ public class Hrsystem {
    */
   public void addToloader(Integer id, ArrayList<ArrayList<String>> loadingitem) {
     unloadingList.put(id, loadingitem);
-    unScanedloadedID.add(id);
-    unsequencingList.remove(id);
-    
+    unScanedloadedID.add(id);    
   }
 
   /**
