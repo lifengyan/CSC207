@@ -3,6 +3,8 @@ package phasetwo;
 import java.util.logging.Logger;
 
 public class warehouseSystem {
+	// all the variable are public, since other command will use them, 
+	//this class is a way to store all the manaer together. 
   public OrderManager orderManager;
   public PickerManager pickerManager ;
   public WarehousePicking warehousePicking;
@@ -11,7 +13,9 @@ public class warehouseSystem {
   public Translate translate ;
   public  Logger LOGGER;
 
-  
+  /***
+   * constuct the warhousle System, put all other system into this class
+   */
   public warehouseSystem(OrderManager orderManager, 
       Hrsystem hrsystemA,
       PickerManager pickerManager,
