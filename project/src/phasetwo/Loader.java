@@ -9,12 +9,16 @@ import java.util.HashMap;
 public class Loader implements Worker {
   private String name;
   private Integer pickid;
-
+  /***
+   * constuctor, give the loader a name
+   */
   public Loader(String name) {
     this.name = name;
   }
 
-
+  /***
+   * set the loader`s pick id
+   */
   public void ready(int pickid) {
     this.pickid = pickid;
   }
