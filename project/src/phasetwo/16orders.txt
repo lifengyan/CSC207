@@ -45,3 +45,5 @@ sequencer Leon scan 3
 sequencer Leon scan 3
 sequencer Leon scan 4
 sequencer Leon scan 4
+loader zhaoyuan ready
+loader zhaoyuan scan 
