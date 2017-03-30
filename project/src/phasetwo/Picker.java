@@ -83,16 +83,6 @@ public class Picker {
   }
 
   /**
-   * getter method to get the unique requestID associated with the request that the picker
-   * is currently working on. Used when picker finished this request and send it to marshaling 
-   * in the main function.
-   * @return
-   */
-  public Integer getRequestid() {
-    return this.requestId;
-  }
-
-  /**
    * getter function to get the name variable in this picker instance, this method 
    * is used in pickerManager to find the picker instance with a specified name variable 
    * @return the picer's name
@@ -128,5 +118,15 @@ public class Picker {
  */
   public void setRequestid(int id) {
     this.requestId = id;
+  }
+  
+  /**
+   * getter method to get the unique requestID associated with the request that the picker
+   * is currently working on. Used when picker finished this request and send it to marshaling 
+   * in the main function.
+   * @return
+   */
+  public Integer getRequestid() {
+    return this.requestId;
   }
 }
