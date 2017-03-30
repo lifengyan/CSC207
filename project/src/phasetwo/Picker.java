@@ -16,9 +16,7 @@ public class Picker {
   private String name; // name of the picker
   private Integer nextpick = 0;// keep track of how many fascias the picker has picked
 
-  public Integer getcurrentPickNum(){
-	  return (this.nextpick)-1;
-  }
+
   /**
    * Constructor, get input string as a picker's name and assign it to this.name
    * @param pickername the name of picker for this picker instance
@@ -116,6 +114,13 @@ public class Picker {
    */
   public ArrayList<Location> getLocationList(){
 	  return this.locationList;
+  }
+  /**
+   * getter function for nextPick Integer
+   * @return the number that indicates how many fascis this picker picked
+   */
+  public Integer getcurrentPickNum(){
+	  return (this.nextpick)-1;
   }
 /**
  * setter function to set the request id of the request that is assigned to this picker
