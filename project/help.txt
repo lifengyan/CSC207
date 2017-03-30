@@ -1,0 +1,3 @@
+In terminal, direct to group_0411/project/src
+Input: javac phasetwo/MainFunction.java 
+	java phasetwo/MainFunction
