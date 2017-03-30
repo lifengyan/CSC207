@@ -33,7 +33,7 @@ private static void createorder(OrderManager orderManager, PickerManager pickerM
       LOGGER.log(Level.FINE, "New order " + userInput[1]+ " " + userInput[2] + " has been created.");
       
       // check if there is free picker && there are 4 orders to generate a request
-      if (pickerManager.getFreePicker().size() != 0 && orderManager.hasNext() != 0) {
+      if (pickerManager.getFreePicker().size() != 0 && orderManager.freeOrderNumber() != 0) {
         //there is free pick and also enough order for pick 
         Picker curFreePicker = pickerManager.getFreePicker().get(0);
         pickerManager.deletFreePicker(curFreePicker);
