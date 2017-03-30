@@ -107,7 +107,7 @@ public class Hrsystem {
       Sequencer localSequencer = FreeSequencer.get(0);
       FreeSequencer.remove(0);
       localSequencer.ready(this.getSequencingid());
-      return (localSequencer.getName() + "resived the items with pick ID of "+ localSequencer.getid());
+      return (localSequencer.getName() + " recieved the items with pick ID of "+ localSequencer.getid());
     }
     return "we do not have free sequencer yet";
   }
