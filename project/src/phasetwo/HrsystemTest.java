@@ -1,6 +1,8 @@
 package phasetwo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +16,8 @@ public class HrsystemTest {
 	Hrsystem hr = new Hrsystem();
 	public static String hrfile = new File("src/phasetwo/hrfile.csv").getAbsolutePath();
 	ArrayList<String> sequencinglist = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8"));
+	ArrayList<String> front = new ArrayList<String>(Arrays.asList("1","2","3","4"));
+	ArrayList<String> back = new ArrayList<String>(Arrays.asList("5","6","7","8"));
 
 	@Before
 	public void setUp() throws Exception {
@@ -37,6 +41,8 @@ public class HrsystemTest {
 
 	@Test
 	public void testGetReplenisher() {
+	  hr.createEmployee("Unger", "Replenisher");
+	  assertEquals(hr.getReplenisher("Unger").getName(),"Unger");
 		assertEquals(hr.getReplenisher("Leslie").getName(),"Leslie");
 	}
 
@@ -56,32 +62,40 @@ public class HrsystemTest {
 
 	@Test
 	public void testGetSequencingid() {
-		fail("Not yet implemented");
+	  assertTrue(hr.getSequencingid()==0);	
 	}
 
 	@Test
 	public void testGetSequencingItem() {
-		fail("Not yet implemented");
+		hr.addtoSequencing(4, sequencinglist);
+		assertTrue(hr.getSequencingItem(4).equals(sequencinglist));
 	}
 
 	@Test
 	public void testAddToloader() {
-		fail("Not yet implemented");
+	  ArrayList<ArrayList<String>> pallets = new ArrayList<ArrayList<String>>();
+	  pallets.add(front);
+	  pallets.add(back);
+	  hr.addToloader(4,pallets);
+	  assertEquals(hr.getunloadingList().get(4),pallets);
+		
 	}
 
 	@Test
 	public void testCreateEmployee() {
-		fail("Not yet implemented");
+		hr.createEmployee("Amy", "Sequencer");
+		assertEquals(hr.getSequencer("Amy").getName(),"Amy");
 	}
 
 	@Test
 	public void testGetLoaderId() {
-		fail("Not yet implemented");
+	  assertEquals(hr.getLoaderId(),0);
+	  ArrayList<ArrayList<String>> pallets = new ArrayList<ArrayList<String>>();
+      pallets.add(front);
+      pallets.add(back);
+      hr.addToloader(4,pallets);
+      assertEquals(hr.getLoaderId(),4);
 	}
 
-	@Test
-	public void testGetunloadingList() {
-		fail("Not yet implemented");
-	}
 
 }
