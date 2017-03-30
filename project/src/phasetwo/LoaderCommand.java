@@ -73,7 +73,6 @@ public class LoaderCommand implements Cammand{
     int loaderid = hrsystem.getLoaderId();
     if (loaderid != 0){
     currentLoader.ready(loaderid);
-    System.out.println(CurrentLoader.getid());
     theSystem.LOGGER.log(Level.FINE, "Loader " + CurrentLoader.getName()
     + " recieve pick id of " +CurrentLoader.getid());
                 
