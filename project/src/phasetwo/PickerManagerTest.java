@@ -1,9 +1,8 @@
-/**
- * 
- */
 package phasetwo;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,45 +11,24 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author lifengyan
+ * Test for PickManager class
  *
  */
 public class PickerManagerTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * Test method for {@link phasetwo.PickerManager#getORaddPicker(java.lang.String)}.
 	 */
 	@Test
 	public void testGetORaddPicker() {
-		fail("Not yet implemented");
+		Picker piCker = new Picker("Alice");
+		PickerManager  pickerManager = new PickerManager();
+		piCker = pickerManager.getORaddPicker("Alice");
+		assertEquals("Alice",piCker.getName());
+		piCker = pickerManager.getORaddPicker("Bob");
+		assertEquals("Bob",piCker.getName());
+		piCker = pickerManager.getORaddPicker("Alice");
+		assertEquals("Alice",piCker.getName());
 	}
 
 	/**
@@ -58,7 +36,15 @@ public class PickerManagerTest {
 	 */
 	@Test
 	public void testGetFreePicker() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		Picker boB = new Picker("boB");
+		PickerManager pickerManager = new PickerManager();
+		pickerManager.addFreePicker(aLice);
+		pickerManager.addFreePicker(boB);
+		ArrayList<Picker> freePicker = new ArrayList<Picker>();
+		freePicker.add(aLice);
+		freePicker.add(boB);
+		assertEquals(freePicker,pickerManager.getFreePicker());
 	}
 
 	/**
@@ -66,7 +52,12 @@ public class PickerManagerTest {
 	 */
 	@Test
 	public void testAddFreePicker() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		PickerManager pickerManager = new PickerManager();
+		pickerManager.addFreePicker(aLice);
+		ArrayList<Picker> freePicker = new ArrayList<Picker>();
+		freePicker.add(aLice);
+		assertEquals(freePicker,pickerManager.getFreePicker());
 	}
 
 	/**
@@ -74,7 +65,15 @@ public class PickerManagerTest {
 	 */
 	@Test
 	public void testDeletFreePicker() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		Picker boB = new Picker("boB");
+		PickerManager pickerManager = new PickerManager();
+		pickerManager.addFreePicker(aLice);
+		pickerManager.addFreePicker(boB);
+		ArrayList<Picker> freePicker = new ArrayList<Picker>();
+		freePicker.add(aLice);
+		pickerManager.deletFreePicker(boB);
+		assertEquals(freePicker,pickerManager.getFreePicker());
 	}
 
 	/**
@@ -82,7 +81,16 @@ public class PickerManagerTest {
 	 */
 	@Test
 	public void testDeletPicker() {
-		fail("Not yet implemented");
+		Picker piCker = new Picker("Alice");
+		Picker boB = new Picker("Bob");
+		PickerManager  pickerManager = new PickerManager();
+		piCker = pickerManager.getORaddPicker("Alice");
+		boB = pickerManager.getORaddPicker("Bob");
+		pickerManager.deletPicker(piCker);
+		ArrayList<Picker> pickerList = new ArrayList<Picker>();
+		pickerList.add(boB);
+		assertEquals(pickerList,pickerManager.getPickerList());
+		
 	}
 
 }

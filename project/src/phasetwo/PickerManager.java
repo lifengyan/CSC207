@@ -62,4 +62,12 @@ public class PickerManager {
   public void deletPicker(Picker picker) {
     this.pickerList.remove(picker);
   }
+  /**
+   * return an ArrayList of pickerList
+   * This function is only used in the PickerManagerTest file
+   * @return ArrayList of Picker type
+   */
+  public ArrayList<Picker> getPickerList(){
+	  return this.pickerList;
+  }
 }
