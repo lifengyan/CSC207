@@ -92,7 +92,12 @@ private  void pickerPicked(PickerManager pickerManager, Warehouse warehouseA, Lo
         //check if the picker picked the correct Fasica
         if (currentPicker.checkPickerScanedCorrectSKU(userInputSku)){
             currentPicker.addtoFolkLift(userInputSku);
-            warehouseA.removeOneAtLocation(currentPicker.getLocationList().get(currentPicker.getcurrentPickNum()));
+            String levelInfo =  warehouseA.removeOneAtLocation
+                (currentPicker.getLocationList().get(currentPicker.getcurrentPickNum()));
+            LOGGER.log(Level.FINE,"location " + currentPicker.getLocationList().
+                get(currentPicker.getcurrentPickNum()).toString()
+                + levelInfo);
+            
             //check if the picker get all 8 of the sku
             if (currentPicker.checkgotAllSKU()){ 
               LOGGER.log(Level.FINE,"picker " + userInput[1] + " please go to marshaling."); 

@@ -18,7 +18,6 @@ public class Fascia {
    * return the sku this is a small change
    */
   public String getsku() {
-
     return this.sku;
   }
 }

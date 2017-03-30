@@ -13,7 +13,6 @@ public class Warehouse {
   // the order followed by aisles,racks,level and in side the WarehouseLevel there
   // are 30 space to put down the Fascia.
   private ArrayList<ArrayList<ArrayList<ArrayList<Level>>>> warehouseinv = new ArrayList<>();
-  private String warehouseName;
 
   /**
    * Construct the warehouse, entire warehouse are build in a nest arraylist
@@ -77,12 +76,12 @@ public class Warehouse {
   * helper function used in Main to remove one fascia from location pasted as input parameter 
   * @param currentLoc the location where picker piked one fascia
   */
-public void removeOneAtLocation(Location currentLoc){
+public String removeOneAtLocation(Location currentLoc){
 	int zone = 0;
 	if(currentLoc.zone.equals("B")){
 		zone = 1;
 	}
-	this.getFascia(zone, Integer.valueOf(currentLoc.aisle), Integer.valueOf(currentLoc.rack), 
+	return this.getFascia(zone, Integer.valueOf(currentLoc.aisle), Integer.valueOf(currentLoc.rack), 
 			Integer.valueOf(currentLoc.level));
 }
 
@@ -96,7 +95,7 @@ public void removeOneAtLocation(Location currentLoc){
    * @param level level of warehouse
    * @return a Fascia 
    */
-  public Fascia getFascia(int zone, int aisles, int racks, int level) {
+  public String getFascia(int zone, int aisles, int racks, int level) {
     return warehouseinv.get(zone).get(aisles).get(racks).get(level).removeOne();
   }
   
@@ -150,10 +149,6 @@ public void removeOneAtLocation(Location currentLoc){
    * @param rack
    * @param level
    */
-
-
-
-
   public Level getLevel(Integer zone, Integer aile, Integer rack, Integer level) {
     return warehouseinv.get(zone).get(aile).get(rack).get(level);
   }

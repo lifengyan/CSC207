@@ -45,11 +45,10 @@ public class Level {
    * @return Fascia
    * 
    */
-  public Fascia removeOne() {
+  public String removeOne() {
     Fascia retFascia = fasciaList.get(fasciaList.size() - 1);
     fasciaList.remove(fasciaList.size() - 1);
-    this.replenishing();
-    return retFascia;
+      return this.replenishing();
   }
 
   /***
@@ -64,11 +63,14 @@ public class Level {
    * when there are exactly 5 of fascia left in the rack, ware will replenishing 25 fascia from the
    * reserve room.
    */
-  public void replenishing() {
+  public String replenishing() {
     if (fasciaList.size() <= 5) {
-      System.out.println("Replenishing");
+     return "Need Replenishing";
       // need to add 25 more Fascia from the reserve room
       // in to the warehouse level.
+    }
+    else{
+      return " has " + String.valueOf(fasciaList.size())+ " left";
     }
   }
 
