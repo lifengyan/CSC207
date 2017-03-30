@@ -93,7 +93,6 @@ public class Loader implements Worker {
     }
 
     writer.close();
-    System.out.println("Loading");
 
 
   }
