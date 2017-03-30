@@ -15,7 +15,7 @@ import org.junit.Test;
 public class PickerTest {
 
 	/**
-	 * Test method for {@link phasetwo.Picker#Picker(java.lang.String)}.
+	 * Test method for  {@link phasetwo.Picker#Picker(java.lang.String)}.
 	 */
 	@Test
 	public void testPicker() {
