@@ -13,6 +13,7 @@ import org.junit.Test;
 public class HrsystemTest {
 	Hrsystem hr = new Hrsystem();
 	public static String hrfile = new File("src/phasetwo/hrfile.csv").getAbsolutePath();
+	ArrayList<String> sequencinglist = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8"));
 
 	@Before
 	public void setUp() throws Exception {
@@ -49,7 +50,6 @@ public class HrsystemTest {
 	@Test
 	public void testAddtoSequencing() {
 		hr.getSequencer("Leslie");
-		ArrayList<String> sequencinglist = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8"));
 		assertEquals(hr.addtoSequencing(4, sequencinglist),"Leslie recieved the items with pick ID of 4");
 		
 	}
