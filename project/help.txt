@@ -1,3 +1,14 @@
-In terminal, direct to group_0411/project
-Input: javac -cp src src/phasetwo/MainFunction.java 
-	java -cp phasetwo/MainFunction
+In terminal, cd to group_0411/project
+Input Commands: javac -cp src src/phasetwo/MainFunction.java 
+		java -cp phasetwo/MainFunction
+
+16order.txt: 
+	- Please follow the given format of each input line, such as space in between words.
+	- While one Picker is working on a request, this picker can not be called ready again.
+	  (with the same name)
+
+Output files: 
+- warehouse.csv: (final.csv) returns level of pick face that have less than 30 fascia.
+		 Can be used in next run of the program as initial status of the warehouse.
+- order.csv: contains orders that were loaded onto the truck.
+- log.txt: records all the loggings
