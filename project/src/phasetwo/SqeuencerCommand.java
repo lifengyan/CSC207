@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 public class SqeuencerCommand implements Cammand   {
-  warehouseSystem theSystem;
-  String[] userInput;
-  Sequencer currentSequencer;
+  private warehouseSystem theSystem;
+  private String[] userInput;
+  private Sequencer currentSequencer;
   
   public SqeuencerCommand(warehouseSystem theSystem, String[] userInput) {
     this.theSystem = theSystem;

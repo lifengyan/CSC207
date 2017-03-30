@@ -7,9 +7,8 @@ import java.util.logging.Logger;
 
 public class OrderCommand implements Cammand {
   
-  warehouseSystem theSystem;
-  String[] userInput;
-  Picker currentPicker;
+  private warehouseSystem theSystem;
+  private String[] userInput;
   //pass all the warehouse system information to this picker
   public OrderCommand (warehouseSystem theSystem, String[] userInput){
     this.theSystem = theSystem;

@@ -6,9 +6,9 @@ import java.util.logging.Level;
 
 public class LoaderCommand implements Cammand{
   
-  warehouseSystem theSystem;
-  String[] userInput;
-  Loader CurrentLoader;
+  private warehouseSystem theSystem;
+  private String[] userInput;
+  private Loader CurrentLoader;
   
   public LoaderCommand(warehouseSystem theSystem, String[] userInput) {
     this.theSystem = theSystem;
