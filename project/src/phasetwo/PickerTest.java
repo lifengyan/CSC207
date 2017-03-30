@@ -5,68 +5,38 @@ package phasetwo;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 /**
- * @author lifengyan
- *
+ * Unit tests for Picker class.
  */
 public class PickerTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	/**
 	 * Test method for {@link phasetwo.Picker#Picker(java.lang.String)}.
 	 */
 	@Test
 	public void testPicker() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		assertEquals("Alice",aLice.getName());
 	}
 
 	/**
-	 * Test method for {@link phasetwo.Picker#addtoFolkLift(java.lang.String, phasetwo.Warehouse)}.
+	 * Test method for {@link phasetwo.Picker#addtoFolkLift(java.lang.String)}.
 	 */
 	@Test
 	public void testAddtoFolkLift() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link phasetwo.Picker#returnWrongfascia()}.
-	 */
-	@Test
-	public void testReturnWrongfascia() {
-		fail("Not yet implemented");
+		ArrayList<String> forkLift = new ArrayList<String>();
+		forkLift.add("ABC");
+		forkLift.add("abc");
+		forkLift.add("123");
+		Picker aLice = new Picker("Alice");
+		aLice.addtoFolkLift("ABC");
+		aLice.addtoFolkLift("abc");
+		aLice.addtoFolkLift("123");
+		assertEquals(forkLift,aLice.getForkLift());
 	}
 
 	/**
@@ -74,7 +44,12 @@ public class PickerTest {
 	 */
 	@Test
 	public void testAddLocation() {
-		fail("Not yet implemented");
+		ArrayList<Location> locationlist = new ArrayList<Location>();
+		Location locationOne = new Location("A","A","A","A","A");
+		locationlist.add(locationOne);
+		Picker aLice = new Picker("Alice");
+		aLice.addLocation(locationlist);
+		assertEquals(locationOne.toString(),aLice.getNextLocation());
 	}
 
 	/**
@@ -82,7 +57,17 @@ public class PickerTest {
 	 */
 	@Test
 	public void testCheckPickerScanedCorrectSKU() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		ArrayList<Location> locationlist = new ArrayList<Location>();
+		Location locationOne = new Location("A","A","A","A","20");
+		Location locationTwo = new Location("A","A","A","A","5");
+		locationlist.add(locationOne);
+		locationlist.add(locationTwo);
+		aLice.addLocation(locationlist);
+		assertEquals(true,aLice.checkPickerScanedCorrectSKU("20"));
+		Integer nextPick = 0;
+		assertEquals(nextPick,aLice.getcurrentPickNum());
+		assertEquals(false,aLice.checkPickerScanedCorrectSKU("2"));
 	}
 
 	/**
@@ -90,7 +75,18 @@ public class PickerTest {
 	 */
 	@Test
 	public void testCheckgotAllSKU() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		assertEquals(false,aLice.checkgotAllSKU());
+		aLice.addtoFolkLift("a");
+		aLice.addtoFolkLift("a");
+		aLice.addtoFolkLift("a");
+		aLice.addtoFolkLift("a");
+		aLice.addtoFolkLift("a");
+		aLice.addtoFolkLift("a");
+		aLice.addtoFolkLift("a");
+		aLice.addtoFolkLift("a");
+		assertEquals(true,aLice.checkgotAllSKU());
+		
 	}
 
 	/**
@@ -98,7 +94,12 @@ public class PickerTest {
 	 */
 	@Test
 	public void testGetForkLift() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		assertEquals(false,aLice.checkgotAllSKU());
+		aLice.addtoFolkLift("a");
+		ArrayList<String> forkLift = new ArrayList<String>();
+		forkLift.add("a");
+		assertEquals(forkLift,aLice.getForkLift());
 	}
 
 	/**
@@ -106,7 +107,10 @@ public class PickerTest {
 	 */
 	@Test
 	public void testGetRequestid() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		Integer requestID = 1;
+		aLice.setRequestid(requestID);
+		assertEquals(requestID,aLice.getRequestid());
 	}
 
 	/**
@@ -114,7 +118,8 @@ public class PickerTest {
 	 */
 	@Test
 	public void testGetName() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		assertEquals("Alice",aLice.getName());
 	}
 
 	/**
@@ -122,7 +127,15 @@ public class PickerTest {
 	 */
 	@Test
 	public void testGetNextLocation() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		ArrayList<Location> locationlist = new ArrayList<Location>();
+		Location locationOne = new Location("A","A","A","A","20");
+		Location locationTwo = new Location("A","A","A","A","5");
+		locationlist.add(locationOne);
+		locationlist.add(locationTwo);
+		aLice.addLocation(locationlist);
+		assertEquals(locationOne.toString(),aLice.getNextLocation());
+		assertEquals(locationlist,aLice.getLocationList());
 	}
 
 	/**
@@ -130,7 +143,10 @@ public class PickerTest {
 	 */
 	@Test
 	public void testSetRequestid() {
-		fail("Not yet implemented");
+		Picker aLice = new Picker("Alice");
+		Integer iD = 20;
+		aLice.setRequestid(iD);
+		assertEquals(iD,aLice.getRequestid());
 	}
 
 }
