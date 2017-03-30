@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 /**
  * Simulates the generic software, which gives optimized location list for picker to go in order 
@@ -63,10 +63,18 @@ public class WarehousePicking {
   public ArrayList<Location> optimize(ArrayList<String> skus) {
     ArrayList<Location> locationS = new ArrayList<Location>();
     // get 8 random locations and return them as an array of Locations
+   
     for (String sku : skus) {
+      int i =0;
+      for (Location checkLocation: locationList){
+        if (checkLocation.sku.equals(sku)){
+          locationS.add(checkLocation);
+        }
+      }
+  /*  
       Location curr = new Location(null, null, null, null, null);
         curr = locationList.get(Integer.valueOf(sku)-1);
-      locationS.add(curr);
+      locationS.add(curr);*/
     }
     return locationS;
   }

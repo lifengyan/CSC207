@@ -10,11 +10,11 @@ picker Alice pick 37
 picker Alice pick 38
 picker Alice pick 21
 picker Alice pick 22
-picker Alice pick 3
+picker Alice pick A
 order White SE
 picker Bob ready
 picker Alice pick 4
-picker Alice pick 3
+picker Alice pick A
 picker Alice pick 4
 picker Alice marshaling
 sequencer Leon ready
@@ -22,8 +22,8 @@ sequencer Leon scan 37
 sequencer Leon scan 38
 sequencer Leon scan 21
 sequencer Leon scan 21
-sequencer Leon scan 3
-sequencer Leon scan 3
+sequencer Leon scan A
+sequencer Leon scan A
 sequencer Leon scan 4
 sequencer Leon scan 4
 picker Alice ready
@@ -31,9 +31,9 @@ picker Alice pick 37
 picker Alice pick 38
 picker Alice pick 21
 picker Alice pick 22
-picker Alice pick 3
+picker Alice pick A
 picker Alice pick 4
-picker Alice pick 3
+picker Alice pick A
 picker Alice pick 4
 picker Alice marshaling
 sequencer Leon ready
@@ -41,11 +41,11 @@ sequencer Leon scan 37
 sequencer Leon scan 38
 sequencer Leon scan 21
 sequencer Leon scan 22
-sequencer Leon scan 3
-sequencer Leon scan 3
+sequencer Leon scan A
+sequencer Leon scan A
 sequencer Leon scan 4
 sequencer Leon scan 4
 loader zhaoyuan ready
-loader zhaoyuan scan 37 21 3 3 38 22 4 4
+loader zhaoyuan scan 37 21 A A 38 22 4 4
 loader zhaoyuan loading
 order White SE
