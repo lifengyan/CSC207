@@ -107,7 +107,7 @@ public class Hrsystem {
       Sequencer localSequencer = FreeSequencer.get(0);
       FreeSequencer.remove(0);
       localSequencer.ready(this.getSequencingid());
-      return (localSequencer.getName() + "resived the items with pick ID of "+ localSequencer.getid());
+      return (localSequencer.getName() + " recieved the items with pick ID of "+ localSequencer.getid());
     }
     return "we do not have free sequencer yet";
   }
@@ -163,9 +163,10 @@ public class Hrsystem {
       Replenisher rp = new Replenisher(name);
       this.hrSystemOther.add(rp);
     }
-
   }
-
+  /***
+   * return one of the pickid that is sequenced but loader have not scan yet
+   */
   public int getLoaderId() {
     if (!unScanedloadedID.isEmpty()){
       int reint = unScanedloadedID.get(0);
@@ -176,7 +177,9 @@ public class Hrsystem {
     }
     
   }
-
+/***
+ * return the loader scaned but not loadinged list
+ */
   public HashMap<Integer, ArrayList<ArrayList<String>>> getunloadingList() {
     return  unloadingList;
   }

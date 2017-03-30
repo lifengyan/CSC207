@@ -11,6 +11,7 @@ public class OrderManager {
   private ArrayList<Order> repick;
   private static int trail = 4;
   private int hasnext = 0;
+  private int freeorder = 0;
 
   /**
    * Creates a new empty OrderManager.
@@ -29,12 +30,12 @@ public class OrderManager {
    * manager system at once.
    */
   public void addOrder(String colour, String model, Translate tr) {
-
     Order order = new Order(colour, model, tr);
     temOrder.put(order.getOrderid(), order);
     if (temOrder.size() == 4) {
       orders.putAll(temOrder);
       temOrder.clear();
+      freeorder +=4;
     }
 
   }
@@ -63,6 +64,7 @@ public class OrderManager {
         }
         this.hasnext = trail;
         trail += 4;
+        freeorder-=4;
       } else {
         this.hasnext = 0;
       }
@@ -70,7 +72,13 @@ public class OrderManager {
 
     return order;
   }
-
+  /***
+   * return how many free order left
+   * @return
+   */
+public int freeOrderNumber(){
+  return freeorder;
+}
   /**
    * Change the orders status in the main system to "repicked" and move them to 
    * the repick.
@@ -85,15 +93,21 @@ public class OrderManager {
       in--;
     }
   }
-
+  /***
+   * return the current picking id
+   */
   public int hasNext() {
     return this.hasnext;
   }
-  
+  /***
+   * return the repick list
+   */
   public ArrayList<Order> getRepick() {
     return this.repick;
   }
-
+/***
+ * get all the order
+ */
   public Map<Integer, Order> getOrders() {
     return this.orders;
   }
