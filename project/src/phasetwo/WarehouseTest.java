@@ -1,55 +1,68 @@
+/**
+ * 
+ */
 package phasetwo;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import org.junit.Test;
 
+/**
+ * @author lifengyan
+ *
+ */
 public class WarehouseTest {
+  Warehouse wh = new Warehouse();
+  
 
-  @BeforeClass
-  public static void setUpBeforeClass() throws Exception {}
-
-  @AfterClass
-  public static void tearDownAfterClass() throws Exception {}
-
-  @Before
-  public void setUp() throws Exception {}
-
-  @After
-  public void tearDown() throws Exception {}
-
+  /**
+   * Test method for {@link phasetwo.Warehouse#Warehouse()}.
+   */
   @Test
   public void testWarehouse() {
-    fail("Not yet implemented");
+    assertTrue(wh.getLevel(0, 0, 0, 1).report()==30);
   }
 
+  /**
+   * Test method for {@link phasetwo.Warehouse#storageInital(java.lang.String)}.
+   * @throws FileNotFoundException 
+   */
   @Test
-  public void testStorageInital() {
-    fail("Not yet implemented");
+  public void testStorageInital() throws FileNotFoundException {
+    String warehousePath = new File("src/phasetwo/warehouse.csv").getAbsolutePath();
+    wh.storageInital(warehousePath);
+    assertTrue(wh.getLevel(1, 1, 1, 1).report()==30);
   }
 
+  /**
+   * Test method for {@link phasetwo.Warehouse#removeOneAtLocation(phasetwo.Location)}.
+   */
   @Test
   public void testRemoveOneAtLocation() {
-    fail("Not yet implemented");
+    Location ls = new Location("A","1","1","1","1");
+    wh.removeOneAtLocation(ls);
+    assertTrue(wh.getLevel(0, 1, 1, 1).report()==29);
   }
 
+  /**
+   * Test method for {@link phasetwo.Warehouse#getFascia(int, int, int, int)}.
+   */
   @Test
   public void testGetFascia() {
-    fail("Not yet implemented");
+    wh.getFascia(0, 1, 1, 1);
+    assertTrue(wh.getLevel(0, 1, 1, 1).report()==29);
   }
 
-  @Test
-  public void testWriteDown() {
-    fail("Not yet implemented");
-  }
 
+  /**
+   * Test method for {@link phasetwo.Warehouse#getLevel(java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Integer)}.
+   */
   @Test
   public void testGetLevel() {
-    fail("Not yet implemented");
+    assertTrue(wh.getLevel(0, 1, 1, 1).report()==30);
   }
 
 }
