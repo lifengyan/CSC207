@@ -97,7 +97,8 @@ public class OrderManager {
   }
 
   /**
-   * return the current picking id.
+   * return the current picking id. 
+   * 
    */
   public int hasNext() {
     return this.hasnext;
