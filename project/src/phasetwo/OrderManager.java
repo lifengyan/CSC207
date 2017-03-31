@@ -9,7 +9,7 @@ public class OrderManager {
   private Map<Integer, Order> orders;
   private Map<Integer, Order> temOrder;
   private ArrayList<Order> repick;
-  private static int trail = 4;
+  private static int trail = 4;// to in order to generate pick id
   private int hasnext = 0;
   private int freeorder = 0;
 
