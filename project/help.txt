@@ -1,7 +1,7 @@
 *************************************************************************************************************
 In terminal, cd to group_0411/project
 Input Commands: javac -cp src src/phasetwo/MainFunction.java 
-		java -cp phasetwo/MainFunction
+		java -cp phasetwo/MainFunction (plus 16order.txt as an argument)
 
 *************************************************************************************************************
 After Running the Program for 3 Times, Please check warehouse.csv to make sure there are
