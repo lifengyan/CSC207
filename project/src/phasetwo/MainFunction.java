@@ -25,13 +25,13 @@ import java.util.logging.SimpleFormatter;
 public class MainFunction {
   // set up all the files
   static String filePath = new File("").getAbsolutePath();
-  public static String hrFilePath = new File("src/phasetwo/hrfile.csv").getAbsolutePath();
-  public static String warehousePath = new File("src/phasetwo/warehouse.csv").getAbsolutePath();
-  public static String transtanblePath = new File("src/phasetwo/translation.csv").getAbsolutePath();
+  public static String hrFilePath = new File("group_0411/project/src/phasetwo/hrfile.csv").getAbsolutePath();
+  public static String warehousePath = new File("group_0411/project/src/phasetwo/warehouse.csv").getAbsolutePath();
+  public static String transtanblePath = new File("group_0411/project/src/phasetwo/translation.csv").getAbsolutePath();
   public static String genericSoftPath =
-      new File("src/phasetwo/traversal_table.csv").getAbsolutePath();
-  public static String orderFile = new File("src/phasetwo/order.csv").getAbsolutePath();
-  //public static String commandFile = new File("src/phasetwo/16orders.txt").getAbsolutePath();
+      new File("group_0411/project/src/phasetwo/traversal_table.csv").getAbsolutePath();
+  public static String orderFile = new File("group_0411/project/src/phasetwo/order.csv").getAbsolutePath();
+  //public static String commandFile = new File("group_0411/project/src/phasetwo/16orders.txt").getAbsolutePath();
   private static final Logger LOGGER = Logger.getLogger(MainFunction.class.getName());
   public static boolean newUnhandledRequest = false;
 

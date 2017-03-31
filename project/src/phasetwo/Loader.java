@@ -91,7 +91,7 @@ public class Loader implements Worker {
           }
         }
       }
-      double truckid =  Math.floor(hrsystem.trucknumber/2);
+      double truckid =  Math.floor(hrsystem.trucknumber/20);
       hrsystem.trucknumber ++;
       writer.append("Truck "+ String.valueOf(truckid+1) + " pick ID: " + Integer.toString(key) + "," +
       frontSku + backSku+ "\n");
