@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author lifengyan
+ * Unit Tests for PickerCommand.java
  *
  */
 public class PickerCommandTest {

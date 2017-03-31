@@ -2,7 +2,13 @@
 Name: Tong Zhu
 Student ID: 1000401004
 Duties:
-- developed todoList for the project
+- Developed todoList for the project
+- Modified Picker System to accomendate the changes stated in phase two including picker re-pick events and so on.
+- Developed JUnit Test for Picker.java, PickerManager.java, Warehousepicking.java, Location.java
+- Debug the system, edited MainFunction, PickerCommand.java
+- Added javadoc for all classes in picker system, MainFunction.java and PickerCommand.java. 
+- Developed help.txt
+- Developed project Walkthrough document.
 ********************************************************************
 Name: Fengyan Li
 Student ID: 1001674039
