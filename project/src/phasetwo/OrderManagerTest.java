@@ -62,7 +62,7 @@ public class OrderManagerTest {
     om.addOrder("Red", "S", tr);
     assertEquals(om.getOrders().get(13).getOrderid(), 13);
   }
-  
+
   @Test
   public void testRepick() {
     om.addOrder("Blue", "SES", tr);
@@ -70,10 +70,10 @@ public class OrderManagerTest {
     om.addOrder("Red", "SES", tr);
     om.addOrder("Red", "S", tr);
     om.repick(17);
-    assertEquals(om.getRepick().size(),4);
-    assertEquals(om.generatePick().get(1).getOrderid(),14);
-   
+    assertEquals(om.getRepick().size(), 4);
+    assertEquals(om.generatePick().get(1).getOrderid(), 14);
+
   }
-  
+
 
 }
