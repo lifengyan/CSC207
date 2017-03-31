@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 
 public class Level {
-	// each Level will use fasciaList to store all the Fascia 
+  // each Level will use fasciaList to store all the Fascia
   private ArrayList<Fascia> fasciaList = new ArrayList<>();
-  
-  //Constructor
+
+  // Constructor
   public Level() {}
 
   /**
@@ -21,39 +21,45 @@ public class Level {
       fasciaList.add(new Fascia());
     }
   }
-  
-  /***
-   * this method allow warehouse build the 
-   * @param numberOfFascia
-   */
-  public void set(int numberOfFascia) {
-	  int differnt = fasciaList.size()-numberOfFascia;
-	  if (differnt>0){
-		  for(int i = 0; i< differnt; i++){
-			  fasciaList.remove(0);
-		  }}else if (differnt<0);{
-	  
-	  for(int i = 0; i< -differnt; i++){
-        fasciaList.add(new Fascia());
-	  }}
-	  }
 
   /**
-   * when picker remove the fascia, current level will reduce one unite of fascia, and
-   * check if the level need to replenishing.
+   * this method allow warehouse build.
+   * 
+   * @param numberOfFascia number of fascia
+   */
+  public void set(int numberOfFascia) {
+    int differnt = fasciaList.size() - numberOfFascia;
+    if (differnt > 0) {
+      for (int i = 0; i < differnt; i++) {
+        fasciaList.remove(0);
+      }
+    } else if (differnt < 0) {
+      ;
+    }
+    {
+
+      for (int i = 0; i < -differnt; i++) {
+        fasciaList.add(new Fascia());
+      }
+    }
+  }
+
+  /**
+   * when picker remove the fascia, current level will reduce one unite of fascia, and check if the
+   * level need to replenishing.
    * 
    * @return Fascia
    * 
    */
   public String removeOne() {
-    Fascia retFascia = fasciaList.get(fasciaList.size() - 1);
     fasciaList.remove(fasciaList.size() - 1);
-      return this.replenishing();
+    return this.replenishing();
   }
 
-  /***
-   * report how many Fascia left 
-   * @return
+  /**
+   * report how many Fascia left.
+   * 
+   * @return integer of fascia left.
    */
   public int report() {
     return fasciaList.size();
@@ -65,12 +71,11 @@ public class Level {
    */
   public String replenishing() {
     if (fasciaList.size() <= 5) {
-     return "Need Replenishing";
+      return "Need Replenishing";
       // need to add 25 more Fascia from the reserve room
       // in to the warehouse level.
-    }
-    else{
-      return " has " + String.valueOf(fasciaList.size())+ " left";
+    } else {
+      return " has " + String.valueOf(fasciaList.size()) + " left";
     }
   }
 
