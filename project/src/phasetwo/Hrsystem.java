@@ -216,4 +216,14 @@ public class Hrsystem {
   }
 
 
+  /**
+   * add the loader scaned pallets to the loading list, waits for loader loads.
+   * @param pickid
+   * @param pallets
+   */
+  public void addTOtruck(Integer pickid, ArrayList<ArrayList<String>> pallets) {
+    loadingList.put(pickid, pallets);
+  }
+
+
 }

@@ -75,10 +75,8 @@ sequencer Leon scan 4
 sequencer Leon scan 4
 loader zhaoyuan ready
 loader zhaoyuan scan 37 21 A A 38 22 4 4
-loader zhaoyuan loading
 loader zhaoyuan ready
 loader zhaoyuan scan 37 21 A A 38 22 4 4
-loader zhaoyuan loading
 loader zhaoyuan ready
 loader zhaoyuan scan 37 21 A A 38 22 4 4
 loader zhaoyuan loading

@@ -40,7 +40,7 @@ public class Loader implements Worker {
 	 */
 	public boolean scan(ArrayList<ArrayList<String>> pallets,
 			HashMap<Integer, ArrayList<ArrayList<String>>> loadinglist,
-			HashMap<Integer, ArrayList<ArrayList<String>>> loaded, OrderManager om) {
+			Hrsystem hrsystem, OrderManager om) {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 4; j++) {
 				if (!(loadinglist.get(pickid).get(i).get(j).equals(pallets.get(i).get(j)))) {
@@ -49,7 +49,7 @@ public class Loader implements Worker {
 				}
 			}
 		}
-		loaded.put(pickid, pallets);
+		hrsystem.addTOtruck(pickid, pallets);
 		return true;
 	}
 

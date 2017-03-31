@@ -54,8 +54,7 @@ public class LoaderCommand implements Cammand{
     pallets.add(front);
     pallets.add(back);
     if (CurrentLoader.scan(pallets,theSystem.hrsystem.getunloadingList(),
-        theSystem.hrsystem.loadingList, 
-        theSystem.orderManager)){
+        theSystem.hrsystem, theSystem.orderManager)){
       theSystem.LOGGER.log(Level.FINE, "Loader " + CurrentLoader.getName()
       +" scaned picked Id of " + CurrentLoader.getid() + " all the item are correct");
     }else{
