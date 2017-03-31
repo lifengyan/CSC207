@@ -128,6 +128,14 @@ public class Sequencer implements Worker {
     // TODO Auto-generated method stub
     return name;
   }
+  /***
+   * reset the sequencer
+   */
+  public void reset() {
+    this.count =0;
+    this.cursku="";
+    
+  }
 
 
 
