@@ -13,14 +13,13 @@ import java.util.ArrayList;
  *
  */
 public class PickerManager {
-  private ArrayList<Picker> pickerList = new ArrayList<Picker>(); // store currently working and
-                                                                  // free pickers
-  private ArrayList<Picker> freePicker = new ArrayList<Picker>(); // store free pickers
+  private ArrayList<Picker> pickerList = new ArrayList<Picker>(); 
+  private ArrayList<Picker> freePicker = new ArrayList<Picker>();
 
   /**
    * use input string of a picker's name to get the Picker instance associated with this name, if no
    * such picker exist in the list, then create a new Picker instance with give string name and put
-   * it in the pickerList
+   * it in the pickerList.
    * 
    * @param pickerName the name of the picker
    * @return a picker
@@ -38,7 +37,7 @@ public class PickerManager {
 
   /**
    * getter function that returns an Picker type arrayList of ready/free pickers, the Picker at
-   * index 0 should be the first one to receive next picking request
+   * index 0 should be the first one to receive next picking request.
    * 
    * @return getFreePicker: an array contains all free pickers
    */
@@ -47,7 +46,7 @@ public class PickerManager {
   }
 
   /**
-   * add new ready picker to the free picker list, added to the end of the arrayList
+   * add new ready picker to the free picker list, added to the end of the arrayList.
    * 
    * @param name a new ready picker
    */
@@ -56,7 +55,7 @@ public class PickerManager {
   }
 
   /**
-   * remove pickers from freePicker list after assign them with new request
+   * remove pickers from freePicker list after assign them with new request.
    * 
    * @param picker the picker that got a request to work on
    */
@@ -65,7 +64,7 @@ public class PickerManager {
   }
 
   /**
-   * remove pickers from the pickerList when they finished a picking request
+   * remove pickers from the pickerList when they finished a picking request.
    * 
    * @param picker the picker that has finished the picking request
    */
@@ -74,7 +73,7 @@ public class PickerManager {
   }
 
   /**
-   * return an ArrayList of pickerList This function is only used in the PickerManagerTest file
+   * return an ArrayList of pickerList This function is only used in the PickerManagerTest file.
    * 
    * @return ArrayList of Picker type
    */

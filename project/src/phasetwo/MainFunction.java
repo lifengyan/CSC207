@@ -31,7 +31,7 @@ public class MainFunction {
   public static String genericSoftPath =
       new File("src/phasetwo/traversal_table.csv").getAbsolutePath();
   public static String orderFile = new File("src/phasetwo/order.csv").getAbsolutePath();
-  public static String commandFile = new File("src/phasetwo/16orders.txt").getAbsolutePath();
+  //public static String commandFile = new File("src/phasetwo/16orders.txt").getAbsolutePath();
   private static final Logger LOGGER = Logger.getLogger(MainFunction.class.getName());
   public static boolean newUnhandledRequest = false;
 
@@ -44,6 +44,7 @@ public class MainFunction {
    */
   public static void main(String[] args) {
     try {
+      String commandFile = args[0];
       // Creating and Assigning handlers to LOGGER object
       Handler consoleHandler = new ConsoleHandler();
       Handler fileHandler = new FileHandler("log.txt");

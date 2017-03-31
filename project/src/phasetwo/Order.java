@@ -5,7 +5,8 @@ public class Order {
   private String model;
   private String frontsku;
   private String backsku;
-  private static int orderCount = 0;// in order to give a id to an order according to the order that it comes in
+  private static int orderCount = 0;// in order to give a id to an order according to 
+  //the order that comes in
   private String frontStatus = "ordered";
   private String backStatus = "ordered";
   private int orderid;
