@@ -6,7 +6,11 @@ Duties:
 ********************************************************************
 Name: Fengyan Li
 Student ID: 1001674039
-Duties:Developed Fascia, 
+Duties:Developed Junit test cases of Fascia, Sequencer, Loader, Order, OrderManager,Hrsystem and OrderCommand. 
+Modified Sequencer and loader class to add rescan features. Also, if one of the sequencer or loader scanned 
+and find out that the order of skus are wrong for some reason, they will as order manager to generate repick
+order list for pickers to repick. The repick orders have top priority in the system.
+Fix Checkstyle error in each class. 
 ********************************************************************
 Name: Yuan Zhao
 Student ID: 1001696952
