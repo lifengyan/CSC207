@@ -24,8 +24,9 @@ Duties:
 -Imporve the MainFunciton, implement Command deign pattern to help run the MainFuction.
 -The command design pattern include Interface Command, LoaderCommand, SequencerCommand, OrderCommand,PickerCommand
 -ReplenisherCommand.
+-Implement Log system in the main function 
 -Redesign the Hrsystem, build the Worker interface and inproved the Lorader,Sequencer,Replenisher
 -Build the Replenisher class.
 -Debug for our system, almost every class, espitially Loader, Sequencer,Hrsystem.
 -write the 16order.txt file
--build the UML
+-build the UML. 
