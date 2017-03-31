@@ -3,8 +3,17 @@ picker Alice ready
 order Red SES
 order White SE
 order White SE
-order Beige S
-order Green SES
+order Blue SES
+order Red SES
+order White SE
+order White SE
+order Blue SES
+order Red SES
+order White SE
+order White SE
+order Blue SES
+order Red SES
+order White SE
 order White SE
 picker Alice pick 37
 picker Alice pick 38
@@ -17,6 +26,15 @@ picker Alice pick 4
 picker Alice pick A
 picker Alice pick 4
 picker Alice marshaling
+picker Bob pick 37
+picker Bob pick 38
+picker Bob pick 21
+picker Bob pick 22
+picker Bob pick A
+picker Bob pick 4
+picker Bob pick A
+picker Bob pick 4
+picker Bob marshaling
 sequencer Leon ready
 sequencer Leon scan 37
 sequencer Leon scan 38
@@ -37,6 +55,16 @@ picker Alice pick A
 picker Alice pick 4
 picker Alice marshaling
 sequencer Leon ready
+replenisher dali replenish A 0 0 3
+sequencer Leon scan 37
+sequencer Leon scan 38
+sequencer Leon scan 21
+sequencer Leon scan 21
+sequencer Leon scan A
+sequencer Leon scan A
+sequencer Leon scan 4
+sequencer Leon scan 4
+sequencer Leon ready
 sequencer Leon scan 37
 sequencer Leon scan 38
 sequencer Leon scan 21
@@ -48,4 +76,11 @@ sequencer Leon scan 4
 loader zhaoyuan ready
 loader zhaoyuan scan 37 21 A A 38 22 4 4
 loader zhaoyuan loading
+loader zhaoyuan ready
+loader zhaoyuan scan 37 21 A A 38 22 4 4
+loader zhaoyuan loading
+loader zhaoyuan ready
+loader zhaoyuan scan 37 21 A A 38 22 4 4
+loader zhaoyuan loading
 order White SE
+replenisher dali replenish A 0 0 3
