@@ -132,8 +132,7 @@ public class Sequencer implements Worker {
    * reset the sequencer
    */
   public void reset() {
-    this.count =0;
-    this.cursku="";
+    this.count=0;
     
   }
 

@@ -95,7 +95,8 @@ public class Loader implements Worker {
       hrsystem.trucknumber ++;
       writer.append("Truck "+ String.valueOf(truckid+1) + " pick ID: " + Integer.toString(key) + "," +
       frontSku + backSku+ "\n");
-
+      frontSku="";
+      backSku="";
     }
 
     writer.close();

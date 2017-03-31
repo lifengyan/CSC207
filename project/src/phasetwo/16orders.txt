@@ -39,7 +39,7 @@ sequencer Leon ready
 sequencer Leon scan 37
 sequencer Leon scan 38
 sequencer Leon scan 21
-sequencer Leon scan 21
+sequencer Leon scan 22
 sequencer Leon scan A
 sequencer Leon scan A
 sequencer Leon scan 4
@@ -59,7 +59,7 @@ replenisher dali replenish A 0 0 3
 sequencer Leon scan 37
 sequencer Leon scan 38
 sequencer Leon scan 21
-sequencer Leon scan 21
+sequencer Leon scan 22
 sequencer Leon scan A
 sequencer Leon scan A
 sequencer Leon scan 4
