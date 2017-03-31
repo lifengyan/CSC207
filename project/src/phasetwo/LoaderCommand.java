@@ -34,7 +34,7 @@ public class LoaderCommand implements Cammand{
       + "is going to repick  with id of " +CurrentLoader.getid());
     }else if (userInput[2].equals("loading")){
       //loader finish loading send all the item to truck
-      CurrentLoader.load(theSystem.hrsystem.loadingList, "order.csv");
+      CurrentLoader.load(theSystem.hrsystem.loadingList, "order.csv",theSystem.hrsystem);
       theSystem.LOGGER.log(Level.FINE,"Loader " + userInput[1].toString() + " is loading" + "\n");
     }
     

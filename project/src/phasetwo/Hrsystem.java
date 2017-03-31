@@ -17,6 +17,7 @@ public class Hrsystem {
   private HashMap<Integer, ArrayList<ArrayList<String>>> unloadingList;
   public HashMap<Integer, ArrayList<ArrayList<String>>> loadingList;
   private ArrayList<Integer> unScanedloadedid;
+  public int trucknumber =0;
 
   /**
    * Construct Hrsystem.
@@ -32,6 +33,8 @@ public class Hrsystem {
     this.hrSystemSequencer = new ArrayList<Sequencer>();
 
   }
+  
+ 
 
   /**
    * Get a sequencer from hrSystemSequencer by name.

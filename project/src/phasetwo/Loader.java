@@ -69,11 +69,11 @@ public class Loader implements Worker {
    * @param filePath file to write in
    * @throws IOException when file is not found.
    */
-  public void load(HashMap<Integer, ArrayList<ArrayList<String>>> loaded, String filePath)
+  public void load(HashMap<Integer, ArrayList<ArrayList<String>>> loaded, String filePath, Hrsystem hrsystem)
       throws IOException {
 
     String csvFile = filePath;
-    FileWriter writer = new FileWriter(csvFile);
+    FileWriter writer = new FileWriter(csvFile,true);
     String frontSku = "";
     String backSku = "";
 
@@ -91,8 +91,10 @@ public class Loader implements Worker {
           }
         }
       }
-
-      writer.append("pick ID: " + Integer.toString(key) + "," + frontSku + backSku);
+      double truckid =  Math.floor(hrsystem.trucknumber/2);
+      hrsystem.trucknumber ++;
+      writer.append("Truck "+ String.valueOf(truckid+1) + " pick ID: " + Integer.toString(key) + "," +
+      frontSku + backSku+ "\n");
 
     }
 
