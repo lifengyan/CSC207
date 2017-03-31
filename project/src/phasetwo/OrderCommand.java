@@ -38,7 +38,7 @@ private static void createorder(OrderManager orderManager, PickerManager pickerM
         Picker curFreePicker = pickerManager.getFreePicker().get(0);
         pickerManager.deletFreePicker(curFreePicker);
         String pickerName = curFreePicker.getName();
-        LOGGER.log(Level.FINE,"currently free picker " + pickerName + " resive the picking request");
+        LOGGER.log(Level.FINE,"currently free picker " + pickerName + " recieve the picking request");
         //assign the free picker with the order
         HashMap<Integer, Order> newOrderMap = orderManager.generatePick();
         curFreePicker.addLocation(warehousePicking.optimize(warehousePicking.pickRequest(newOrderMap)));

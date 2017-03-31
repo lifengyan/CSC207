@@ -55,7 +55,7 @@ public class Translate {
       }
 
     }
-    System.out.println("Not in the system");
+    
     ArrayList<String> rt = new ArrayList<>();
     rt.add(null);
     rt.add(null);   
