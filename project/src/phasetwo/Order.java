@@ -22,72 +22,83 @@ public class Order {
     orderid = orderCount;
 
   }
-  /***
-   * set the pallet front part status
+
+  /**
+   * set the pallet front part status.
    */
   public void setfrontStatus(String status) {
     this.frontStatus = status;
 
   }
-  /***
-   * get the pallet front part status
+
+  /**
+   * get the pallet front part status.
    */
   public String getfrontStatus() {
     return this.frontStatus;
 
   }
-  /***
-   * get the pallet back part status
+
+  /**
+   * get the pallet back part status.
    */
   public String getbackStatus() {
     return this.backStatus;
 
   }
-  /***
-   * set the pallet  back status
+
+  /**
+   * set the pallet back status.
    */
   public void setbackStatus(String status) {
     this.backStatus = status;
   }
-  /***
-   * resetStatus
+
+  /**
+   * Reset order status.
    */
   public void resetStatus() {
     this.frontStatus = "ordered";
     this.backStatus = "ordered";
   }
-/***
- * return order id
- */
+
+  /**
+   * return order id.
+   */
   public int getOrderid() {
     return orderid;
   }
-  /***
-   * return order`s front sku
+
+  /**
+   * return order`s front sku.
    */
   public String getFront() {
     return this.frontsku;
   }
-  /***
-   * return order`s back sku
+
+  /**
+   * return order`s back sku.
    */
   public String getBack() {
     return this.backsku;
   }
-/***
- * return the order color
- */
+
+  /**
+   * return the order color.
+   */
   public String getColour() {
     return this.colour;
   }
-/***
- * return the order Model
- */
+
+  /**
+   * return the order Model.
+   */
   public String getModel() {
     return this.model;
   }
-  /***
-   * check if two order is euqal, compare colour and model
+
+  /**
+   * check if two order is euqal, compare colour and model.
    */
   public boolean equals(Order order) {
     return (this.getFront().equals(order.getFront()) && this.getBack().equals(order.getBack()));

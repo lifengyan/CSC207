@@ -14,9 +14,8 @@ public class OrderManager {
   private int freeorder = 0;
 
   /**
-   * Creates a new empty OrderManager.
-   * temOrder is to store orders when there are less than four new comes in
-   * repick is to store orders that need to be repicked
+   * Creates a new empty OrderManager. temOrder is to store orders when there are less than four new
+   * comes in repick is to store orders that need to be repicked
    */
   public OrderManager() {
     orders = new HashMap<Integer, Order>();
@@ -35,7 +34,7 @@ public class OrderManager {
     if (temOrder.size() == 4) {
       orders.putAll(temOrder);
       temOrder.clear();
-      freeorder +=4;
+      freeorder += 4;
     }
 
   }
@@ -52,7 +51,7 @@ public class OrderManager {
       while (mn < 5) {
         Order or = this.repick.remove(0);
         order.put(mn, or);
-        mn++;      
+        mn++;
       }
       this.hasnext = order.get(4).getOrderid();
     } else {
@@ -64,7 +63,7 @@ public class OrderManager {
         }
         this.hasnext = trail;
         trail += 4;
-        freeorder-=4;
+        freeorder -= 4;
       } else {
         this.hasnext = 0;
       }
@@ -72,16 +71,19 @@ public class OrderManager {
 
     return order;
   }
-  /***
-   * return how many free order left
-   * @return
-   */
-public int freeOrderNumber(){
-  return freeorder;
-}
+
   /**
-   * Change the orders status in the main system to "repicked" and move them to 
-   * the repick.
+   * return how many free order left.
+   * 
+   * @return the integer of free order number 
+   */
+  public int freeOrderNumber() {
+    return freeorder;
+  }
+
+  /**
+   * Change the orders status in the main system to "repicked" and move them to the repick.
+   * 
    * @param id the pickid
    */
   public void repick(int id) {
@@ -93,21 +95,24 @@ public int freeOrderNumber(){
       in--;
     }
   }
-  /***
-   * return the current picking id
+
+  /**
+   * return the current picking id.
    */
   public int hasNext() {
     return this.hasnext;
   }
-  /***
-   * return the repick list
+
+  /**
+   * return the repick list.
    */
   public ArrayList<Order> getRepick() {
     return this.repick;
   }
-/***
- * get all the order
- */
+
+  /**
+   * get all the order.
+   */
   public Map<Integer, Order> getOrders() {
     return this.orders;
   }

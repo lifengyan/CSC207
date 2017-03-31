@@ -57,7 +57,7 @@ public class Picker {
    * @return boolean: true if it is the correct SKU, false if it is not.
    */
   public boolean checkPickerScanedCorrectSKU(String sku){
-	if(sku.equals(this.locationList.get(nextpick).getSKU())){
+	if(sku.equals(this.locationList.get(nextpick).getSku())){
 		nextpick++;
 		return true;
 	}else{return false;}
