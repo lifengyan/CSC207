@@ -1,5 +1,7 @@
 PHASE 2 MARKING
 
+group_0411 Phase 2 Grade: B
+
 Phase 2 marks are based on the group presentations (including code and
 design quality and project completeness) and your group's unit test
 coverage.  Because we did not give you Checkstyle feedback from Phase
