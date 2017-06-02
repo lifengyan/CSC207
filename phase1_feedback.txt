@@ -1,0 +1,82 @@
+PHASE 1 MARK (including all deductions): 61%
+
+DEDUCTIONS (see below)
+CHECKSTYLE MODIFIER: -20%
+
+As specified in the handout, we ran Checkstyle.  We gave 10 free warnings, and
+then deducted 1% for each further warning.  We capped the deduction at 20%.
+
+If a group member did not have an entry in duties.txt, or the git logs showed
+they contributed nothing or almost nothing, they lost 5% of the group project
+mark.  This is not reflected here, but their project mark will reflect that.
+
+PHASE 1 OVERVIEW
+
+As the phase 1 announcement from 2 March said, you needed to push the following files:
+
+* Your working code.  Remember that the program has two pieces, one the actual
+  system and one that models the actions of the users.  You are welcome to
+  have print statements that log the events in the system.  In particular, you
+  might log when the main program calls a method in your program (usually as
+  the result of an event).
+
+* project/help.txt: a concise and clear set of instructions for:
+    * how to compile and run your code from the command line.  Note that we
+      should not have to move any files or do any special setup. We should be
+      able to copy and paste your instructions into a Teaching Labs terminal
+      all at once and see your program compile and run using the 16orders.txt
+      file. (We should also be able to open your project, in directory
+      project/src, in Eclipse.)
+
+* project/duties.txt: each group member should describe what they contributed
+  to phase 1 in 100 words or less.  Bullet points are fine.  You are
+  encouraged to discuss this with your group.  Note that all group members
+  will be editing the same document.  We will be checking git logs to make
+  sure that each person is the one that commits a description of their
+  contributions.  Part of your individual mark will depend on how much you
+  contribute and the quality of your contributions.
+
+* project/design.pdf: a UML diagram of your project. Your final version should
+  reflect exactly what is in the code when you do your final push.  Your
+  design should reflect the problem domain and follow the same principles as
+  exhibited in A2, and you will be marked on this.
+
+The TAs read these three files, if they existed.  There is a significant
+penalty for not pushing them, or for incomplete content.
+
+Below is the feedback from the markers.
+
+PROJECT/HELP.TXT
+
+
+PROJECT/HELP.TXT COMPILING
+-6% instructions don't compile the program in the Teaching Labs but they have a disclaimer about needing to use Eclipse or, explicitly, what the issue
+
+PROJECT/HELP.TXT RUNNING
+-3% instructions require editing the program or moving files (can be applied more than once)...Compile error Loader L25, "keySet" should be "keySet()".
+
+PROJECT/DESIGN.PDF
+
+
+PROJECT/DUTIES.TXT
+
+
+DOCUMENTATION
+
+
+SPECIFICATION INTERPRETATION
+-2% Loaders should also check the order of the fascias in the pallets.
+
+PROGRAM DESIGN
+-2% Picker L35 - Zones are hardcoded as 'A' or 'B'. What happens to your code if we want to add Zones A to Z? It will not be wise to make 26 if statements.
+
+CLASS DESIGN
+-2% Sequencer.sequence - Returns  ArrayList<ArrayList<Integer>>, where the outer arraylist is only ever 2 elements larger. This type is very confusing and it is arbitrary to assign index 0 the front pallet and index 1 the back pallet. Make a class that has two front and back ArrayList<Int> properties and return that instead!
+-2% Picker L9 - You already made a class for Fascia, why not make it an ArrayList<Fascia>?
+
+CODE QUALITY
+
+PROGRAMMING STYLE
+-2% Loader L22-23 - Use camelCase naming.
+
+ADDITIONAL COMMENTS (NO MARKS LOST)
