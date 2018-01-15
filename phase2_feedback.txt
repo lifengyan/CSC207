@@ -1,0 +1,43 @@
+PHASE 2 MARKING
+
+group_0411 Phase 2 Grade: B
+
+Phase 2 marks are based on the group presentations (including code and
+design quality and project completeness) and your group's unit test
+coverage.  Because we did not give you Checkstyle feedback from Phase
+1 on time, we have excluded that from the marking.
+
+There is an individual component as well.  Your individual mark was
+affected by how well you were able to answer the individual questions.
+
+Before asking for more information about the marking, please re-read
+the entire phase 2 handout that is in your group repository, and in
+particular everything from "What to do for Phase 2" to the end of the
+handout.
+
+Here is the feedback from the TAs:
+
+Your design is solid.  Ther eare some significant issues, such as your 90-line
+main method.  In general, you should not have any logic in your main method,
+because it prevent testability.
+
+Your documentation was generally good, although there were several methods
+that were not commented.  Your naming did not always follow the naming
+conventions; for example, you capitalized SequencerScan.
+
+You have hardcoded values.  You need to get used to introducing constants for
+sizes of things.  Even better would be to read that information from a config
+file.
+
+We opened each project in Eclipse and ran EclEmma.  Here is how we applied the
+code coverage deduction:
+
+coverage  deduction
+90+       -0
+80-89     -2
+70-79     -5
+60-69     -8
+50-59    -11
+40-49    -14
+20-39    -17
+0-20     -20
