@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  */
 public class PickerManager {
-  private ArrayList<Picker> pickerList = new ArrayList<Picker>(); 
+  private ArrayList<Picker> pickerList = new ArrayList<Picker>();
   private ArrayList<Picker> freePicker = new ArrayList<Picker>();
 
   /**

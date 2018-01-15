@@ -1,0 +1,9 @@
+Mar 29, 2017 7:49:33 PM phasetwo.MainFunction main
+SEVERE: File reading incorrect
+java.io.FileNotFoundException: /Users/lifengyan/Desktop/CSC207Workspace/group_0411/project/src/src/phasetwo/16orders.txt (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at phasetwo.MainFunction.main(MainFunction.java:59)
+

@@ -1,0 +1,6 @@
+Apr 03, 2017 8:44:05 PM phasetwo.MainFunction main
+CONFIG: reading warehouse.csv file
+Apr 03, 2017 8:54:06 PM phasetwo.MainFunction main
+CONFIG: reading transtanble.csv file
+Apr 03, 2017 8:54:09 PM phasetwo.MainFunction main
+CONFIG: reading hrfile.csv file
